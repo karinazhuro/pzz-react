@@ -1,0 +1,11 @@
+header img {
+    position: absolute;
+    width: 100%;
+}
+
+header svg {
+    height: 100px;
+    position: relative;
+    margin: 2.5rem 5rem;
+    color: #fff;
+}
