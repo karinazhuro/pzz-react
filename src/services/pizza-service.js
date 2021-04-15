@@ -9,10 +9,29 @@ export default class PizzaService {
 		}
 
 		return await res.json();
-	}
+	};
 
 	getPizzas = async () => {
 		const res = await this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
-		console.log(res)
-	}
+		// console.log(res.response.data)
+		return res.response.data.map(this._transformPizza);
+		// return this._transformPizza(res.response.data[0])
+	};
+
+	_transformPizza = (pizza) => {
+		return {
+			id: pizza.id,
+			title: pizza.title,
+			bigSize: pizza.is_big,
+			bigPrice: pizza.big_price,
+			bigWeight: pizza.big_weight,
+			mediumSize: pizza.is_medium,
+			mediumPrice: pizza.medium_price,
+			mediumWeight: pizza.medium_weight,
+			thinSize: pizza.is_thin,
+			thinPrice: pizza.thin_price,
+			thinWeight: pizza.thin_weight,
+			anonce: pizza.anonce,
+		};
+	};
 }
