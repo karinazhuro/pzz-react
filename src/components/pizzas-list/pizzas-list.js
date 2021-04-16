@@ -21,7 +21,6 @@ export default class PizzasList extends Component {
 	}
 
 	renderItems(arr) {
-		console.log(arr)
 		return arr.map(({id, title}) => {
 			return (
 				<li key={id}>
@@ -43,7 +42,7 @@ export default class PizzasList extends Component {
 		const items = this.renderItems(pizzasList);
 		return (
 			<ul>
-				{items}
+				{/*{items}*/}
 			</ul>
 		);
 	};
