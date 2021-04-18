@@ -1,49 +1,41 @@
 import React, {Component} from 'react';
 
-import PizzaService from "../../services/pizza-service";
-import PizzaItem from "../pizza-item";
+// import PizzaService from "../../services/pizza-service";
+import PizzaListItem from "../pizza-list-item";
 
 export default class PizzasList extends Component {
-	pizzaService = new PizzaService();
+  // const pizzaService = new PizzaService();
 
-	state = {
-		pizzasList: null,
-	}
+  // componentDidMount() {
+  //   this.pizzaService
+  //     .getPizzas()
+  //     .then((pizzasList) => {
+  //       this.setState({
+  //         pizzasList,
+  //       });
+  //     });
+  // }
 
-	componentDidMount() {
-		this.pizzaService
-			.getPizzas()
-			.then((pizzasList) => {
-				this.setState({
-					pizzasList,
-				});
-			});
-	}
-
-	renderItems(arr) {
-		return arr.map(({id, title}) => {
-			return (
-				<li key={id}>
-					{title}
-				</li>
-			)
-		})
-	}
-
-	render() {
-		const {pizzasList} = this.state;
+  render() {
+    const {pizzas} = this.props;
 
 
-		if (!pizzasList) {
-			// TODO: add spinner
-			return <span>hi</span>
-		}
+    if (!pizzas) {
+      // TODO: add spinner
+      return <span>hi</span>
+    }
 
-		const items = this.renderItems(pizzasList);
-		return (
-			<ul>
-				{/*{items}*/}
-			</ul>
-		);
-	};
+    return (
+      <ul>
+        {
+          pizzas.map((pizza) => {
+            return (
+              <li key={pizza.id}>
+                <PizzaListItem pizza={pizza}/>
+              </li>
+            );
+          })};
+      </ul>
+    );
+  };
 };
