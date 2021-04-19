@@ -1,8 +1,8 @@
 import React from 'react';
 
 
-const PizzaListItem = ({label}) => {
-	return <span>{label}</span>
+const PizzaListItem = ({pizza}) => {
+	return <span>{pizza}</span>
 };
 
 export default PizzaListItem;

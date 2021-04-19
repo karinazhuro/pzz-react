@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 
 // import PizzaService from "../../services/pizza-service";
 import PizzaListItem from "../pizza-list-item";
+import Spinner from "../spinner";
 
-export default class PizzasList extends Component {
-  // const pizzaService = new PizzaService();
+class PizzasList extends Component {
+  // pizzaService = new PizzaService();
 
   // componentDidMount() {
   //   this.pizzaService
@@ -21,8 +22,7 @@ export default class PizzasList extends Component {
 
 
     if (!pizzas) {
-      // TODO: add spinner
-      return <span>hi</span>
+      return <Spinner />
     }
 
     return (
@@ -34,8 +34,10 @@ export default class PizzasList extends Component {
                 <PizzaListItem pizza={pizza}/>
               </li>
             );
-          })};
+          })}
       </ul>
     );
   };
-};
+}
+
+export default PizzasList;

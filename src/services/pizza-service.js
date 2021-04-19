@@ -12,10 +12,9 @@ export default class PizzaService {
 	};
 
 	getPizzas = async () => {
-		const res = await this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
-		// console.log(res.response.data)
+		const res = await
+			this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
 		return res.response.data.map(this._transformPizza);
-		// return this._transformPizza(res.response.data[0])
 	};
 
 	_transformPizza = (pizza) => {

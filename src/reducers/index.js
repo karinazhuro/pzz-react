@@ -1,18 +1,17 @@
 import PizzaService from "../services/pizza-service";
+import store from "../store";
 
 const initialState = {
 	pizzas: [],
 };
 
 const reducer = (state = initialState, action) => {
-	switch (action.type) {
-		case 'PIZZAS_LOADED':
-			return {
-				pizzas: action.payload,
-			};
-
-		default:
-			return state;
+	if (action.type === 'PIZZAS_LOADED') {
+		return {
+			pizzas: action.payload,
+		};
+	} else {
+		return state;
 	}
 };
 
