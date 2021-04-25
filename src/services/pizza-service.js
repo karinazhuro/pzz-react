@@ -12,14 +12,14 @@ export default class PizzaService {
 	};
 
 	getPizzas = async () => {
-		const res = await
-			this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
+		const res = await this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
 		return res.response.data.map(this._transformPizza);
 	};
 
 	_transformPizza = (pizza) => {
 		return {
 			id: pizza.id,
+			photo: pizza.photo_small,
 			title: pizza.title,
 			bigSize: pizza.is_big,
 			bigPrice: pizza.big_price,

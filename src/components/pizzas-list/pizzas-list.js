@@ -1,40 +1,54 @@
 import React, {Component} from 'react';
 
-// import PizzaService from "../../services/pizza-service";
+import PizzaService from "../../services/pizza-service";
 import PizzaListItem from "../pizza-list-item";
 import Spinner from "../spinner";
 
 class PizzasList extends Component {
-  // pizzaService = new PizzaService();
+  pizzaService = new PizzaService();
 
-  // componentDidMount() {
-  //   this.pizzaService
-  //     .getPizzas()
-  //     .then((pizzasList) => {
-  //       this.setState({
-  //         pizzasList,
-  //       });
-  //     });
-  // }
+  state = {
+    pizzasList: null,
+  };
+
+  componentDidMount() {
+    this.pizzaService
+      .getPizzas()
+      .then((pizzasList) => {
+        this.setState({
+          pizzasList,
+        });
+      });
+  };
+
+  renderItem = (arr) => {
+    console.log(arr);
+
+    return arr.map(({id, photo, title}) => {
+      return (
+        <li key={id}>
+          <PizzaListItem
+            photo={photo}
+            title={title}/>
+        </li>
+      )
+    })
+
+
+  };
 
   render() {
-    const {pizzas} = this.props;
+    const {pizzasList} = this.state;
 
-
-    if (!pizzas) {
-      return <Spinner />
+    if (!pizzasList) {
+      return <Spinner/>
     }
+
+    const item = this.renderItem(pizzasList);
 
     return (
       <ul>
-        {
-          pizzas.map((pizza) => {
-            return (
-              <li key={pizza.id}>
-                <PizzaListItem pizza={pizza}/>
-              </li>
-            );
-          })}
+        {item}
       </ul>
     );
   };
