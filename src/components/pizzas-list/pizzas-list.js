@@ -22,12 +22,15 @@ class PizzasList extends Component {
   };
 
   renderItem = (arr) => {
-    return arr.map(({id, photo, title}) => {
+    return arr.map(({id, photo, title, variants}) => {
       return (
         <li key={id}>
           <PizzaListItem
             photo={photo}
-            title={title}/>
+            title={title}
+            size={variants}
+            // description={description}
+          />
         </li>
       );
     });
