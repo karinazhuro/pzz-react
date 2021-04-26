@@ -22,8 +22,6 @@ class PizzasList extends Component {
   };
 
   renderItem = (arr) => {
-    console.log(arr);
-
     return arr.map(({id, photo, title}) => {
       return (
         <li key={id}>
@@ -31,10 +29,8 @@ class PizzasList extends Component {
             photo={photo}
             title={title}/>
         </li>
-      )
-    })
-
-
+      );
+    });
   };
 
   render() {
@@ -44,11 +40,9 @@ class PizzasList extends Component {
       return <Spinner/>
     }
 
-    const item = this.renderItem(pizzasList);
-
     return (
       <ul>
-        {item}
+        {this.renderItem(pizzasList)}
       </ul>
     );
   };
