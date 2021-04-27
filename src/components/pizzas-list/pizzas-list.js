@@ -5,50 +5,51 @@ import PizzaListItem from "../pizza-list-item";
 import Spinner from "../spinner";
 
 class PizzasList extends Component {
-  pizzaService = new PizzaService();
+	pizzaService = new PizzaService();
 
-  state = {
-    pizzasList: null,
-  };
+	state = {
+		pizzasList: null,
+	};
 
-  componentDidMount() {
-    this.pizzaService
-      .getPizzas()
-      .then((pizzasList) => {
-        this.setState({
-          pizzasList,
-        });
-      });
-  };
+	componentDidMount() {
+		this.pizzaService
+			.getPizzas()
+			.then((pizzasList) => {
+				this.setState({
+					pizzasList,
+				});
+			});
+	};
 
-  renderItem = (arr) => {
-    return arr.map(({id, photo, title, variants}) => {
-      return (
-        <li key={id}>
-          <PizzaListItem
-            photo={photo}
-            title={title}
-            size={variants}
-            // description={description}
-          />
-        </li>
-      );
-    });
-  };
+	renderItem = (arr) => {
+		return arr.map(({id, photo, title, variants}) => {
+			// const variant = variants.forEach((variant) => variant.size);
+			// console.log(variant)
 
-  render() {
-    const {pizzasList} = this.state;
+			return (
+				<li key={id}>
+					<PizzaListItem
+						photo={photo}
+						title={title}
+						variants={variants}/>
+				</li>
+			);
+		});
+	};
 
-    if (!pizzasList) {
-      return <Spinner/>
-    }
+	render() {
+		const {pizzasList} = this.state;
 
-    return (
-      <ul>
-        {this.renderItem(pizzasList)}
-      </ul>
-    );
-  };
+		if (!pizzasList) {
+			return <Spinner/>
+		}
+
+		return (
+			<ul>
+				{this.renderItem(pizzasList)}
+			</ul>
+		);
+	};
 }
 
 export default PizzasList;

@@ -35,12 +35,11 @@ export default class PizzaService {
 		]);
 
 		if (pizza.is_big === 1) {
-			 variants.push(this._variantsData(pizza, pizzasSizes.get('big')))
-		} else if (pizza.is_medium === 1) {
-			variants.push(this._variantsData(pizza, pizzasSizes.get('medium')))
-		} else if (pizza.is_thin === 1) {
-			variants.push(this._variantsData(pizza, pizzasSizes.get('thin')))
-		}
+			variants.push(this._variantsData(pizza, pizzasSizes.get('big')))}
+		if (pizza.is_medium === 1) {
+			variants.push(this._variantsData(pizza, pizzasSizes.get('medium')))}
+		if (pizza.is_thin === 1) {
+			variants.push(this._variantsData(pizza, pizzasSizes.get('thin')))}
 
 		return variants;
 	};
