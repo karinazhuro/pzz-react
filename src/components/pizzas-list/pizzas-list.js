@@ -23,12 +23,10 @@ class PizzasList extends Component {
 
 	renderItem = (arr) => {
 		return arr.map(({id, photo, title, variants}) => {
-			// const variant = variants.forEach((variant) => variant.size);
-			// console.log(variant)
-
 			return (
 				<li key={id}>
 					<PizzaListItem
+						id={id}
 						photo={photo}
 						title={title}
 						variants={variants}/>

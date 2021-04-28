@@ -2,31 +2,28 @@ import React from 'react';
 
 import enumTranslations from '../../utils/enumTranslations';
 
-const PizzaListItem = ({photo, title, variants}) => {
-	const variant = variants.map((variant) => {
-		return variant.size;
-	});
-
-	console.log(variant);
+const PizzaListItem = ({id, photo, title, variants}) => {
+	const variant = variants.map((variant) => <PizzaInfo variants={variant}/>);
 
 	return (
-		<span>
-			<img src={photo} alt={title} />
+		<div key={id} className='PizzaListItem'>
+			<img src={photo} alt={title}/>
 			<h3>{title}</h3>
-			<PizzaInfo
-				size={variant.map(item => {
-					return item
-				})}/>
-		</span>
+			{variant}
+		</div>
 	)
 };
 
-const PizzaInfo = ({size, price, weight}) => {
+const PizzaInfo = ({variants}) => {
+	const {size, price, weight} = variants;
+
 	return (
-		<div>
+		<div className='PizzaInfo'>
 			<p>{enumTranslations(size)}</p>
 			<p>{price}</p>
-			<button onClick={() => {}}>В корзину</button>
+			<button onClick={() => {
+			}}>В корзину
+			</button>
 			<p>{weight}</p>
 		</div>
 	)
