@@ -5,7 +5,7 @@ import './header.css'
 const Header = () => {
 	return (
 		<header>
-			<a href=" ">
+			<a href="">
 				<svg preserveAspectRatio="xMinYMid" viewBox="0 0 314.6 343">
 					<g fill="currentColor">
 						<g className="pzz-header-naming">
@@ -27,6 +27,10 @@ const Header = () => {
 					</g>
 				</svg>
 			</a>
+			<div>
+				<a href="" className='cart'> Корзина </a>
+				<p className='amount'></p>
+			</div>
 		</header>
 	);
 };

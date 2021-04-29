@@ -1,10 +1,18 @@
 header {
     background-image: url("header-bg.gif");
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 3rem;
 }
 
 header svg {
     height: 7rem;
     position: relative;
-    margin: 2.5rem 5rem;
     color: #fff;
+}
+
+header .cart {
+    display: table;
+    color: #fff;
+    text-decoration: none;
 }
