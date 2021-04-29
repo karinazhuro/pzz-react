@@ -16,6 +16,11 @@ export default class PizzaService {
 		return res.response.data.map(this._transformPizza);
 	};
 
+	getBasket = async () => {
+		const res = await this.getResource(`/basket`);
+		return res.response.data;
+	};
+
 	_transformPizza = (pizza) => {
 		return {
 			id: pizza.id,

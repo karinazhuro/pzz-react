@@ -21,6 +21,10 @@ class PizzasList extends Component {
 					pizzasList,
 				});
 			});
+
+		this.pizzaService
+		.getBasket()
+			.then((res) => console.log(res));
 	};
 
 	renderItem = (arr) => {
