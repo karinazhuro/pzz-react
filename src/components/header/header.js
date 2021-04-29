@@ -1,12 +1,10 @@
 import React from 'react';
 
 import './header.css'
-import header from './header-bg.gif';
 
 const Header = () => {
 	return (
 		<header>
-			<img src={header} alt=""/>
 			<a href=" ">
 				<svg preserveAspectRatio="xMinYMid" viewBox="0 0 314.6 343">
 					<g fill="currentColor">
