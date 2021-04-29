@@ -1,0 +1,22 @@
+.pizzaInfo {
+    padding: 0 1rem;
+}
+
+.pizzaInfo .variant {
+    display: flex;
+    justify-content: space-between;
+    margin: .5em 0;
+}
+
+.pizzaInfo .variant .countPizzas {
+    display: flex;
+    align-items: center;
+}
+
+.pizzaInfo .variant .countPizzas .counter {
+    display: none;
+}
+
+.pizzaInfo .variant .countPizzas .addToCart {
+    display: flex;
+}

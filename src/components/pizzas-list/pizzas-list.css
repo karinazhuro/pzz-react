@@ -1,0 +1,13 @@
+main {
+    margin: 2rem;
+}
+
+main ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main ul li {
+    margin: 1rem;
+    list-style: none;
+}

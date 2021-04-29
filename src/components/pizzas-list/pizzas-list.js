@@ -4,6 +4,8 @@ import PizzaService from "../../services/pizza-service";
 import PizzaListItem from "../pizza-list-item";
 import Spinner from "../spinner";
 
+import './pizzas-list.css';
+
 class PizzasList extends Component {
 	pizzaService = new PizzaService();
 
@@ -43,9 +45,11 @@ class PizzasList extends Component {
 		}
 
 		return (
-			<ul>
-				{this.renderItem(pizzasList)}
-			</ul>
+			<main>
+				<ul>
+					{this.renderItem(pizzasList)}
+				</ul>
+			</main>
 		);
 	};
 }
