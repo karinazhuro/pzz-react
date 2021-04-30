@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import PizzaService from "../../services/pizza-service";
 import PizzaListItem from "../pizza-list-item";
+import Header from "../header";
 import Spinner from "../spinner";
 
 import './pizzas-list.css';
@@ -22,9 +23,6 @@ class PizzasList extends Component {
 				});
 			});
 
-		this.pizzaService
-		.getBasket()
-			.then((res) => console.log(res));
 	};
 
 	renderItem = (arr) => {

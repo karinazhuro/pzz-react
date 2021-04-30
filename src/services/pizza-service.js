@@ -18,7 +18,7 @@ export default class PizzaService {
 
 	getBasket = async () => {
 		const res = await this.getResource(`/basket`);
-		return res.response.data;
+		return this._transformCart(res.response.data);
 	};
 
 	_transformPizza = (pizza) => {
@@ -28,6 +28,12 @@ export default class PizzaService {
 			title: pizza.title,
 			description: pizza.anonce,
 			variants: this._variantsPizzas(pizza),
+		};
+	};
+
+	_transformCart = (cart) => {
+		return {
+			price: cart.price
 		};
 	};
 
