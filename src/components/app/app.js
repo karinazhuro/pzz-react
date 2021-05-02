@@ -1,15 +1,37 @@
-import React from 'react';
+import React, {Component} from 'react';
 
+import PizzaService from "../../services/pizza-service";
 import Header from "../header";
 import PizzasList from "../pizzas-list";
 
-const App = () => {
-	return (
-		<div>
-			<Header/>
-			<PizzasList/>
-		</div>
-	);
-};
+export default class App extends Component {
+  pizzaService = new PizzaService();
 
-export default App;
+  state = {
+    cart: {
+      price: 0,
+    }
+  };
+
+  componentDidMount() {
+    this.pizzaService
+      .getBasket()
+      .then((cart) => {
+        this.setState({
+          cart,
+        });
+      });
+  };
+
+  render() {
+    const {cart} = this.state;
+
+
+    return (
+      <div>
+        <Header price={cart.price}/>
+        <PizzasList/>
+      </div>
+    );
+  };
+};

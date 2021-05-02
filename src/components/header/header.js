@@ -1,34 +1,14 @@
 import React, {Component} from 'react';
 
-import PizzaService from "../../services/pizza-service";
-
 import './header.css'
 
 export default class Header extends Component {
-	pizzaService = new PizzaService();
-
-	state = {
-		cart: null,
-	};
-
-	componentDidMount() {
-		this.pizzaService
-			.getBasket()
-			.then((cart) => {
-				this.setState({
-					cart,
-				});
-			});
-	};
-
 	render() {
-		const {cart: price} = this.state;
-
-		console.log(price)
+		const {price} = this.props;
 
 		return (
 			<header>
-				<a href="">
+				<a href="/">
 					<svg preserveAspectRatio="xMinYMid" viewBox="0 0 314.6 343">
 						<g fill="currentColor">
 							<g className="pzz-header-naming">
@@ -51,8 +31,8 @@ export default class Header extends Component {
 					</svg>
 				</a>
 				<div>
-					<a href="" className='cart'> Корзина </a>
-					<p className='amount'>{price}</p>
+					<a href="/" className='cart'> Корзина </a>
+					<p className='price'>{price}</p>
 				</div>
 			</header>
 		);

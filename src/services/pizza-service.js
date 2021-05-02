@@ -39,18 +39,13 @@ export default class PizzaService {
 
 	_variantsPizzas = (pizza) => {
 		let variants = [];
-		const pizzasSizes = new Map([
-			['big', 'big'],
-			['medium', 'medium'],
-			['thin', 'thin']
-		]);
 
 		if (pizza.is_big === 1) {
-			variants.push(this._variantsData(pizza, pizzasSizes.get('big')))}
+			variants.push(this._variantsData(pizza,'big'))}
 		if (pizza.is_medium === 1) {
-			variants.push(this._variantsData(pizza, pizzasSizes.get('medium')))}
+			variants.push(this._variantsData(pizza, 'medium'))}
 		if (pizza.is_thin === 1) {
-			variants.push(this._variantsData(pizza, pizzasSizes.get('thin')))}
+			variants.push(this._variantsData(pizza, 'thin'))}
 
 		return variants;
 	};
