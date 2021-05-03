@@ -32,8 +32,15 @@ export default class PizzaService {
 	};
 
 	_transformCart = (cart) => {
+		const itemSize = cart.items.map(item => item.dough).toString();
+		const itemId = cart.items.map(item => Number(item.id)).toString();
+
 		return {
-			price: cart.price
+			price: cart.price,
+			items: {
+				size: itemSize,
+				id: itemId,
+			},
 		};
 	};
 
@@ -41,11 +48,14 @@ export default class PizzaService {
 		let variants = [];
 
 		if (pizza.is_big === 1) {
-			variants.push(this._variantsData(pizza,'big'))}
+			variants.push(this._variantsData(pizza, 'big'))
+		}
 		if (pizza.is_medium === 1) {
-			variants.push(this._variantsData(pizza, 'medium'))}
+			variants.push(this._variantsData(pizza, 'medium'))
+		}
 		if (pizza.is_thin === 1) {
-			variants.push(this._variantsData(pizza, 'thin'))}
+			variants.push(this._variantsData(pizza, 'thin'))
+		}
 
 		return variants;
 	};

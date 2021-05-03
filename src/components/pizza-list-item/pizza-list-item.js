@@ -6,8 +6,13 @@ import './pizza-list-item.css';
 
 export default class PizzaListItem extends Component {
 	render() {
-		const {photo, title, variants} = this.props;
-		const variant = variants.map((variant) => <PizzaInfo key={variant.size} variant={variant}/>);
+		const {id, photo, title, variants, items} = this.props;
+		const variant = variants.map((variant) => {
+			return <PizzaInfo key={variant.size}
+												id={id}
+												variant={variant}
+												items={items}/>
+		});
 
 		return (
 			<div>
@@ -21,12 +26,14 @@ export default class PizzaListItem extends Component {
 	};
 };
 
-const PizzaInfo = ({variant}) => {
+const PizzaInfo = ({id, variant, items}) => {
 	const {size, price, weight} = variant;
-	const content = 0;
+	// const content = 0;
+	// const content = items.size === size && items.id === id ? <AddToCart /> : <Counter />;
+	console.log(items.size);
 
- 	return (
-		<div  className='variant'>
+	return (
+		<div className='variant'>
 			<div className='info'>
 				<p>{enumTranslations(size)}</p>
 				<p>{price}</p>
@@ -55,7 +62,7 @@ const Counter = () => {
 	);
 };
 
-const AdToCart = ({id, size}) => {
+const AddToCart = ({id, size}) => {
 	const addToCart = (id, size) => {
 	};
 

@@ -32,7 +32,7 @@ export default class Header extends Component {
 				</a>
 				<div>
 					<a href="/" className='cart'> Корзина </a>
-					<p className='price'>{price}</p>
+					<p className='price'>{(price / 10000).toFixed(2)}</p>
 				</div>
 			</header>
 		);
