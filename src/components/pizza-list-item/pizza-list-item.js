@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 
 import enumTranslations from '../../utils/enumTranslations';
+import {Consumer} from "../pizzas-service-context";
 
 import './pizza-list-item.css';
 
 export default class PizzaListItem extends Component {
 	render() {
-		const {id, photo, title, variants, items} = this.props;
+		const {id, photo, title, variants} = this.props;
 		const variant = variants.map((variant) => {
 			return <PizzaInfo key={variant.size}
 												id={id}
-												variant={variant}
-												items={items}/>
+												variant={variant}/>
 		});
 
 		return (
@@ -26,7 +26,7 @@ export default class PizzaListItem extends Component {
 	};
 };
 
-const PizzaInfo = ({id, variant, items}) => {
+const PizzaInfo = ({id, variant}) => {
 	const {size, price, weight} = variant;
 
 	return (
@@ -37,7 +37,13 @@ const PizzaInfo = ({id, variant, items}) => {
 				<p>{weight}</p>
 			</div>
 			<div className='countPizzas'>
-
+				<Consumer>
+					{
+						({items}) => {
+							return items.itemSize === size && items.itemId === id ? <Counter /> : <AddToCart />
+						}
+					}
+				</Consumer>
 			</div>
 		</div>
 	);

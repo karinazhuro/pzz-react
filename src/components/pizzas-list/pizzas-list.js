@@ -25,7 +25,6 @@ class PizzasList extends Component {
 
 	renderItem = (arr) => {
 		return arr.map(({id, photo, title, variants}) => {
-			const {items} = this.props;
 
 			return (
 				<li key={id}>
@@ -33,8 +32,7 @@ class PizzasList extends Component {
 						id={id}
 						photo={photo}
 						title={title}
-						variants={variants}
-						items={items}/>
+						variants={variants}/>
 				</li>
 			);
 		});

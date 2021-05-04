@@ -32,14 +32,14 @@ export default class PizzaService {
 	};
 
 	_transformCart = (cart) => {
-		const itemSize = cart.items.map(item => item.dough).toString();
+		const itemSize = cart.items.map(item => item.size).toString();
 		const itemId = cart.items.map(item => Number(item.id)).toString();
 
 		return {
 			price: cart.price,
 			items: {
-				size: itemSize,
-				id: itemId,
+				itemSize: itemSize,
+				itemId: itemId,
 			},
 		};
 	};

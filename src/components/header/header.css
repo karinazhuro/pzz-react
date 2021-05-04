@@ -16,3 +16,7 @@ header .cart {
     color: #fff;
     text-decoration: none;
 }
+
+header .price {
+    color: #fff;
+}
