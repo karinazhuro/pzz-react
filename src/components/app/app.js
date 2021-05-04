@@ -4,6 +4,8 @@ import PizzaService from "../../services/pizza-service";
 import Header from "../header";
 import PizzasList from "../pizzas-list";
 
+const {Provider} = React.createContext();
+
 export default class App extends Component {
 	pizzaService = new PizzaService();
 
@@ -28,8 +30,10 @@ export default class App extends Component {
 
 		return (
 			<div>
-				<Header price={cart.price}/>
-				<PizzasList items={cart.items}/>
+				<Provider value={cart}>
+					<Header />
+					<PizzasList />
+				</Provider>
 			</div>
 		);
 	};

@@ -28,9 +28,6 @@ export default class PizzaListItem extends Component {
 
 const PizzaInfo = ({id, variant, items}) => {
 	const {size, price, weight} = variant;
-	// const content = 0;
-	// const content = items.size === size && items.id === id ? <AddToCart /> : <Counter />;
-	console.log(items.size);
 
 	return (
 		<div className='variant'>
