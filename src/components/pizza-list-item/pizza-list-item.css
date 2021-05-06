@@ -14,7 +14,7 @@
 }
 
 .pizzaInfo .variant .countPizzas .counter {
-    display: none;
+    display: flex;
 }
 
 .pizzaInfo .variant .countPizzas .addToCart {
