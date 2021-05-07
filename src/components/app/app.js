@@ -9,7 +9,6 @@ export default class App extends Component {
 	pizzaService = new PizzaService();
 
 	state = {
-		pizzasList: [],
 		cart: {
 			price: 0,
       items: {},
@@ -27,8 +26,10 @@ export default class App extends Component {
 	};
 
 	render() {
+		// const {cart} = this.state;
+
 		return (
-			<Provider value={{state: this.state, service: this.pizzaService}}>
+			<Provider value={{state: this.state, service: 'qwerty'}}>
 				<div>
 					<Header/>
 					<PizzasList/>

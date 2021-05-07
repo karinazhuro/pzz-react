@@ -1,36 +1,27 @@
 import React, {Component} from 'react';
 
+import PizzaService from "../../services/pizza-service";
 import PizzaListItem from "../pizza-list-item";
 import Spinner from "../spinner";
-import {Consumer} from "../pizzas-service-context";
 
 import './pizzas-list.css';
 
 class PizzasList extends Component {
+	pizzaService = new PizzaService();
+
+	state = {
+		pizzasList: null,
+	};
+
 	componentDidMount() {
-		// <Consumer>
-		// 	{
-		// 		(service) => {
-		// 			return (
-		// 				service.getPizzas()
-		// 					.then((pizzasList) => {
-		// 						this.setState({
-		// 							pizzasList,
-		// 						});
-		// 					});
-		// 			)
-		//
-		// 		}
-		// 	}
-		// </Consumer>
-		// this.pizzaService
-		// 	.getPizzas()
-		// 	.then((pizzasList) => {
-		// 		this.setState({
-		// 			pizzasList,
-		// 		});
-		// 	});
-	}
+		this.pizzaService
+			.getPizzas()
+			.then((pizzasList) => {
+				this.setState({
+					pizzasList,
+				});
+			});
+	};
 
 	renderItem = (arr) => {
 		return arr.map(({id, photo, title, variants}) => {
@@ -47,17 +38,17 @@ class PizzasList extends Component {
 	};
 
 	render() {
+		const {pizzasList} = this.state;
+
+		if (!pizzasList) {
+			return <Spinner/>;
+		}
+
+		const items = this.renderItem(pizzasList);
+
 		return (
 			<main>
-				<ul>
-					<Consumer>
-						{
-							({pizzasList}) => {
-								return !pizzasList ? <Spinner/> : this.renderItem(pizzasList)
-							}
-						}
-					</Consumer>
-				</ul>
+				<ul>{items}</ul>
 			</main>
 		);
 	};
