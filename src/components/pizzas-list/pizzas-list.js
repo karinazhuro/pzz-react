@@ -10,7 +10,7 @@ class PizzasList extends Component {
 	pizzaService = new PizzaService();
 
 	state = {
-		pizzasList: null,
+		pizzasList: [],
 	};
 
 	componentDidMount() {
@@ -40,7 +40,7 @@ class PizzasList extends Component {
 	render() {
 		const {pizzasList} = this.state;
 
-		if (!pizzasList) {
+		if (pizzasList.length === 0) {
 			return <Spinner/>;
 		}
 
