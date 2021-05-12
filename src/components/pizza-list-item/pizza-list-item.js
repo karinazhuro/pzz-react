@@ -9,6 +9,7 @@ export default class PizzaListItem extends Component {
     const {id, photo, title, variants} = this.props;
 
     // const variant = variants.map((variant) => {
+    //   console.log(variant)
     //   return <PizzaVariant key={variant.size}
     //                        id={id}
     //                        variant={variant}/>
@@ -23,20 +24,24 @@ export default class PizzaListItem extends Component {
       }
     });
 
-    const mapVariant = {
-      id: id,
-      photo: photo,
-      title: title,
-      variants: [
-        ...variant,
-      ],
-    };
+    // const mapVariant = {
+    //   id: id,
+    //   photo: photo,
+    //   title: title,
+    //   variants: [
+    //     ...variant,
+    //   ],
+    // };
 
-    const renderVariants = (variant) => {
-      return <PizzaVariant key={variant.variants.size}
-                           size={variant.variants.size}
-                           price={variant.variants.price}
-                           weight={variant.variants.weight}/>
+    const renderVariants = (title, variant) => {
+      let content;
+      for (let i = 0; i < variant.length; i++) {
+        console.log(title, variant[i]);
+        content = <PizzaVariant size={variant[i].size}
+      //                 price={variant[i].price}
+      //                 weight={variant[i].weight}
+                        />
+      }
     };
 
     return (
@@ -44,22 +49,22 @@ export default class PizzaListItem extends Component {
         <img src={photo} alt={title}/>
         <div className='pizzaInfo'>
           <h3>{title}</h3>
-          {renderVariants(mapVariant)}
+          {renderVariants(title, variant)}
         </div>
       </div>
     );
   };
 };
 
-const PizzaVariant = ({size, price, weight}) => {
+const PizzaVariant = ({size}) => {
   // const {size, price, weight} = variant;
 
   return (
     <div className='variant'>
       <div className='info'>
         <p>{enumTranslations(size)}</p>
-        <p>{price}</p>
-        <p>{weight}</p>
+        {/*<p>{price}</p>*/}
+        {/*<p>{weight}</p>*/}
       </div>
       <div className='countPizzas'>
 
