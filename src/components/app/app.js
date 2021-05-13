@@ -26,10 +26,10 @@ export default class App extends Component {
 	};
 
 	render() {
-		// const {cart} = this.state;
+		const {cart} = this.state;
 
 		return (
-			<Provider value={{state: this.state, service: 'qwerty'}}>
+			<Provider value={cart}>
 				<div>
 					<Header/>
 					<PizzasList/>
