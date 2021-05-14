@@ -6,9 +6,9 @@ import {Consumer} from '../pizzas-service-context';
 import './pizza-list-item.css';
 
 export default class PizzaListItem extends Component {
-	state = {
-		count: 0,
-	};
+	// state = {
+	// 	count: 0,
+	// };
 
 	render() {
 		const {id, photo, title, variants} = this.props;
@@ -16,14 +16,15 @@ export default class PizzaListItem extends Component {
 		const quantityPizzas = variants.map(variant => {
 			return {
 				...variant,
-				count: this.state.count
+				count: 0,
+				// count: this.state.count,
 			};
 		});
 
-		const variantsPizzas = {
-			id,
-			...quantityPizzas,
-		};
+		// const variantsPizzas = {
+		// 	id,
+		// 	...quantityPizzas,
+		// };
 
 		const renderVariants = (variants) => {
 			return variants.map(variant => {
@@ -32,7 +33,8 @@ export default class PizzaListItem extends Component {
 														 price={variant.price}
 														 weight={variant.weight}
 														 count={variant.count}
-														 variantsPizzas={variantsPizzas}/>
+														 id={id}
+				/>
 			});
 		};
 
@@ -76,15 +78,15 @@ const AddToCart = ({id, size}) => {
 	);
 };
 
-const PizzaVariant = ({size, price, weight, count, variantsPizzas}) => {
+const PizzaVariant = ({size, price, weight, count, id}) => {
 	const content = count === 0 ? <AddToCart/> : <Counter/>;
+
+	console.log()
 
 	const countPizza = <Consumer>
 		{
 			({items}) => {
-				if (items.id !== variantsPizzas.id) {
-					// count += 1;
-					console.log(count);
+				if (items.id !== id) {
 
 				}
 			}
@@ -98,9 +100,8 @@ const PizzaVariant = ({size, price, weight, count, variantsPizzas}) => {
 				<p>{price}</p>
 				<p>{weight}</p>
 			</div>
-
 			<div className='countPizzas'>
-
+				{content}
 			</div>
 		</div>
 	);
