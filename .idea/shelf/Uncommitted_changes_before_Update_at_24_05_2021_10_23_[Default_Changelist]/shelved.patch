@@ -1,0 +1,143 @@
+Index: src/components/pizza-list-item/pizza-list-item.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {Component} from 'react';\r\n\r\nimport enumTranslations from '../../utils/enumTranslations';\r\nimport {Consumer} from '../pizzas-service-context';\r\n\r\nimport './pizza-list-item.css';\r\n\r\nexport default class PizzaListItem extends Component {\r\n\t// state = {\r\n\t// \tcount: 0,\r\n\t// };\r\n\r\n\trender() {\r\n\t\tconst {id, photo, title, variants} = this.props;\r\n\r\n\t\tconst quantityPizzas = variants.map(variant => {\r\n\t\t\treturn {\r\n\t\t\t\t...variant,\r\n\t\t\t\tcount: 0,\r\n\t\t\t\t// count: this.state.count,\r\n\t\t\t};\r\n\t\t});\r\n\r\n\t\t// const variantsPizzas = {\r\n\t\t// \tid,\r\n\t\t// \t...quantityPizzas,\r\n\t\t// };\r\n\r\n\t\tconst renderVariants = (variants) => {\r\n\t\t\treturn variants.map(variant => {\r\n\t\t\t\treturn <PizzaVariant key={variant.size}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t size={variant.size}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t price={variant.price}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t weight={variant.weight}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t count={variant.count}\r\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t id={id}\r\n\t\t\t\t/>\r\n\t\t\t});\r\n\t\t};\r\n\r\n\t\treturn (\r\n\t\t\t<div>\r\n\t\t\t\t<img src={photo} alt={title}/>\r\n\t\t\t\t<div className='pizzaInfo'>\r\n\t\t\t\t\t<h3>{title}</h3>\r\n\t\t\t\t\t{renderVariants(quantityPizzas)}\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t);\r\n\t};\r\n};\r\n\r\nconst Counter = () => {\r\n\treturn (\r\n\t\t<div className='counter'>\r\n\t\t\t<button className='plus'\r\n\t\t\t\t\t\t\tonClick={() => {\r\n\t\t\t\t\t\t\t}}>+\r\n\t\t\t</button>\r\n\t\t\t<p>1</p>\r\n\t\t\t<button className='minus'\r\n\t\t\t\t\t\t\tonClick={() => {\r\n\t\t\t\t\t\t\t}}>-\r\n\t\t\t</button>\r\n\t\t</div>\r\n\t);\r\n};\r\n\r\nconst AddToCart = ({id, size}) => {\r\n\tconst addToCart = (id, size) => {\r\n\t};\r\n\r\n\treturn (\r\n\t\t<button className='addToCart'\r\n\t\t\t\t\t\tid={id}\r\n\t\t\t\t\t\tsizes={size}\r\n\t\t\t\t\t\tonClick={() => addToCart(id, size)}>В корзину</button>\r\n\t);\r\n};\r\n\r\nconst PizzaVariant = ({size, price, weight, count, id}) => {\r\n\tconst content = count === 0 ? <AddToCart/> : <Counter/>;\r\n\r\n\tconsole.log()\r\n\r\n\tconst countPizza = <Consumer>\r\n\t\t{\r\n\t\t\t({items}) => {\r\n\t\t\t\tif (items.id !== id) {\r\n\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t</Consumer>\r\n\r\n\treturn (\r\n\t\t<div className='variant'>\r\n\t\t\t<div className='info'>\r\n\t\t\t\t<p>{enumTranslations(size)}</p>\r\n\t\t\t\t<p>{price}</p>\r\n\t\t\t\t<p>{weight}</p>\r\n\t\t\t</div>\r\n\t\t\t<div className='countPizzas'>\r\n\t\t\t\t{content}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t);\r\n};
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/pizza-list-item/pizza-list-item.js b/src/components/pizza-list-item/pizza-list-item.js
+--- a/src/components/pizza-list-item/pizza-list-item.js	(revision c7e1dfdac090e5ec785c0f22a620abc6d852c80c)
++++ b/src/components/pizza-list-item/pizza-list-item.js	(date 1621607075868)
+@@ -16,7 +16,7 @@
+ 		const quantityPizzas = variants.map(variant => {
+ 			return {
+ 				...variant,
+-				count: 0,
++				// count: 0,
+ 				// count: this.state.count,
+ 			};
+ 		});
+@@ -28,12 +28,13 @@
+ 
+ 		const renderVariants = (variants) => {
+ 			return variants.map(variant => {
+-				return <PizzaVariant key={variant.size}
+-														 size={variant.size}
+-														 price={variant.price}
+-														 weight={variant.weight}
+-														 count={variant.count}
+-														 id={id}
++				return <PizzaVariant quantityPizzas={quantityPizzas}
++					// key={variant.size}
++					// 									 size={variant.size}
++					// 									 price={variant.price}
++					// 									 weight={variant.weight}
++					// count={variant.count}
++					// 									 id={id}
+ 				/>
+ 			});
+ 		};
+@@ -57,7 +58,7 @@
+ 							onClick={() => {
+ 							}}>+
+ 			</button>
+-			<p>1</p>
++			<p></p>
+ 			<button className='minus'
+ 							onClick={() => {
+ 							}}>-
+@@ -78,31 +79,45 @@
+ 	);
+ };
+ 
+-const PizzaVariant = ({size, price, weight, count, id}) => {
+-	const content = count === 0 ? <AddToCart/> : <Counter/>;
++class PizzaVariant extends Component {
++	state = {
++		count: 0,
++	};
++
++	render() {
++		const {quantityPizzas} = this.props;
++		// const {size, price, weight, id} = this.props;
++		const {count} = this.state;
++		const content = count === 0 ? <AddToCart/> : <Counter/>;
++		console.log(quantityPizzas)
+ 
+-	console.log()
+-
+-	const countPizza = <Consumer>
+-		{
+-			({items}) => {
+-				if (items.id !== id) {
+-
+-				}
+-			}
+-		}
+-	</Consumer>
++		const countPizza = () => {
++			return (
++				<Consumer>
++					{
++						({items}) => {
++							for (let key in items) {
++								// if (items[key] === id.toString()) {
++								// }
++							}
++						}
++					}
++				</Consumer>
++			);
++		};
+ 
+-	return (
+-		<div className='variant'>
+-			<div className='info'>
+-				<p>{enumTranslations(size)}</p>
+-				<p>{price}</p>
+-				<p>{weight}</p>
+-			</div>
+-			<div className='countPizzas'>
+-				{content}
+-			</div>
+-		</div>
+-	);
+-};
+\ No newline at end of file
++		return (
++			<div className='variant'>
++				<div className='info'>
++					{/*<p>{enumTranslations(size)}</p>*/}
++					{/*<p>{price}</p>*/}
++					{/*<p>{weight}</p>*/}
++				</div>
++				<div className='countPizzas'>
++					{countPizza()}
++					{content}
++				</div>
++			</div>
++		);
++	};
++}
+\ No newline at end of file
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>App\r\n    Header  // basket.price\r\n    PizzaList\r\n        PizzaListItem   // pizzas\r\n            PizzaVariant    // variants pizzas
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision c7e1dfdac090e5ec785c0f22a620abc6d852c80c)
++++ b/README.md	(date 1621346494502)
+@@ -1,5 +1,5 @@
+ App
+-    Header  // basket.price
++    Header
+     PizzaList
+-        PizzaListItem   // pizzas
+-            PizzaVariant    // variants pizzas
+\ No newline at end of file
++        PizzaListItem
++            PizzaVariant
+\ No newline at end of file
