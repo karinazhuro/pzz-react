@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-import PizzaService from "../../services/pizza-service";
 import PizzaListItem from "../pizza-list-item";
-import Spinner from "../spinner";
 import {Consumer} from '../pizzas-service-context';
 
 import './pizzas-list.css';

@@ -11,4 +11,5 @@ main ul {
 main ul li {
     margin: 1rem;
     list-style: none;
+    max-width: 300px;
 }

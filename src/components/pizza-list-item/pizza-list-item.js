@@ -6,90 +6,73 @@ import {Consumer} from '../pizzas-service-context';
 import './pizza-list-item.css';
 
 export default class PizzaListItem extends Component {
-	 renderVariants(variants) {
+	renderVariants(variants) {
 		return variants.map(variant => {
 			return <PizzaVariant key={variant.size}
 													 size={variant.size}
 													 price={variant.price}
 													 weight={variant.weight}
 													 count={variant.count}
-													 // id={id}
 			/>
 		});
 	};
 
 	render() {
-    const {photo, title, variants} = this.props;
+		const {photo, title, variants, description} = this.props;
 
-    return (
-      <div>
-        <img src={photo} alt={title}/>
-        <div className='pizzaInfo'>
-          <h3>{title}</h3>
-          {this.renderVariants(variants)}
-        </div>
-        <p>{}</p>
-      </div>
-    );
-  };
+		return (
+			<div>
+				<img src={photo} alt={title}/>
+				<div className='pizzaInfo'>
+					<h3>{title}</h3>
+					{this.renderVariants(variants)}
+				</div>
+				<p className='desc'>{description}</p>
+			</div>
+		);
+	};
 };
 
 const Counter = () => {
-  return (
-    <div className='counter'>
-      <button className='plus'
-              onClick={() => {
-              }}>+
-      </button>
-      <p>1</p>
-      <button className='minus'
-              onClick={() => {
-              }}>-
-      </button>
-    </div>
-  );
+	return (
+		<div className='counter'>
+			<button className='plus'
+							onClick={() => {
+							}}>+
+			</button>
+			<p>{}</p>
+			<button className='minus'
+							onClick={() => {
+							}}>-
+			</button>
+		</div>
+	);
 };
 
 const AddToCart = ({id, size}) => {
-  const addToCart = (id, size) => {
-  };
+	const addToCart = (id, size) => {};
 
-  return (
-    <button className='addToCart'
-            id={id}
-            sizes={size}
-            onClick={() => addToCart(id, size)}>В корзину</button>
-  );
+	return (
+		<button className='addToCart'
+						id={id}
+						sizes={size}
+						onClick={() => addToCart(id, size)}>В корзину</button>
+	);
 };
 
-const PizzaVariant = ({size, price, weight, count, id}) => {
-  const content = count === 0 ? <AddToCart/> : <Counter/>;
+const PizzaVariant = ({size, price, weight, count}) => {
+	const content = count === 0 ? <AddToCart/> : <Counter count={count}/>;
 
-  const countPizza = () => {
-    return (
-      <Consumer>
-        {
-          ({items}) => {
-            if (items.id !== id) {
-
-            }
-          }
-        }
-      </Consumer>
-    )
-  };
-
-
-  return (
-    <div className='variant'>
-      <div className='info'>
-        <p>{enumTranslations(size)}</p>
-        <p>{price}</p>
-        <p>{weight}</p>
-      </div>
-      <div className='countPizzas'>
-        {content}
-      </div>
-    </div>
-  );
+	return (
+		<div className='variant'>
+			<div>
+				<p>{enumTranslations(size)}</p>
+				<p>{price}</p>
+				<p>{weight}</p>
+			</div>
+			<div className='countPizzas'>
+				{content}
+			</div>
+		</div>
+	);
 };

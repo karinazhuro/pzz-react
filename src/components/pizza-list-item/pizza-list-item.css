@@ -13,10 +13,14 @@
     align-items: center;
 }
 
+.pizzaInfo .variant .countPizzas .addToCart {
+    display: flex;
+}
+
 .pizzaInfo .variant .countPizzas .counter {
     display: flex;
 }
 
-.pizzaInfo .variant .countPizzas .addToCart {
-    display: flex;
+.desc {
+    padding: 0 1rem;
 }
