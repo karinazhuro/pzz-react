@@ -1,5 +1,5 @@
 App
-    Header  // basket.price
+    Header
     PizzaList
-        PizzaListItem   // pizzas
-            PizzaVariant    // variants pizzas
+        PizzaListItem
+            PizzaVariant

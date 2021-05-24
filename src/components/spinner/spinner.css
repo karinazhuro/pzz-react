@@ -1,0 +1,11 @@
+.loading {
+    display: flex;
+    justify-content: center;
+}
+
+.loading img {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    transform: translate(0, 160%);
+}
