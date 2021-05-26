@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import enumTranslations from '../../utils/enumTranslations';
-import {Consumer} from '../pizzas-service-context';
 
 import './pizza-list-item.css';
 
@@ -50,7 +49,8 @@ const Counter = () => {
 };
 
 const AddToCart = ({id, size}) => {
-	const addToCart = (id, size) => {};
+	const addToCart = (id, size) => {
+	};
 
 	return (
 		<button className='addToCart'

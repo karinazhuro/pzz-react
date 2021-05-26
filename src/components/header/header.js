@@ -32,7 +32,9 @@ const Header = () => {
 				<a href="/" className='cart'> Корзина </a>
 				<Consumer>
 					{
-						({basket}) => <p className='price'>{(basket.price / 10000).toFixed(2)}</p>
+						({basket}) => {
+							return <p className='price'>{basket}</p>
+						}
 					}
 				</Consumer>
 			</div>

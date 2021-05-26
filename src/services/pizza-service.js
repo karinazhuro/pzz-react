@@ -23,7 +23,7 @@ export default class PizzaService {
 
 	_transformPizza = (pizza) => {
 		return {
-			id: pizza.id,
+			id: pizza.id.toString(),
 			photo: pizza.photo_small,
 			title: pizza.title,
 			description: pizza.anonce,
@@ -32,16 +32,15 @@ export default class PizzaService {
 	};
 
 	_transformCart = (cart) => {
-		const size = cart.items.map(item => item.size).toString();
-		const id = cart.items.map(item => Number(item.id)).toString();
-
 		return {
-			price: cart.price,
-			items: {
-				size: size,
-				id: id,
-			},
-		};
+			price: (cart.price  / 10000).toFixed(2),
+			items: cart.items.map(item => ({
+				id: item.id,
+				size: item.size,
+				title: item.title,
+				price: (item.price / 10000).toFixed(2),
+			}))
+		}
 	};
 
 	_variantsPizzas = (pizza) => {

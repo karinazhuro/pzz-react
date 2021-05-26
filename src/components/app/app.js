@@ -12,10 +12,7 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		countablePizzaList: [],
-		basket: {
-			price: 0,
-			items: {},
-		},
+		basket: [],
 	};
 
 	componentDidMount() {
@@ -32,22 +29,26 @@ export default class App extends Component {
 			pizzasList,
 			basket,
 			countablePizzaList: this.createCountablePizzas(
-				pizzasList, basket.items),
+				pizzasList, basket),
 		});
 	};
 
-	basketItems(pizzas, items) {
-		for (let item in items) {
-			for (let pizza in pizzas) {
-			  // if (items[item] === pizzas[pizza].toString()) {
-        // }
-      }
+	basketItems(pizza, basketItems) {
+		for (let items in basketItems) {
+			if (basketItems[items].id === pizza.id) {
+
+				for (let variant of pizza.variants) {
+					if (basketItems[items].size === variant.size) {
+						this.setState({
+
+						})
+					}
+				}
+			}
 		}
 	};
 
-	createCountablePizzas(pizzas, basketItems) {
-		// console.log(basketItems)
-
+	createCountablePizzas(pizzas, basket) {
 		return pizzas.map(pizza => {
 			return {
 				id: pizza.id,
@@ -58,8 +59,8 @@ export default class App extends Component {
 					size: variant.size,
 					price: variant.price,
 					weight: variant.weight,
-					count: this.basketItems(pizzas, basketItems),
-				}))
+					count: this.basketItems(pizza, basket.items),
+				})),
 			};
 		});
 	};
@@ -71,10 +72,8 @@ export default class App extends Component {
 			return <Spinner/>;
 		}
 
-		this.basketItems();
-
 		return (
-			<Provider value={{basket, countablePizzaList}}>
+			<Provider value={{basket: basket.price, countablePizzaList}}>
 				<div>
 					<Header/>
 					<PizzasList/>
