@@ -33,19 +33,21 @@ export default class App extends Component {
 		});
 	};
 
-	basketItems(pizza, basketItems) {
+	getPizzaCountInBasket(pizza, basketItems) {
+		let count = 0;
+
 		for (let items in basketItems) {
 			if (basketItems[items].id === pizza.id) {
 
 				for (let variant of pizza.variants) {
 					if (basketItems[items].size === variant.size) {
-						this.setState({
-
-						})
+						return count += 1;
 					}
 				}
 			}
 		}
+
+		return count;
 	};
 
 	createCountablePizzas(pizzas, basket) {
@@ -59,7 +61,7 @@ export default class App extends Component {
 					size: variant.size,
 					price: variant.price,
 					weight: variant.weight,
-					count: this.basketItems(pizza, basket.items),
+					count: this.getPizzaCountInBasket(pizza, basket.items),
 				})),
 			};
 		});
@@ -68,6 +70,7 @@ export default class App extends Component {
 	render() {
 		const {pizzasList, basket, countablePizzaList} = this.state;
 
+		console.log(countablePizzaList);
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
 		}
