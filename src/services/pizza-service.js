@@ -21,6 +21,14 @@ export default class PizzaService {
 		return this._transformCart(res.response.data);
 	};
 
+	addItem = async () => {
+		return await this.getResource(`/basket/add-item`);
+	};
+
+	removeItem = async () => {
+		return await this.getResource(`/basket/remove-item`);
+	};
+
 	_transformPizza = (pizza) => {
 		return {
 			id: pizza.id.toString(),
