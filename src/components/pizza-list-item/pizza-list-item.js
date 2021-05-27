@@ -35,14 +35,14 @@ export default class PizzaListItem extends Component {
 const Counter = (props) => {
 	return (
 		<div className='counter'>
-			<button className='plus'
-							onClick={() => {
-							}}>+
-			</button>
-			<p>{props.count}</p>
 			<button className='minus'
 							onClick={() => {
 							}}>-
+			</button>
+			<p>{props.count}</p>
+			<button className='plus'
+							onClick={() => {
+							}}>+
 			</button>
 		</div>
 	);
