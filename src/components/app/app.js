@@ -66,9 +66,10 @@ export default class App extends Component {
 
     return (
       <Provider value={{
-        service: this.pizzaService,
+        // service: this.pizzaService,
         basket: basket.price,
-        countablePizzaList
+        countablePizzaList,
+        createCountablePizzas: this.createCountablePizzas,
       }}>
         <div>
           <Header/>

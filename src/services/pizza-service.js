@@ -1,8 +1,11 @@
 export default class PizzaService {
 	_apiUrl = `https://pzz.by/api/v1`;
 
-	getResource = async (url) => {
-		const res = await fetch(`${this._apiUrl}${url}`);
+	getResource = async (url, method, body) => {
+		const res = await fetch(`${this._apiUrl}${url}`, {
+			method,
+			body,
+		});
 
 		if (!res.ok) {
 			throw new Error(`Could not fetch ${url}, received ${res.status}`);
@@ -21,8 +24,9 @@ export default class PizzaService {
 		return this._transformCart(res.response.data);
 	};
 
-	addItem = async () => {
-		return await this.getResource(`/basket/add-item`);
+	addItem = async (formData) => {
+		// return await fetch(`${this._apiUrl}/basket/add-item`, {
+		return await this.getResource(`/basket/add-item`, 'POST', formData);
 	};
 
 	removeItem = async () => {

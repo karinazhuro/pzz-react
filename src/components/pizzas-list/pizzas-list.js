@@ -26,10 +26,10 @@ class PizzasList extends Component {
       <main>
         <ul>{
           <Consumer>
-            {
-              ({countablePizzaList}) => this.renderItem(countablePizzaList)
-            }
-          </Consumer>
+          {
+            ({countablePizzaList}) => this.renderItem(countablePizzaList)
+          }
+        </Consumer>
         }</ul>
       </main>
     );
