@@ -25,12 +25,13 @@ export default class PizzaService {
 	};
 
 	addItem = async (formData) => {
-		// return await fetch(`${this._apiUrl}/basket/add-item`, {
-		return await this.getResource(`/basket/add-item`, 'POST', formData);
+		const res = await this.getResource(`/basket/add-item`, 'POST', formData);
+		return this._transformCart(res.response.data);
 	};
 
 	removeItem = async () => {
-		return await this.getResource(`/basket/remove-item`);
+		const res =  await this.getResource(`/basket/remove-item`);
+		return this._transformCart(res.response.data);
 	};
 
 	_transformPizza = (pizza) => {
