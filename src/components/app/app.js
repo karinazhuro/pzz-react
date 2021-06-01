@@ -25,8 +25,6 @@ export default class App extends Component {
 		const pizzasList = await pizzasListAsync;
 		const basket = await basketAsync;
 
-		// console.log(basket)
-
 		this.setState({
 			pizzasList,
 			basket,
@@ -48,9 +46,6 @@ export default class App extends Component {
 	};
 
 	createCountablePizzas(pizzas, basket) {
-
-		// console.log(basket.price)
-
 		return pizzas.map(pizza => {
 			return {
 				...pizza,
@@ -62,23 +57,21 @@ export default class App extends Component {
 		});
 	};
 
-	formDataForChangeBasket(id, size) {
+	addItemToCart = async (e, id, size) => {
+		const {pizzasList} = this.state;
 		const formData = new FormData();
+		let addItem;
 
 		formData.append('type', 'pizza');
 		formData.append('id', id);
 		formData.append('size', size);
 		formData.append('dough', 'thin');
 
-		return formData;
-	};
-
-	addItemToCart = async (id, size) => {
-		const {pizzasList} = this.state;
-
-		const addItem = await this.pizzaService.addItem(this.formDataForChangeBasket)
-
-		// console.log(addItem, basket)
+		if (e.target.className === 'minus') {
+			addItem = await this.pizzaService.removeItem(formData);
+		} else {
+			addItem = await this.pizzaService.addItem(formData);
+		}
 
 		this.setState({
 			basket: addItem,
@@ -88,8 +81,6 @@ export default class App extends Component {
 
 	render() {
 		const {pizzasList, basket, countablePizzaList} = this.state;
-
-		// console.log(pizzasList, basket, countablePizzaList)
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;

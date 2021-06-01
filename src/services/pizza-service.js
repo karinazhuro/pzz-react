@@ -29,8 +29,8 @@ export default class PizzaService {
 		return this._transformCart(res.response.data);
 	};
 
-	removeItem = async () => {
-		const res =  await this.getResource(`/basket/remove-item`);
+	removeItem = async (formData) => {
+		const res =  await this.getResource(`/basket/remove-item`, 'POST', formData);
 		return this._transformCart(res.response.data);
 	};
 
