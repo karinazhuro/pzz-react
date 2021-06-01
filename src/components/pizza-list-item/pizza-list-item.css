@@ -1,3 +1,8 @@
+/*@font-face {*/
+/*    font-family: Malina;*/
+/*    src: url(../../../public/fonts/malina_webfont.ttf) format('truetype');*/
+/*}*/
+
 .pizzaInfo {
     padding: 0 1rem;
 }
@@ -19,6 +24,10 @@
 
 .pizzaInfo .variant .countPizzas .counter {
     display: flex;
+}
+
+.pizzaInfo h3 {
+    font-family: Malina, sans-serif;
 }
 
 .desc {

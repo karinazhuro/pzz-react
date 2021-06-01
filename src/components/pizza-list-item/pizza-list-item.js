@@ -34,7 +34,7 @@ export default class PizzaListItem extends Component {
 	};
 };
 
-const Counter = ({count, id, size}) => {
+const Counter = ({count, id, size}) =>  {
 	return (
 		<Consumer>
 			{
@@ -46,7 +46,7 @@ const Counter = ({count, id, size}) => {
 							</button>
 							<p>{count}</p>
 							<button className='plus'
-											onClick={(e) => addItemToCart(e, id, size)}> +
+											onClick={(e) => addItemToCart(e, id, size)}>+
 							</button>
 						</div>
 					)
