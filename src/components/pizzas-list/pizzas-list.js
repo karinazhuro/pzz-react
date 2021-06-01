@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import PizzaListItem from "../pizza-list-item";
 import {Consumer} from '../pizzas-service-context';
 
-import './pizzas-list.css';
+import './pizzas-list.scss';
 
 class PizzasList extends Component {
 	renderItem = (pizzaList) => {

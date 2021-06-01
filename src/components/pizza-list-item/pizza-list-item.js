@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import enumTranslations from '../../utils/enumTranslations';
 import {Consumer} from "../pizzas-service-context";
 
-import './pizza-list-item.css';
+import './pizza-list-item.scss';
 
 export default class PizzaListItem extends Component {
 	renderVariants(id, variants) {

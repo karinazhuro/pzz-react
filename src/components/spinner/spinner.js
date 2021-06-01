@@ -1,6 +1,6 @@
 import React from "react";
 
-import './spinner.css';
+import './spinner.scss';
 
 import loading from './loading.gif';
 

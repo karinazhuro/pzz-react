@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Consumer} from "../pizzas-service-context";
-import './header.css'
+import './header.scss'
 
 const Header = () => {
   return (
