@@ -80,10 +80,10 @@ const PizzaVariant = ({id, size, price, weight, count}) => {
 
 	return (
 		<div className='variant'>
-			<div>
-				<p>{enumTranslations(size)}</p>
-				<p>{price}</p>
-				<p>{weight}</p>
+			<div className='infoAboutVariant'>
+				<p className='size'>{enumTranslations(size)}</p>
+				<p className='price'>{price}</p>
+				<p className='weight'>{weight}</p>
 			</div>
 			<div className='countPizzas'>
 				{content}

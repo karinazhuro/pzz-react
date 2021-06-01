@@ -1,16 +1,33 @@
-/*@font-face {*/
-/*    font-family: Malina;*/
-/*    src: url(../../../public/fonts/malina_webfont.ttf) format('truetype');*/
-/*}*/
+@import "../../../public/css/palette";
 
 .pizzaInfo {
     padding: 0 1rem;
+}
+
+.pizzaInfo h3 {
+    font: 28px/1.1 Malina, sans-serif;
+    color: $primary;
 }
 
 .pizzaInfo .variant {
     display: flex;
     justify-content: space-between;
     margin: .5em 0;
+}
+
+.pizzaInfo .infoAboutVariant .size {
+    color: $textSecondary;
+    font-size: 15px;
+}
+
+.pizzaInfo .infoAboutVariant .price {
+    color: $textPrimary;
+    font: 32px/1.1 Malina,sans-serif;
+}
+
+.pizzaInfo .infoAboutVariant .weight {
+    color: $textSecondary;
+    font-size: 12px;
 }
 
 .pizzaInfo .variant .countPizzas {
@@ -26,9 +43,6 @@
     display: flex;
 }
 
-.pizzaInfo h3 {
-    font-family: Malina, sans-serif;
-}
 
 .desc {
     padding: 0 1rem;
