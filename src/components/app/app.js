@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {BrowserRouter} from "react-router-dom";
 
 import PizzaService from "../../services/pizza-service";
 import {Provider} from "../pizzas-service-context";
@@ -92,10 +93,12 @@ export default class App extends Component {
 				countablePizzaList,
 				addItemToCart: this.addItemToCart,
 			}}>
-				<div>
-					<Header/>
-					<PizzasList/>
-				</div>
+				<BrowserRouter>
+					<div>
+						<Header/>
+						<PizzasList/>
+					</div>
+				</BrowserRouter>
 			</Provider>
 		);
 	};
