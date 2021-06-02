@@ -1,22 +1,24 @@
-header {
-    background-image: url("header-bg.gif");
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 3rem;
-}
+@import "../../../public/css/palette";
 
-header svg {
+header {
+  background-image: url("header-bg.gif");
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+
+  svg {
     height: 7rem;
     position: relative;
-    color: #fff;
-}
+    color: $primaryVariant;
+  }
 
-header .cart {
+  .cart {
     display: table;
-    color: #fff;
+    color: $primaryVariant;
     text-decoration: none;
-}
+  }
 
-header .price {
-    color: #fff;
+  .price {
+    color: $primaryVariant;
+  }
 }

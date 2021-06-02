@@ -1,49 +1,86 @@
 @import "../../../public/css/palette";
+@import "../../../public/css/mixins";
 
-.pizzaInfo {
+.pizza {
+  .pizzaInfo {
     padding: 0 1rem;
-}
 
-.pizzaInfo h3 {
-    font: 28px/1.1 Malina, sans-serif;
-    color: $primary;
-}
+    .title {
+      font: 28px/1.1 Malina, sans-serif;
+      color: $primary;
+    }
 
-.pizzaInfo .variant {
-    display: flex;
-    justify-content: space-between;
-    margin: .5em 0;
-}
+    .variant {
+      display: flex;
+      justify-content: space-between;
+      margin: .5em 0;
 
-.pizzaInfo .infoAboutVariant .size {
-    color: $textSecondary;
+      .infoAboutVariant {
+        .size {
+          color: $textSecondary;
+          font-size: 15px;
+        }
+
+        .price {
+          color: $textPrimary;
+          font: 32px/1.1 Malina, sans-serif;
+        }
+
+        .weight {
+          color: $textSecondary;
+          font-size: 12px;
+        }
+      }
+
+      .countPizzas {
+        display: flex;
+        align-items: center;
+
+        .addToCart {
+          display: flex;
+          color: $primary;
+          font: 20px/22px Malina,sans-serif;
+          letter-spacing: -.5px;
+          background: $backgroundPrimary;
+          border-width: 0;
+          padding: 7px 12px 8px;
+          border-radius: 11px;
+
+          &:hover {
+            color: $primaryVariant;
+            background-color: $secondary;
+            cursor: pointer;
+          }
+        }
+
+        .counter {
+          display: flex;
+
+          .minus {
+            @include btnCounter;
+          }
+
+          .count {
+            color: $textPrimary;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 30px;
+            min-width: 35px;
+            text-align: center;
+            font-family: Helvetica, Arial, sans-serif;
+          }
+
+          .plus {
+            @include btnCounter;
+          }
+        }
+      }
+    }
+  }
+
+  .desc {
+    padding: 0 1rem;
+    color: #999;
     font-size: 15px;
-}
-
-.pizzaInfo .infoAboutVariant .price {
-    color: $textPrimary;
-    font: 32px/1.1 Malina,sans-serif;
-}
-
-.pizzaInfo .infoAboutVariant .weight {
-    color: $textSecondary;
-    font-size: 12px;
-}
-
-.pizzaInfo .variant .countPizzas {
-    display: flex;
-    align-items: center;
-}
-
-.pizzaInfo .variant .countPizzas .addToCart {
-    display: flex;
-}
-
-.pizzaInfo .variant .countPizzas .counter {
-    display: flex;
-}
-
-
-.desc {
-    padding: 0 1rem;
+  }
 }

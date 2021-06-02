@@ -1,0 +1,15 @@
+@mixin btnCounter {
+  cursor: pointer;
+  color: $primaryVariant;
+  width: 30px;
+  height: 30px;
+  font: 30px/1 Malina,sans-serif;
+  letter-spacing: -1px;
+  border-radius: 50%;
+  background-color: $backgroundVariant;
+  border-width: 0;
+
+  &:hover {
+    background-color: #16bc00;
+  }
+}

@@ -22,38 +22,16 @@ export default class PizzaListItem extends Component {
 		const {id, photo, title, variants, description} = this.props;
 
 		return (
-			<div>
+			<div className='pizza'>
 				<img src={photo} alt={title}/>
 				<div className='pizzaInfo'>
-					<h3>{title}</h3>
+					<h3 className='title'>{title}</h3>
 					{this.renderVariants(id, variants)}
 				</div>
 				<p className='desc'>{description}</p>
 			</div>
 		);
 	};
-};
-
-const Counter = ({count, id, size}) =>  {
-	return (
-		<Consumer>
-			{
-				({addItemToCart}) => {
-					return (
-						<div className='counter'>
-							<button className='minus'
-											onClick={(e) => addItemToCart(e, id, size)}>-
-							</button>
-							<p>{count}</p>
-							<button className='plus'
-											onClick={(e) => addItemToCart(e, id, size)}>+
-							</button>
-						</div>
-					)
-				}
-			}
-		</Consumer>
-	);
 };
 
 const AddToCart = ({id, size}) => {
@@ -67,6 +45,28 @@ const AddToCart = ({id, size}) => {
 										sizevariant={size}
 										onClick={(e) => addItemToCart(e, id, size)}>
 							В корзину</button>
+					)
+				}
+			}
+		</Consumer>
+	);
+};
+
+const Counter = ({count, id, size}) =>  {
+	return (
+		<Consumer>
+			{
+				({addItemToCart}) => {
+					return (
+						<div className='counter'>
+							<button className='minus'
+											onClick={(e) => addItemToCart(e, id, size)}>-
+							</button>
+							<p className='count'>{count}</p>
+							<button className='plus'
+											onClick={(e) => addItemToCart(e, id, size)}>+
+							</button>
+						</div>
 					)
 				}
 			}
