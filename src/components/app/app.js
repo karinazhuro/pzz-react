@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, Route} from "react-router-dom";
 
 import PizzaService from "../../services/pizza-service";
 import {Provider} from "../pizzas-service-context";
 import Header from "../header";
 import PizzasList from "../pizzas-list";
 import Spinner from "../spinner";
+import Basket from "../basket";
 
 export default class App extends Component {
 	pizzaService = new PizzaService();
@@ -89,14 +90,15 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
-				basket: basket.price,
+				basket,
 				countablePizzaList,
 				addItemToCart: this.addItemToCart,
 			}}>
 				<BrowserRouter>
 					<div>
 						<Header/>
-						<PizzasList/>
+						<Route path='/' component={PizzasList} exact/>
+						<Route path='/basket' component={Basket} />
 					</div>
 				</BrowserRouter>
 			</Provider>

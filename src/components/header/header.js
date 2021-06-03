@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 import {Consumer} from "../pizzas-service-context";
 import './header.scss'
@@ -6,7 +7,7 @@ import './header.scss'
 const Header = () => {
 	return (
 		<header>
-			<a href="/">
+			<Link to="/">
 				<svg preserveAspectRatio="xMinYMid" viewBox="0 0 314.6 343">
 					<g fill="currentColor">
 						<g className="pzz-header-naming">
@@ -27,11 +28,11 @@ const Header = () => {
 						</g>
 					</g>
 				</svg>
-			</a>
+			</Link>
 			<div>
-				<a href="/" className='cart'> Корзина </a>
+				<Link to="/basket" className='cart'> Корзина </Link>
 				<Consumer>
-					{({basket}) => <p className='price'>{basket}</p>}
+					{({basket}) => <p className='price'>{basket.price}</p>}
 				</Consumer>
 			</div>
 		</header>
