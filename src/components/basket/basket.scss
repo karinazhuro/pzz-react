@@ -1,5 +1,13 @@
 main {
-  .empty {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  .empty {
+    display: flex;
+    justify-content: center;
+    font: 34px/1.1 Malina, sans-serif;
+    letter-spacing: -1px;
   }
 }
