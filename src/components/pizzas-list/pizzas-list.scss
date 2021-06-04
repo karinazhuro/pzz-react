@@ -1,15 +1,15 @@
-main {
-    margin: 2rem;
-}
+.menu {
+  margin: 2rem;
 
-main ul {
+  ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-}
 
-main ul li {
-    margin: 1rem;
-    list-style: none;
-    max-width: 300px;
+    li {
+      margin: 1rem;
+      list-style: none;
+      max-width: 300px;
+    }
+  }
 }

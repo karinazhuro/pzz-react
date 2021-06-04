@@ -9,7 +9,7 @@ const Basket = () => {
 	const order = <p>Order</p>;
 
 	return (
-		<main>
+		<main className='basket'>
 			<Consumer>
 				{
 					({basket}) => {
