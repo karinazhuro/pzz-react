@@ -16,9 +16,12 @@ header {
     display: table;
     color: $primaryVariant;
     text-decoration: none;
+    font: 27px/1 Malina,sans-serif;
   }
 
   .price {
     color: $primaryVariant;
+    margin: 15px 0;
+    font: 24px/1.2 Helvetica,Arial,sans-serif;
   }
 }

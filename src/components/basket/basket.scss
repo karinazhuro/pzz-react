@@ -1,3 +1,5 @@
+@import "../../../public/css/palette";
+
 .basket {
   height: 50vh;
   display: flex;
@@ -8,6 +10,17 @@
     display: flex;
     justify-content: center;
     font: 34px/1.1 Malina, sans-serif;
+    letter-spacing: -1px;
+  }
+
+  .titleRegistration {
+    color: $textPrimary;
+    font: 42px/1.1 Malina, sans-serif;
+    letter-spacing: -1px;
+  }
+
+  .titleOrder {
+    font: 34px/1.1 Malina,sans-serif;
     letter-spacing: -1px;
   }
 }
