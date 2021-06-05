@@ -1,0 +1,12 @@
+@import "palette";
+
+@mixin title {
+  color: $primary;
+  font: 28px/1.2 Malina, sans-serif;
+  letter-spacing: -1px;
+}
+
+@mixin size {
+  color: $textSecondary;
+  font: 15px/1 Arial,Helvetica,sans-serif;
+}

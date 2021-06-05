@@ -1,17 +1,8 @@
-@import "../../../public/css/palette";
+@import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
 
 .basket {
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .empty {
-    display: flex;
-    justify-content: center;
-    font: 34px/1.1 Malina, sans-serif;
-    letter-spacing: -1px;
-  }
+  margin: 0 10%;
 
   .titleRegistration {
     color: $textPrimary;
@@ -20,7 +11,36 @@
   }
 
   .titleOrder {
-    font: 34px/1.1 Malina,sans-serif;
+    font: 34px/1.1 Malina, sans-serif;
     letter-spacing: -1px;
+  }
+
+  .items {
+    margin: 7% 0;
+
+    .pizza {
+      .title {
+        @include title;
+      }
+
+      .variants {
+        display: flex;
+        margin: 0 0 0 10px;
+
+        .size {
+          @include size;
+        }
+
+        .count {
+
+        }
+
+        .price {
+          color: $textPrimary;
+          font: 32px Helvetica, Arial, sans-serif;
+          font-weight: 700;
+        }
+      }
+    }
   }
 }

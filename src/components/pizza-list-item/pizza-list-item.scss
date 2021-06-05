@@ -1,4 +1,5 @@
-@import "../../../public/css/palette";
+@import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
 @import "../counter/counter";
 
 .pizza {
@@ -6,8 +7,7 @@
     padding: 0 1rem;
 
     .title {
-      font: 28px/1.1 Malina, sans-serif;
-      color: $primary;
+      @include title;
     }
 
     .variant {
@@ -17,8 +17,7 @@
 
       .infoAboutVariant {
         .size {
-          color: $textSecondary;
-          font-size: 15px;
+          @include size;
         }
 
         .price {
