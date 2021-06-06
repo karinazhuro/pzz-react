@@ -1,82 +1,98 @@
 export default class PizzaService {
-	_apiUrl = `https://pzz.by/api/v1`;
+  _apiUrl = `https://pzz.by/api/v1`;
 
-	getResource = async (url, method, body) => {
-		const res = await fetch(`${this._apiUrl}${url}`, {
-			method,
-			body,
-		});
+  getResource = async (url, method, body) => {
+    const res = await fetch(`${this._apiUrl}${url}`, {
+      method,
+      body,
+    });
 
-		if (!res.ok) {
-			throw new Error(`Could not fetch ${url}, received ${res.status}`);
-		}
+    if (!res.ok) {
+      throw new Error(`Could not fetch ${url}, received ${res.status}`);
+    }
 
-		return await res.json();
-	};
+    return await res.json();
+  };
 
-	getPizzas = async () => {
-		const res = await this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
-		return res.response.data.map(this._transformPizza);
-	};
+  getPizzas = async () => {
+    const res = await this.getResource(`/pizzas?load=ingredients,filters&filter=meal_only:0&order=position:asc`);
+    return res.response.data.map(this._transformPizza);
+  };
 
-	getBasket = async () => {
-		const res = await this.getResource(`/basket`);
-		return this._transformCart(res.response.data);
-	};
+  getBasket = async () => {
+    const res = await this.getResource(`/basket`);
+    return this._transformCart(res.response.data);
+  };
 
-	addItem = async (formData) => {
-		const res = await this.getResource(`/basket/add-item`, 'POST', formData);
-		return this._transformCart(res.response.data);
-	};
+  addItem = async (id, size) => {
+    console.log(id, size)
+    const res = await this.getResource(
+      `/basket/add-item`, 'POST', this.buildDataForChangeBasket(id, size));
 
-	removeItem = async (formData) => {
-		const res =  await this.getResource(`/basket/remove-item`, 'POST', formData);
-		return this._transformCart(res.response.data);
-	};
+    return this._transformCart(res.response.data);
+  };
 
-	_transformPizza = (pizza) => {
-		return {
-			id: pizza.id.toString(),
-			photo: pizza.photo_small,
-			title: pizza.title,
-			description: pizza.anonce,
-			variants: this._variantsPizzas(pizza),
-		};
-	};
+  removeItem = async (id, size) => {
+    const res = await this.getResource(
+      `/basket/remove-item`, 'POST', this.buildDataForChangeBasket(id, size));
 
-	_transformCart = (cart) => {
-		return {
-			price: (cart.price  / 10000).toFixed(2),
-			items: cart.items.map(item => ({
-				id: item.id,
-				size: item.size,
-				title: item.title,
-				price: (item.price / 10000).toFixed(2),
-			}))
-		}
-	};
+    return this._transformCart(res.response.data);
+  };
 
-	_variantsPizzas = (pizza) => {
-		let variants = [];
+  _transformPizza = (pizza) => {
+    return {
+      id: pizza.id.toString(),
+      photo: pizza.photo_small,
+      title: pizza.title,
+      description: pizza.anonce,
+      variants: this._variantsPizzas(pizza),
+    };
+  };
 
-		if (pizza.is_big === 1) {
-			variants.push(this._variantsData(pizza, 'big'))
-		}
-		if (pizza.is_medium === 1) {
-			variants.push(this._variantsData(pizza, 'medium'))
-		}
-		if (pizza.is_thin === 1) {
-			variants.push(this._variantsData(pizza, 'thin'))
-		}
+  _transformCart = (cart) => {
+    return {
+      price: (cart.price / 10000).toFixed(2),
+      items: cart.items.map(item => ({
+        id: item.id,
+        size: item.size,
+        title: item.title,
+        price: (item.price / 10000).toFixed(2),
+      }))
+    }
+  };
 
-		return variants;
-	};
+  _variantsPizzas = (pizza) => {
+    let variants = [];
 
-	_variantsData = (pizza, size) => {
-		return {
-			size: size,
-			price: (pizza[`${size}_price`] / 10000).toFixed(2),
-			weight: pizza[`${size}_weight`],
-		}
-	}
+    if (pizza.is_big === 1) {
+      variants.push(this._variantsData(pizza, 'big'))
+    }
+    if (pizza.is_medium === 1) {
+      variants.push(this._variantsData(pizza, 'medium'))
+    }
+    if (pizza.is_thin === 1) {
+      variants.push(this._variantsData(pizza, 'thin'))
+    }
+
+    return variants;
+  };
+
+  _variantsData = (pizza, size) => {
+    return {
+      size: size,
+      price: (pizza[`${size}_price`] / 10000).toFixed(2),
+      weight: pizza[`${size}_weight`],
+    }
+  }
+
+  buildDataForChangeBasket = (id, size) => {
+    const formData = new FormData();
+
+    formData.append('type', 'pizza');
+    formData.append('id', id);
+    formData.append('size', size);
+    formData.append('dough', 'thin');
+
+    return formData;
+  }
 }
