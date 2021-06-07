@@ -8,62 +8,65 @@ import Notification from "../notification";
 import './basket.scss';
 
 const Basket = () => {
-  const Order = ({countablePizzaList}) => {
-    const pizzaItem = () => {
-      return countablePizzaList.map(item => {
-        const {id, title, variants} = item;
+	const Order = ({countablePizzaList, onAddItem, onRemoveItem}) => {
+		const pizzaItem = () => {
+			return countablePizzaList.map(item => {
+				const {id, title, variants} = item;
 
-        return variants.map(variant => {
-          if (variant.count > 0) {
-            const {size, count, price} = variant;
+				return variants.map(variant => {
+					if (variant.count > 0) {
+						const {size, count, price} = variant;
 
-            return (
-              <div className='pizza'>
-                <p className='title'>{title}</p>
-                <div className='variants'>
-									<div className='count'>
-										<Counter id={id} size={size} count={count}/>
-									</div>
+						return (
+							<div className='pizza' key={`${id}${size}`}>
+								<p className='title'>{title}</p>
+								<div className='variants'>
 									<p className='size'>{enumTranslations(size)}</p>
-                  <p className='price'>{price}</p>
-                </div>
-              </div>
-            );
-          }
-        })
-      });
-    };
+									<Counter count={count}
+													 onMinusClick={() => onRemoveItem(id, size)}
+													 onPlusClick={() => onAddItem(id, size)}/>
+									<p className='price'>{price}</p>
+								</div>
+							</div>
+						);
+					}
+				})
+			});
+		};
 
-    return (
-      <div className='order'>
-        <h1 className='titleRegistration'>Оформление заказа</h1>
-        <h2 className='titleOrder'>Ваш заказ</h2>
-        <div className='items'>
-          {pizzaItem()}
-        </div>
-      </div>
-    )
-  };
+		return (
+			<div className='order'>
+				<h1 className='titleRegistration'>Оформление заказа</h1>
+				<h2 className='titleOrder'>Ваш заказ</h2>
+				<div className='items'>
+					{pizzaItem()}
+				</div>
+			</div>
+		)
+	};
 
-  const content = () => {
-    return (
-      <Consumer>
-        {
-          ({basket, countablePizzaList}) => {
-            return basket.items.length === 0 ?
-              <Notification/> : <Order countablePizzaList={countablePizzaList}/>;
-          }
-        }
-      </Consumer>
+	const content = () => {
+		return (
+			<Consumer>
+				{
+					({basket, countablePizzaList, onAddItem, onRemoveItem}) => {
+						return basket.items.length === 0 ?
+							<Notification/> :
+							<Order countablePizzaList={countablePizzaList}
+										 onAddItem={onAddItem}
+										 onRemoveItem={onRemoveItem}/>;
+					}
+				}
+			</Consumer>
 
-    )
-  };
+		)
+	};
 
-  return (
-    <main className='basket'>
-      {content()}
-    </main>
-  )
+	return (
+		<main className='basket'>
+			{content()}
+		</main>
+	)
 };
 
 

@@ -25,7 +25,6 @@ export default class PizzaService {
   };
 
   addItem = async (id, size) => {
-    console.log(id, size)
     const res = await this.getResource(
       `/basket/add-item`, 'POST', this.buildDataForChangeBasket(id, size));
 

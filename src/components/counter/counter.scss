@@ -3,12 +3,13 @@
 
 .counter {
   display: flex;
+  margin: 0 15px;
 
   .minus {
     @include btnCounter;
   }
 
-  .count {
+  .quantity {
     color: $textPrimary;
     font-size: 21px;
     font-weight: 700;

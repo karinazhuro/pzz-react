@@ -8,7 +8,7 @@ const Counter = ({count, onPlusClick, onMinusClick}) => {
       <button className='minus'
               onClick={onMinusClick}>-
       </button>
-      <p className='count'>{count}</p>
+      <p className='quantity'>{count}</p>
       <button className='plus'
               onClick={onPlusClick}>+
       </button>
