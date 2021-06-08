@@ -24,6 +24,11 @@ export default class PizzaService {
     return this._transformCart(res.response.data);
   };
 
+  getSauces = async  () => {
+    const res = await this.getResource(`/sauces`);
+    return res.response.data.map(this._variantsSauces);
+  };
+
   addItem = async (id, size) => {
     const res = await this.getResource(
       `/basket/add-item`, 'POST', this.buildDataForChangeBasket(id, size));
@@ -60,6 +65,15 @@ export default class PizzaService {
     }
   };
 
+  _variantsSauces = (sauce) => {
+    return {
+      id: sauce.id,
+      photo: sauce.photo_small,
+      price: (sauce.price / 10000).toFixed(2),
+      title: sauce.title,
+    };
+  };
+
   _variantsPizzas = (pizza) => {
     let variants = [];
 
@@ -82,7 +96,7 @@ export default class PizzaService {
       price: (pizza[`${size}_price`] / 10000).toFixed(2),
       weight: pizza[`${size}_weight`],
     }
-  }
+  };
 
   buildDataForChangeBasket = (id, size) => {
     const formData = new FormData();

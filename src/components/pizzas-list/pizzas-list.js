@@ -23,7 +23,7 @@ class PizzasList extends Component {
 
 	render() {
 		return (
-			<main className='menu'>
+			<main className='pizzasList'>
 				<ul>{
 					<Consumer>
 						{
