@@ -24,8 +24,11 @@ export default class App extends Component {
   async init() {
     const pizzasListAsync = this.pizzaService.getPizzas();
     const basketAsync = this.pizzaService.getBasket();
+    const saucesAsync = this.pizzaService.getSauces();
+
     const pizzasList = await pizzasListAsync;
     const basket = await basketAsync;
+    const sauces = await saucesAsync;
 
     this.setState({
       pizzasList,

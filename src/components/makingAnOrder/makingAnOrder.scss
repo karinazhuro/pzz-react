@@ -1,0 +1,18 @@
+@import "../../../public/scss/palette";
+
+.order {
+  .titleRegistration {
+    color: $textPrimary;
+    font: 42px/1.1 Malina, sans-serif;
+    letter-spacing: -1px;
+  }
+
+  .titleOrder {
+    font: 34px/1.1 Malina, sans-serif;
+    letter-spacing: -1px;
+  }
+
+  .pizzas {
+    margin: 7% 0 15%;
+  }
+}

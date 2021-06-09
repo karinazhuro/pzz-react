@@ -1,0 +1,32 @@
+@import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
+
+.pizza {
+  padding: 10px 0;
+
+  .title {
+    @include title;
+  }
+
+  .variants {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 0 10px;
+
+    .size {
+      @include size;
+      margin: 0 10px 0 0;
+    }
+
+    .price {
+      color: $textPrimary;
+      font: 32px Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      margin: 0 20px;
+    }
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $secondaryVariant;
+  }
+}

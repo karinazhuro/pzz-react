@@ -1,0 +1,9 @@
+@import "../../../public/scss/palette";
+
+.saucesList {
+  .titleSauces {
+    color: $textSecondary;
+    font: 20px/1.1 Malina, sans-serif;
+    letter-spacing: -.5px;
+  }
+}

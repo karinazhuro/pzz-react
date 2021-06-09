@@ -1,11 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const SaucesList = () => {
-  return (
-    <div className='saucesList'>
+import './saucesList.scss';
 
-    </div>
-  );
+export default class SaucesList extends Component {
+	componentDidMount() {
+
+	}
+
+	render() {
+		return (
+			<div className='saucesList'>
+				<h2 className='titleSauces'>Соусы</h2>
+			</div>
+		);
+	}
 };
-
-export default SaucesList;
