@@ -10,3 +10,10 @@
   color: $textSecondary;
   font: 15px/1 Arial,Helvetica,sans-serif;
 }
+
+@mixin titleBlock {
+  text-align: center;
+  color: $textSecondary;
+  font: 32px/1 Malina,sans-serif;
+  letter-spacing: -.5px;
+}

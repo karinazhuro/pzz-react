@@ -1,17 +1,38 @@
 import React, {Component} from 'react';
 
+import {Consumer} from "../pizzas-service-context";
+
 import './saucesList.scss';
 
 export default class SaucesList extends Component {
-	componentDidMount() {
+	renderSaucesList = (saucesList) => {
+		return saucesList.map(sauce => {
+			const {id, photo, title} = sauce;
 
+			return (
+				<li key={id}>
+					<img src={photo} alt={title}/>
+				</li>
+			)
+		})
 	}
 
 	render() {
 		return (
-			<div className='saucesList'>
-				<h2 className='titleSauces'>Соусы</h2>
-			</div>
+			<Consumer>
+				{
+					({saucesList}) => {
+						return (
+							<div className='sauces'>
+								<h2 className='titleBlock'>Соусы</h2>
+								<ul className='saucesList'>
+									{this.renderSaucesList(saucesList)}
+								</ul>
+							</div>
+						)
+					}
+				}
+			</Consumer>
 		);
 	}
 };

@@ -3,9 +3,9 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 import PizzaService from "../../services/pizza-service";
 import {Provider} from "../pizzas-service-context";
-import Header from "../header";
-import PizzasList from "../pizzas-list";
 import Spinner from "../spinner";
+import Header from "../header";
+import Menu from "../menu";
 import Basket from "../basket";
 
 export default class App extends Component {
@@ -13,6 +13,7 @@ export default class App extends Component {
 
   state = {
     pizzasList: [],
+    saucesList: [],
     countablePizzaList: [],
     basket: [],
   };
@@ -28,10 +29,11 @@ export default class App extends Component {
 
     const pizzasList = await pizzasListAsync;
     const basket = await basketAsync;
-    const sauces = await saucesAsync;
+    const saucesList = await saucesAsync;
 
     this.setState({
       pizzasList,
+      saucesList,
       basket,
       countablePizzaList: this.createCountablePizzas(
         pizzasList, basket),
@@ -87,7 +89,7 @@ export default class App extends Component {
   };
 
   render() {
-    const {pizzasList, basket, countablePizzaList} = this.state;
+    const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
 
     if (pizzasList.length === 0) {
       return <Spinner/>;
@@ -96,6 +98,7 @@ export default class App extends Component {
     return (
       <Provider value={{
         basket,
+        saucesList,
         countablePizzaList,
         onAddItem: this.onAddItem,
         onRemoveItem: this.onRemoveItem,
@@ -103,7 +106,7 @@ export default class App extends Component {
         <BrowserRouter>
           <div>
             <Header/>
-            <Route path='/' component={PizzasList} exact/>
+            <Route path='/' component={Menu} exact/>
             <Route path='/basket' component={Basket}/>
           </div>
         </BrowserRouter>

@@ -1,9 +1,14 @@
 @import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
 
-.saucesList {
-  .titleSauces {
-    color: $textSecondary;
-    font: 20px/1.1 Malina, sans-serif;
-    letter-spacing: -.5px;
+.sauces {
+  .titleBlock {
+    @include titleBlock;
+  }
+
+  .saucesList {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
   }
 }
