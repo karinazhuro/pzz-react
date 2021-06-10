@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import enumTranslations from '../../utils/enumTranslations';
 import {Consumer} from "../pizzas-service-context";
+import AddToBasket from "../addToBasket";
 import Counter from "../counter";
 
 import './pizza-list-item.scss';
@@ -23,7 +24,6 @@ export default class PizzaListItem extends Component {
 		const {id, photo, title, variants, description} = this.props;
 
 		return (
-			// <div className='pizza'>
 			<React.Fragment>
 				<img src={photo} alt={title}/>
 				<div className='pizzaInfo'>
@@ -32,29 +32,19 @@ export default class PizzaListItem extends Component {
 				</div>
 				<p className='desc'>{description}</p>
 			</React.Fragment>
-			// </div>
 		);
 	};
 };
 
-const AddToCart = ({id, size, onAddItem}) => {
-	return (
-		<button className='addToCart'
-						id={id}
-						sizevariant={size}
-						onClick={() => onAddItem(id, size)}>
-			В корзину</button>
-	);
-};
 
 
 const PizzaVariant = ({id, size, price, weight, count}) => {
 	const content = (onAddItem, onRemoveItem) => {
 		return (
 			count === 0 ?
-				<AddToCart id={id}
+				<AddToBasket id={id}
 									 size={size}
-									 onAddItem={onAddItem}/> :
+									 onAddItem={() => onAddItem(id, size)}/> :
 				<Counter count={count}
 								 onPlusClick={() => onAddItem(id, size)}
 								 onMinusClick={() => onRemoveItem(id, size)}/>

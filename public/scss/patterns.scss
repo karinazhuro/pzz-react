@@ -11,6 +11,12 @@
   font: 15px/1 Arial,Helvetica,sans-serif;
 }
 
+@mixin price {
+  color: #000;
+  font: 32px/1.1 Malina,sans-serif;
+  letter-spacing: -1px;
+}
+
 @mixin titleBlock {
   text-align: center;
   color: $textSecondary;

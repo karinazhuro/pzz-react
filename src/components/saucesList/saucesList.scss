@@ -10,5 +10,25 @@
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    margin: 20px 0;
+
+    .sauce {
+      padding: 10px 20px;
+
+      .sauceImg {
+        display: block;
+        margin: auto;
+      }
+
+      .sauceTitle {
+        color: $primary;
+        font: 14px Malina,sans-serif;
+        letter-spacing: -1px;
+      }
+
+      .saucePrice {
+        @include price;
+      }
+    }
   }
 }
