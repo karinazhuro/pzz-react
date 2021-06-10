@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import enumTranslations from '../../utils/enumTranslations';
+import enumSizes from "../../utils/enumTranslations";
 import {Consumer} from "../pizzas-service-context";
 import AddToBasket from "../addToBasket";
 import Counter from "../counter";
@@ -37,17 +37,16 @@ export default class PizzaListItem extends Component {
 };
 
 
-
 const PizzaVariant = ({id, size, price, weight, count}) => {
 	const content = (onAddItem, onRemoveItem) => {
+		const type = 'pizza';
+
 		return (
 			count === 0 ?
-				<AddToBasket id={id}
-									 size={size}
-									 onAddItem={() => onAddItem(id, size)}/> :
+				<AddToBasket onAddItem={() => onAddItem(id, size, type)}/> :
 				<Counter count={count}
-								 onPlusClick={() => onAddItem(id, size)}
-								 onMinusClick={() => onRemoveItem(id, size)}/>
+								 onPlusClick={() => onAddItem(id, size, type)}
+								 onMinusClick={() => onRemoveItem(id, size, type)}/>
 		)
 	};
 
@@ -58,7 +57,7 @@ const PizzaVariant = ({id, size, price, weight, count}) => {
 					return (
 						<div className='variant'>
 							<div className='infoAboutVariant'>
-								<p className='size'>{enumTranslations(size)}</p>
+								<p className='size'>{enumSizes[size]}</p>
 								<p className='price'>{price}</p>
 								<p className='weight'>{weight}</p>
 							</div>

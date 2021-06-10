@@ -9,19 +9,18 @@ export default class SaucesList extends Component {
 	renderSaucesList = (saucesList, onAddItem) => {
 		return saucesList.map(sauce => {
 			const {id, photo, title, price} = sauce;
+			const type = 'sauce'
 
 			return (
 				<li className='sauce' key={id}>
-					<img className='sauceImg' src={photo} alt={title}/>
+					<img src={photo} alt={title}/>
 					<h3 className='sauceTitle'>{title}</h3>
 					<p className='saucePrice'>{price}</p>
-					<AddToBasket id={id}
-											 size='big'
-											 onAddItem={() => onAddItem(id)}/>
+					<AddToBasket onAddItem={() => onAddItem(id, 'big', 'sauce')}/>
 				</li>
-			)
-		})
-	}
+			);
+		});
+	};
 
 	render() {
 		return (
@@ -35,10 +34,10 @@ export default class SaucesList extends Component {
 									{this.renderSaucesList(saucesList, onAddItem)}
 								</ul>
 							</div>
-						)
+						);
 					}
 				}
 			</Consumer>
 		);
-	}
+	};
 };

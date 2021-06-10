@@ -13,21 +13,22 @@
     margin: 20px 0;
 
     .sauce {
-      padding: 10px 20px;
-
-      .sauceImg {
-        display: block;
-        margin: auto;
-      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
 
       .sauceTitle {
         color: $primary;
         font: 14px Malina,sans-serif;
         letter-spacing: -1px;
+        padding: 5px 0;
       }
 
       .saucePrice {
         @include price;
+        padding: 5px 0;
+
       }
     }
   }
