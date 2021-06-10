@@ -2,62 +2,60 @@
 @import "../../../public/scss/patterns";
 @import "../counter/counter";
 
-.pizza {
-  .pizzaInfo {
-    padding: 0 1rem;
+.pizzaInfo {
+  padding: 0 1rem;
 
-    .title {
-      @include title;
+  .title {
+    @include title;
+  }
+
+  .variant {
+    display: flex;
+    justify-content: space-between;
+    margin: .5em 0;
+
+    .infoAboutVariant {
+      .size {
+        @include size;
+      }
+
+      .price {
+        color: $textPrimary;
+        font: 32px/1.1 Malina, sans-serif;
+      }
+
+      .weight {
+        color: $textSecondary;
+        font-size: 12px;
+      }
     }
 
-    .variant {
+    .countPizzas {
       display: flex;
-      justify-content: space-between;
-      margin: .5em 0;
+      align-items: center;
 
-      .infoAboutVariant {
-        .size {
-          @include size;
-        }
-
-        .price {
-          color: $textPrimary;
-          font: 32px/1.1 Malina, sans-serif;
-        }
-
-        .weight {
-          color: $textSecondary;
-          font-size: 12px;
-        }
-      }
-
-      .countPizzas {
+      .addToCart {
         display: flex;
-        align-items: center;
+        color: $primary;
+        font: 20px/22px Malina, sans-serif;
+        letter-spacing: -.5px;
+        background: $backgroundPrimary;
+        border-width: 0;
+        padding: 7px 12px 8px;
+        border-radius: 11px;
 
-        .addToCart {
-          display: flex;
-          color: $primary;
-          font: 20px/22px Malina,sans-serif;
-          letter-spacing: -.5px;
-          background: $backgroundPrimary;
-          border-width: 0;
-          padding: 7px 12px 8px;
-          border-radius: 11px;
-
-          &:hover {
-            color: $primaryVariant;
-            background-color: $secondary;
-            cursor: pointer;
-          }
+        &:hover {
+          color: $primaryVariant;
+          background-color: $secondary;
+          cursor: pointer;
         }
       }
     }
   }
+}
 
-  .desc {
-    padding: 0 1rem;
-    color: $textSecondary;
-    font: 15px/1.2 Helvetica,Arial,sans-serif;
-  }
+.desc {
+  padding: 0 1rem;
+  color: $textSecondary;
+  font: 15px/1.2 Helvetica, Arial, sans-serif;
 }

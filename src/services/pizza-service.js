@@ -26,7 +26,7 @@ export default class PizzaService {
 
   getSauces = async  () => {
     const res = await this.getResource(`/sauces`);
-    return res.response.data.map(this._variantsSauces);
+    return res.response.data.map(this._transformSauces);
   };
 
   addItem = async (id, size) => {
@@ -65,7 +65,7 @@ export default class PizzaService {
     }
   };
 
-  _variantsSauces = (sauce) => {
+  _transformSauces = (sauce) => {
     return {
       id: sauce.id,
       photo: sauce.photo_small,

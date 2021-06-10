@@ -19,7 +19,7 @@ const BasketPizzaList = () => {
 								const {size, count, price} = variant;
 
 								return (
-									<div className='pizza' key={`${id}${size}`}>
+									<div className='basketPizza' key={`${id}${size}`}>
 										<p className='title'>{title}</p>
 										<div className='variants'>
 											<p className='size'>{enumTranslations(size)}</p>

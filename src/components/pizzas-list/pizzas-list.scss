@@ -1,12 +1,17 @@
-.pizzasList {
-  margin: 2rem;
+@import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
 
-  ul {
+.pizzas {
+  .titleBlock {
+    @include titleBlock;
+  }
+
+  .pizzasList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    li {
+    .pizza {
       margin: 1rem;
       list-style: none;
       max-width: 300px;

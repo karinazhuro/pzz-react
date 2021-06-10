@@ -9,7 +9,7 @@ class PizzasList extends Component {
 	renderItem = (pizzaList) => {
 		return pizzaList.map(({id, photo, title, variants, description}) => {
 			return (
-				<li key={id}>
+				<li className='pizza' key={id}>
 					<PizzaListItem
 						id={id}
 						photo={photo}
@@ -23,15 +23,16 @@ class PizzasList extends Component {
 
 	render() {
 		return (
-			<main className='pizzasList'>
-				<ul>{
-					<Consumer>
+			<div className='pizzas'>
+				<h2 className='titleBlock'>Пиццы</h2>
+				<ul className='pizzasList'>
+					{<Consumer>
 						{
 							({countablePizzaList}) => this.renderItem(countablePizzaList)
 						}
-					</Consumer>
-				}</ul>
-			</main>
+					</Consumer>}
+				</ul>
+			</div>
 		);
 	};
 }

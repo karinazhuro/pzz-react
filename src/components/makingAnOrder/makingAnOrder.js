@@ -1,6 +1,5 @@
 import React from "react";
 
-import SaucesList from "../saucesList";
 import BasketPizzaList from "../basket-pizza-list";
 
 import './makingAnOrder.scss';
@@ -13,7 +12,6 @@ const MakingAnOrder = () => {
 			<div className='pizzas'>
 				<BasketPizzaList/>
 			</div>
-			<SaucesList/>
 		</div>
 	)
 };
