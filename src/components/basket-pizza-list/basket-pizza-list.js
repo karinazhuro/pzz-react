@@ -1,6 +1,6 @@
 import React from "react";
 
-import enumTranslations from "../../utils/enumTranslations";
+import enumTranslations from "../../utils/translationSizes";
 import Counter from "../counter";
 
 import './basket-pizza-list.scss';

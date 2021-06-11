@@ -64,12 +64,10 @@ export default class App extends Component {
 		});
 	};
 
-	onAddItem = async (id, size, type) => {
+	onAddItem = async (type, id, size) => {
 		const {pizzasList} = this.state;
 
-		console.log(id, size, type);
-
-		await this.pizzaService.addItem(id, size)
+		await this.pizzaService.addItem(type, id, size)
 			.then(res => {
 				this.setState({
 					basket: res,
@@ -78,10 +76,10 @@ export default class App extends Component {
 			});
 	};
 
-	onRemoveItem = async (id, size) => {
+	onRemoveItem = async (type, id, size) => {
 		const {pizzasList} = this.state;
 
-		await this.pizzaService.removeItem(id, size)
+		await this.pizzaService.removeItem(type, id, size)
 			.then(res => {
 				this.setState({
 					basket: res,

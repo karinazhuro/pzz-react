@@ -1,3 +1,5 @@
+import EnumTypes from "../utils/enumTypes";
+
 export default class PizzaService {
   _apiUrl = `https://pzz.by/api/v1`;
 
@@ -29,16 +31,16 @@ export default class PizzaService {
     return res.response.data.map(this._transformSauces);
   };
 
-  addItem = async (id, size) => {
+  addItem = async (type, id, size) => {
     const res = await this.getResource(
-      `/basket/add-item`, 'POST', this.buildDataForChangeBasket(id, size));
+      `/basket/add-item`, 'POST', this.buildDataForChangeBasket(type, id, size));
 
     return this._transformCart(res.response.data);
   };
 
-  removeItem = async (id, size) => {
+  removeItem = async (type, id, size) => {
     const res = await this.getResource(
-      `/basket/remove-item`, 'POST', this.buildDataForChangeBasket(id, size));
+      `/basket/remove-item`, 'POST', this.buildDataForChangeBasket(type, id, size));
 
     return this._transformCart(res.response.data);
   };
@@ -98,13 +100,15 @@ export default class PizzaService {
     }
   };
 
-  buildDataForChangeBasket = (id, size) => {
+  buildDataForChangeBasket = (type, id, size) => {
     const formData = new FormData();
 
-    formData.append('type', 'pizza');
+    const dough = type === EnumTypes.pizza ? 'thin' : '';
+
+    formData.append('type', type);
     formData.append('id', id);
     formData.append('size', size);
-    formData.append('dough', 'thin');
+    formData.append('dough', dough);
 
     return formData;
   }

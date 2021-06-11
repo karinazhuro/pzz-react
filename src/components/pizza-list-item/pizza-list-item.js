@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 
-import translationSizes from "../../utils/enumTranslations";
+import translationSizes from "../../utils/translationSizes";
 import {Consumer} from "../pizzas-service-context";
-import AddToBasket from "../addToBasket";
-import Counter from "../counter";
+import ContentCounter from "../contentCounter";
 
 import './pizza-list-item.scss';
 
@@ -36,20 +35,7 @@ export default class PizzaListItem extends Component {
 	};
 };
 
-
 const PizzaVariant = ({id, size, price, weight, count}) => {
-	const content = (onAddItem, onRemoveItem) => {
-		const type = 'pizza';
-
-		return (
-			count === 0 ?
-				<AddToBasket onAddItem={() => onAddItem(id, size, type)}/> :
-				<Counter count={count}
-								 onPlusClick={() => onAddItem(id, size, type)}
-								 onMinusClick={() => onRemoveItem(id, size, type)}/>
-		)
-	};
-
 	return (
 		<Consumer>
 			{
@@ -62,7 +48,11 @@ const PizzaVariant = ({id, size, price, weight, count}) => {
 								<p className='weight'>{weight}</p>
 							</div>
 							<div className='countPizzas'>
-								{content(onAddItem, onRemoveItem)}
+								{<ContentCounter count={count}
+																 onAddItem={onAddItem}
+																 onRemoveItem={onRemoveItem}
+																 id={id}
+																 size={size}/>}
 							</div>
 						</div>
 					)
