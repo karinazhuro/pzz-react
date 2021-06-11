@@ -1,7 +1,9 @@
-const enumTranslation = Object.freeze({
-	big: "Большая",
-	medium: "Стандартная",
-	thin: "Тонкое тесто 36 см",
-});
+import EnumSizes from "./enumSizes";
 
-export default enumTranslation;
+const translationSizes = {
+	[EnumSizes.big]: "Большая",
+	[EnumSizes.medium]: "Стандартная",
+	[EnumSizes.thin]: "Тонкое тесто 36 см",
+};
+
+export default translationSizes;

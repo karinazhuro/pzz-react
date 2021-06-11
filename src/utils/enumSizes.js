@@ -1,5 +1,7 @@
-const enumSizes = {
+const EnumSizes = Object.freeze({
+	big: 'big',
+	medium: 'medium',
+	thin: 'thin',
+});
 
-};
-
-export default enumSizes;
+export default EnumSizes;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import enumTranslation from "../../utils/enumTranslations";
+import translationSizes from "../../utils/enumTranslations";
 import {Consumer} from "../pizzas-service-context";
 import AddToBasket from "../addToBasket";
 import Counter from "../counter";
@@ -57,7 +57,7 @@ const PizzaVariant = ({id, size, price, weight, count}) => {
 					return (
 						<div className='variant'>
 							<div className='infoAboutVariant'>
-								<p className='size'>{enumTranslation[size]}</p>
+								<p className='size'>{translationSizes[size]}</p>
 								<p className='price'>{price}</p>
 								<p className='weight'>{weight}</p>
 							</div>
