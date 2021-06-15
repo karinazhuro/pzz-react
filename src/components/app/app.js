@@ -5,7 +5,7 @@ import PizzaService from "../../services/pizza-service";
 import {Provider} from "../pizzas-service-context";
 import Spinner from "../spinner";
 import Header from "../header";
-import Menu from "../menu";
+import Main from "../menu";
 import Basket from "../basket";
 
 export default class App extends Component {
@@ -106,7 +106,7 @@ export default class App extends Component {
 				<BrowserRouter>
 					<div>
 						<Header/>
-						<Route path='/' component={Menu} exact/>
+						<Route path='/' component={Main} exact/>
 						<Route path='/basket' component={Basket}/>
 					</div>
 				</BrowserRouter>
