@@ -1,4 +1,5 @@
 @import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
 
 .navigation {
   .navigationWrapper {
@@ -10,9 +11,7 @@
       list-style: none;
 
       .links {
-        color: $primary;
-        font: 32px/1 Malina,sans-serif;
-        letter-spacing: -.5px;
+        @include textDecoration($primary, 24px, $primaryFont, -.5px);
         text-decoration: none;
       }
     }

@@ -5,10 +5,10 @@ const Navigation = () => {
 		<div className='navigation'>
 			<ul className='navigationWrapper'>
 				<li className='wrapperLinks'>
-					<a href="#pizzas" className='links'>Пиццы</a>
+					<a href="#pizzas" className='links'>пиццы</a>
 				</li>
 				<li className='wrapperLinks'>
-					<a href="#sauces" className='links'>Соусы</a>
+					<a href="#sauces" className='links'>соусы</a>
 				</li>
 			</ul>
 		</div>
