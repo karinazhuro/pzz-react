@@ -3,8 +3,14 @@ import './navigation.scss';
 const Navigation = () => {
 	return (
 		<div className='navigation'>
-			<a href="#pizzas" className='navigationLinks'>Пиццы</a>
-			<a href="#sauces" className='navigationLinks'>Соусы</a>
+			<ul className='navigationWrapper'>
+				<li className='wrapperLinks'>
+					<a href="#pizzas" className='links'>Пиццы</a>
+				</li>
+				<li className='wrapperLinks'>
+					<a href="#sauces" className='links'>Соусы</a>
+				</li>
+			</ul>
 		</div>
 	);
 };

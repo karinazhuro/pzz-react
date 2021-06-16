@@ -1,7 +1,20 @@
-.navigation {
-  text-align: center;
+@import "../../../public/scss/palette";
 
-  .navigationLinks {
-    padding: 0 20px;
+.navigation {
+  .navigationWrapper {
+    display: flex;
+    justify-content: center;
+
+    .wrapperLinks {
+      padding: 0 20px;
+      list-style: none;
+
+      .links {
+        color: $primary;
+        font: 32px/1 Malina,sans-serif;
+        letter-spacing: -.5px;
+        text-decoration: none;
+      }
+    }
   }
 }
