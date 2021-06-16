@@ -16,7 +16,7 @@ export default class SaucesList extends Component {
 					<img src={photo} alt={title}/>
 					<h3 className='sauceTitle'>{title}</h3>
 					<p className='saucePrice'>{price}</p>
-					<ContentCounter count={1}
+					<ContentCounter count={0}
 													onAddItem={onAddItem}
 													onRemoveItem={onRemoveItem}
 													id={id}

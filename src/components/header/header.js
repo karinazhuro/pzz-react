@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import ScrollableAnchor from 'react-scrollable-anchor'
 
 import {Consumer} from "../pizzas-service-context";
 import './header.scss'

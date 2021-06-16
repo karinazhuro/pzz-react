@@ -1,10 +1,10 @@
 import React from "react";
 
 import enumTranslations from "../../utils/translationSizes";
+import {Consumer} from "../pizzas-service-context";
 import Counter from "../counter";
 
 import './basket-pizza-list.scss';
-import {Consumer} from "../pizzas-service-context";
 
 const BasketPizzaList = () => {
 	return (

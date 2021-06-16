@@ -1,25 +1,24 @@
 @import "palette";
 
+@mixin textDecoration($color, $fontSize, $fontFamily, $letterSpacing) {
+  color: $color;
+  font: $fontSize $fontFamily;
+  letter-spacing: $letterSpacing;
+}
+
 @mixin title {
-  color: $primary;
-  font: 28px/1.2 Malina, sans-serif;
-  letter-spacing: -1px;
+  @include textDecoration($primary, 28px, $primaryFont, -1px);
 }
 
 @mixin size {
-  color: $textSecondary;
-  font: 15px/1 Arial,Helvetica,sans-serif;
+  @include textDecoration($textSecondary, 15px, $secondaryFont, 0);
 }
 
 @mixin price {
-  color: #000;
-  font: 32px/1.1 Malina,sans-serif;
-  letter-spacing: -1px;
+  @include textDecoration($textPrimary, 32px, $primaryFont, -1px);
 }
 
 @mixin titleBlock {
+  @include textDecoration($textSecondary, 32px, $primaryFont, -.5px);
   text-align: center;
-  color: $textSecondary;
-  font: 32px/1 Malina,sans-serif;
-  letter-spacing: -.5px;
 }
