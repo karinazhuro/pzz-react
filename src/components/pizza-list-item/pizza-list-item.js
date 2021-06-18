@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import translationSizes from "../../utils/translationSizes";
 import {Consumer} from "../pizzas-service-context";
-import ContentCounter from "../contentCounter";
+import ContentCounter from "../content-counter";
 
 import './pizza-list-item.scss';
 

@@ -15,6 +15,7 @@ export default class App extends Component {
 		pizzasList: [],
 		saucesList: [],
 		countablePizzaList: [],
+		countableSaucesList: [],
 		basket: [],
 	};
 
@@ -28,8 +29,8 @@ export default class App extends Component {
 		const saucesAsync = this.pizzaService.getSauces();
 
 		const pizzasList = await pizzasListAsync;
-		const basket = await basketAsync;
 		const saucesList = await saucesAsync;
+		const basket = await basketAsync;
 
 		this.setState({
 			pizzasList,
@@ -37,6 +38,8 @@ export default class App extends Component {
 			basket,
 			countablePizzaList: this.createCountablePizzas(
 				pizzasList, basket),
+			countableSaucesList: this.createCountableSauces(
+				saucesList, basket),
 		});
 	};
 
@@ -62,6 +65,18 @@ export default class App extends Component {
 				})),
 			};
 		});
+	};
+
+	createCountableSauces(sauces, basket) {
+		console.log(basket)
+		const sauce = sauces.map(sauce => {
+			return {
+				...sauce,
+				// count: this.getVariantCountInBasket(sauce.id, variant.size, basket.items),
+			};
+		});
+
+		console.log(sauce);
 	};
 
 	onAddItem = async (type, id, size) => {
@@ -90,6 +105,8 @@ export default class App extends Component {
 
 	render() {
 		const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
+
+		// console.log(pizzasList, basket, countablePizzaList);
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;

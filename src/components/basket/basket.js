@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Consumer} from "../pizzas-service-context";
 import Notification from "../notification";
-import MakingAnOrder from "../makingAnOrder";
+import MakingAnOrder from "../making-an-order";
 
 import './basket.scss';
 

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
 import {Consumer} from "../pizzas-service-context";
+import EnumSizes from "../../utils/enumSizes";
+import ContentCounter from "../content-counter";
 
 import './saucesList.scss';
-import ContentCounter from "../contentCounter";
-import EnumSizes from "../../utils/enumSizes";
 
 export default class SaucesList extends Component {
 	renderSaucesList = (saucesList, onAddItem, onRemoveItem) => {

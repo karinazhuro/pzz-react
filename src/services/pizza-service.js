@@ -23,7 +23,7 @@ export default class PizzaService {
 
   getBasket = async () => {
     const res = await this.getResource(`/basket`);
-    return this._transformCart(res.response.data);
+    return this._transformBasket(res.response.data);
   };
 
   getSauces = async  () => {
@@ -35,14 +35,14 @@ export default class PizzaService {
     const res = await this.getResource(
       `/basket/add-item`, 'POST', this.buildDataForChangeBasket(type, id, size));
 
-    return this._transformCart(res.response.data);
+    return this._transformBasket(res.response.data);
   };
 
   removeItem = async (type, id, size) => {
     const res = await this.getResource(
       `/basket/remove-item`, 'POST', this.buildDataForChangeBasket(type, id, size));
 
-    return this._transformCart(res.response.data);
+    return this._transformBasket(res.response.data);
   };
 
   _transformPizza = (pizza) => {
@@ -55,7 +55,7 @@ export default class PizzaService {
     };
   };
 
-  _transformCart = (cart) => {
+  _transformBasket = (cart) => {
     return {
       price: (cart.price / 10000).toFixed(2),
       items: cart.items.map(item => ({

@@ -1,7 +1,7 @@
 import React from "react";
 
 import EnumTypes from "../../utils/enumTypes";
-import AddToBasket from "../addToBasket";
+import AddToBasket from "../add-to-basket";
 import Counter from "../counter";
 
 const ContentCounter = ({count, onAddItem, onRemoveItem, id, size}) => {
