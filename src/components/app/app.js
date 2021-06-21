@@ -7,6 +7,7 @@ import Spinner from "../spinner";
 import Header from "../header";
 import Main from "../menu";
 import Basket from "../basket";
+import EnumTypes from "../../utils/enumTypes";
 
 export default class App extends Component {
 	pizzaService = new PizzaService();
@@ -14,8 +15,8 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
-		countablePizzaList: [],
-		countableSaucesList: [],
+		// countablePizzaList: [],
+		countableProductList: [],
 		basket: [],
 	};
 
@@ -36,15 +37,16 @@ export default class App extends Component {
 			pizzasList,
 			saucesList,
 			basket,
-			countablePizzaList: this.createCountablePizzas(
-				pizzasList, basket),
-			countableSaucesList: this.createCountableSauces(
-				saucesList, basket),
+			// countablePizzaList: this.createCountablePizzas(
+			// 	pizzasList, basket),
+			countableProductList: this.createCountableProduct(
+				pizzasList, saucesList, basket),
 		});
 	};
 
 	getVariantCountInBasket(id, size, basketItems) {
 		let count = 0;
+
 
 		for (let items of basketItems) {
 			if (items.id === id && items.size === size) {
@@ -67,16 +69,32 @@ export default class App extends Component {
 		});
 	};
 
-	createCountableSauces(sauces, basket) {
-		console.log(basket)
-		const sauce = sauces.map(sauce => {
+	createCountableProduct(pizzas, sauces, basket) {
+		// console.log(basket);
+
+		const pizza = pizzas.map(pizza => {
 			return {
-				...sauce,
-				// count: this.getVariantCountInBasket(sauce.id, variant.size, basket.items),
+				type: EnumTypes.pizza,
+				...pizza,
+				variants: pizza.variants.map(variant => ({
+					...variant,
+					count: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
+				})),
 			};
 		});
 
-		console.log(sauce);
+		const sauce = sauces.map(sauce => {
+			return {
+				type: EnumTypes.sauce,
+				...sauce,
+				count: 0,
+			}
+		});
+
+		// console.log(sauce)
+
+		// return [pizza, sauce];
+		return pizza.concat(sauce);
 	};
 
 	onAddItem = async (type, id, size) => {
@@ -104,9 +122,9 @@ export default class App extends Component {
 	};
 
 	render() {
-		const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
+		const {pizzasList, saucesList, basket, countableProductList} = this.state;
 
-		// console.log(pizzasList, basket, countablePizzaList);
+		// console.log(countableProductList);
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
@@ -114,9 +132,9 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
-				basket,
 				saucesList,
-				countablePizzaList,
+				basket,
+				countableProductList,
 				onAddItem: this.onAddItem,
 				onRemoveItem: this.onRemoveItem,
 			}}>
