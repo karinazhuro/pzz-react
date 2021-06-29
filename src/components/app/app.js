@@ -6,9 +6,9 @@ import PizzaServiceMock from "../../services/pizza-service-mock";
 import {Provider} from "../pizzas-service-context";
 import Spinner from "../spinner";
 import Header from "../header";
-import Main from "../menu";
+import Menu from "../menu";
 import Basket from "../basket";
-import EnumTypes from "../../utils/enumTypes";
+import EnumTypes from "../../utils/enum-types";
 
 export default class App extends Component {
 	// pizzaService = new PizzaService();
@@ -17,7 +17,7 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
-		// countablePizzaList: [],
+		countablePizzaList: [],
 		countableProductList: [],
 		basket: [],
 	};
@@ -28,25 +28,25 @@ export default class App extends Component {
 
 	async init() {
 		// const pizzasListAsync = this.pizzaService.getPizzas();
-		const pizzasListAsync = this.pizzaServiceMock.getPizzas();
+		const pizzasList = this.pizzaServiceMock.getPizzas();
 
-		console.log(pizzasListAsync);
+		// console.log(pizzasList);
 
-		const basketAsync = this.pizzaService.getBasket();
-		const saucesAsync = this.pizzaService.getSauces();
+		// const basketAsync = this.pizzaService.getBasket();
+		// const saucesAsync = this.pizzaService.getSauces();
 
-		const pizzasList = await pizzasListAsync;
-		const saucesList = await saucesAsync;
-		const basket = await basketAsync;
+		// const pizzasList = await pizzasListAsync;
+		// const saucesList = await saucesAsync;
+		// const basket = await basketAsync;
 
 		this.setState({
 			pizzasList,
-			saucesList,
-			basket,
+			// saucesList,
+			// basket,
 			// countablePizzaList: this.createCountablePizzas(
 			// 	pizzasList, basket),
-			countableProductList: this.createCountableProduct(
-				pizzasList, saucesList, basket),
+			// countableProductList: this.createCountableProduct(
+			// 	pizzasList, saucesList, basket),
 		});
 	};
 
@@ -130,7 +130,7 @@ export default class App extends Component {
 	render() {
 		const {pizzasList, saucesList, basket, countableProductList} = this.state;
 
-		// console.log(countableProductList);
+		console.log(pizzasList);
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
@@ -138,6 +138,7 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
+				pizzasList,
 				saucesList,
 				basket,
 				countableProductList,
@@ -147,7 +148,7 @@ export default class App extends Component {
 				<BrowserRouter>
 					<div>
 						<Header/>
-						<Route path='/' component={Main} exact/>
+						<Route path='/' component={Menu} exact/>
 						<Route path='/basket' component={Basket}/>
 					</div>
 				</BrowserRouter>

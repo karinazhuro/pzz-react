@@ -4,12 +4,14 @@ import PizzaListItem from "../pizza-list-item";
 import {Consumer} from '../pizzas-service-context';
 
 import './pizzas-list.scss';
-import EnumTypes from "../../utils/enumTypes";
+import EnumTypes from "../../utils/enum-types";
 
 class PizzasList extends Component {
 	renderItem = (productList) => {
+		console.log(productList);
+
 		return productList.map(({type, id, photo, title, variants, description}) => {
-			if (type === EnumTypes.pizza) {
+			// if (type === EnumTypes.pizza) {
 				return (
 					<li className='pizza' key={id}>
 						<PizzaListItem
@@ -20,7 +22,7 @@ class PizzasList extends Component {
 							description={description}/>
 					</li>
 				);
-			}
+			// }
 		});
 	};
 
@@ -31,7 +33,7 @@ class PizzasList extends Component {
 				<ul className='pizzasList'>
 					{<Consumer>
 						{
-							({countableProductList}) => this.renderItem(countableProductList)
+							({pizzasList}) => this.renderItem(pizzasList)
 						}
 					</Consumer>}
 				</ul>

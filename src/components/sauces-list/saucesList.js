@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import {Consumer} from "../pizzas-service-context";
-import EnumSizes from "../../utils/enumSizes";
+import EnumSizes from "../../utils/enum-sizes";
 import ContentCounter from "../content-counter";
 
 import './saucesList.scss';

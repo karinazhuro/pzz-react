@@ -1,4 +1,4 @@
-import EnumSizes from "./enumSizes";
+import EnumSizes from "./enum-sizes";
 
 const translationSizes = {
 	[EnumSizes.big]: "Большая",

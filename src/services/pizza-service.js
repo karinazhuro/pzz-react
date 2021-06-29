@@ -1,4 +1,4 @@
-import EnumTypes from "../utils/enumTypes";
+import EnumTypes from "../utils/enum-types";
 
 export default class PizzaService {
   _apiUrl = `https://pzz.by/api/v1`;
@@ -55,6 +55,15 @@ export default class PizzaService {
     };
   };
 
+  _transformSauces = (sauce) => {
+    return {
+      id: sauce.id,
+      photo: sauce.photo_small,
+      price: (sauce.price / 10000).toFixed(2),
+      title: sauce.title,
+    };
+  };
+
   _transformBasket = (cart) => {
     return {
       price: (cart.price / 10000).toFixed(2),
@@ -67,14 +76,6 @@ export default class PizzaService {
     }
   };
 
-  _transformSauces = (sauce) => {
-    return {
-      id: sauce.id,
-      photo: sauce.photo_small,
-      price: (sauce.price / 10000).toFixed(2),
-      title: sauce.title,
-    };
-  };
 
   _variantsPizzas = (pizza) => {
     let variants = [];

@@ -1,6 +1,6 @@
 import React from "react";
 
-import EnumTypes from "../../utils/enumTypes";
+import EnumTypes from "../../utils/enum-types";
 import AddToBasket from "../add-to-basket";
 import Counter from "../counter";
 

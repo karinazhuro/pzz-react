@@ -7,7 +7,7 @@ import Navigation from "../navigation";
 
 import './menu.scss';
 
-const Main = () => {
+const Menu = () => {
 	return (
 		<main>
 			<Navigation/>
@@ -20,6 +20,6 @@ const Main = () => {
 			</ScrollableAnchor>
 		</main>
 	)
-}
+};
 
-export default Main;
+export default Menu;
