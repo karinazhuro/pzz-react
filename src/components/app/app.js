@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route} from "react-router-dom";
 
-import PizzaService from "../../services/pizza-service";
+// import PizzaService from "../../services/pizza-service";
+import PizzaServiceMock from "../../services/pizza-service-mock";
 import {Provider} from "../pizzas-service-context";
 import Spinner from "../spinner";
 import Header from "../header";
@@ -10,7 +11,8 @@ import Basket from "../basket";
 import EnumTypes from "../../utils/enumTypes";
 
 export default class App extends Component {
-	pizzaService = new PizzaService();
+	// pizzaService = new PizzaService();
+	pizzaServiceMock = new PizzaServiceMock();
 
 	state = {
 		pizzasList: [],
@@ -25,7 +27,11 @@ export default class App extends Component {
 	};
 
 	async init() {
-		const pizzasListAsync = this.pizzaService.getPizzas();
+		// const pizzasListAsync = this.pizzaService.getPizzas();
+		const pizzasListAsync = this.pizzaServiceMock.getPizzas();
+
+		console.log(pizzasListAsync);
+
 		const basketAsync = this.pizzaService.getBasket();
 		const saucesAsync = this.pizzaService.getSauces();
 

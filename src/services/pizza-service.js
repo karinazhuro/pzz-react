@@ -7,7 +7,6 @@ export default class PizzaService {
     const res = await fetch(`${this._apiUrl}${url}`, {
       method,
       body,
-      credentials: 'same-origin'
     });
 
     if (!res.ok) {
