@@ -1,6 +1,6 @@
 import React from "react";
 
-import enumTranslations from "../../utils/translationSizes";
+import enumTranslations from "../../utils/translation-sizes";
 import {Consumer} from "../pizzas-service-context";
 import Counter from "../counter";
 

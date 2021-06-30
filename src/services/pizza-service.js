@@ -21,14 +21,14 @@ export default class PizzaService {
     return res.response.data.map(this._transformPizza);
   };
 
-  getBasket = async () => {
-    const res = await this.getResource(`/basket`);
-    return this._transformBasket(res.response.data);
-  };
-
   getSauces = async  () => {
     const res = await this.getResource(`/sauces`);
     return res.response.data.map(this._transformSauces);
+  };
+
+  getBasket = async () => {
+    const res = await this.getResource(`/basket`);
+    return this._transformBasket(res.response.data);
   };
 
   addItem = async (type, id, size) => {
@@ -75,7 +75,6 @@ export default class PizzaService {
       }))
     }
   };
-
 
   _variantsPizzas = (pizza) => {
     let variants = [];

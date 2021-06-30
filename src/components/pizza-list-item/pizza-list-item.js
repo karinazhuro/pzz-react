@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import translationSizes from "../../utils/translationSizes";
+import translationSizes from "../../utils/translation-sizes";
 import {Consumer} from "../pizzas-service-context";
 import ContentCounter from "../content-counter";
 
