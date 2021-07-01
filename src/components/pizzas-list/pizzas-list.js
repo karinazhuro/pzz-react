@@ -8,20 +8,32 @@ import EnumTypes from "../../utils/enum-types";
 
 class PizzasList extends Component {
 	renderItem = (productList) => {
-		return productList.map(({type, id, photo, title, variants, description}) => {
+		return productList.map(product => {
+			const {type, id} = product;
+
 			if (type === EnumTypes.pizza) {
 				return (
 					<li className='pizza' key={id}>
-						<PizzaListItem
-							id={id}
-							photo={photo}
-							title={title}
-							variants={variants}
-							description={description}/>
+						<PizzaListItem product={product}/>
 					</li>
 				);
 			}
 		});
+		// return productList.map(({type, id, photo, title, variants, description}) => {
+		// 	if (type === EnumTypes.pizza) {
+		// 		return (
+		// 			<li className='pizza' key={id}>
+		// 				<PizzaListItem
+		// 					id={id}
+		// 					photo={photo}
+		// 					title={title}
+		// 					variants={variants}
+		// 					description={description}
+		// 				type={type}/>
+		// 			</li>
+		// 		);
+		// 	}
+		// });
 	};
 
 	render() {

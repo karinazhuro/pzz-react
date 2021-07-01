@@ -7,27 +7,42 @@ import ContentCounter from "../content-counter";
 import './pizza-list-item.scss';
 
 export default class PizzaListItem extends Component {
-	renderVariants(id, variants) {
+	renderVariants(product) {
+		const {id, variants} = product;
+
 		return variants.map(variant => {
-			return <PizzaVariant key={variant.size}
+			const {size, price, weight, count} = variant;
+
+			return <PizzaVariant key={size}
 													 id={id}
-													 size={variant.size}
-													 price={variant.price}
-													 weight={variant.weight}
-													 count={variant.count}
+													 size={size}
+													 price={price}
+													 weight={weight}
+													 count={count}
+													 product={product}
 			/>
+
+			// return <PizzaVariant key={size}
+			// 										 id={id}
+			// 										 size={size}
+			// 										 price={price}
+			// 										 weight={weight}
+			// 										 count={count}
+			// 										 product={product}
+			// />
 		});
 	};
 
 	render() {
-		const {id, photo, title, variants, description} = this.props;
+		const product = this.props.product
+		const {photo, title, description} = product;
 
 		return (
 			<React.Fragment>
 				<img src={photo} alt={title}/>
 				<div className='pizzaInfo'>
 					<h3 className='title'>{title}</h3>
-					{this.renderVariants(id, variants)}
+					{this.renderVariants(product)}
 				</div>
 				<p className='desc'>{description}</p>
 			</React.Fragment>
@@ -35,7 +50,7 @@ export default class PizzaListItem extends Component {
 	};
 };
 
-const PizzaVariant = ({id, size, price, weight, count}) => {
+const PizzaVariant = ({id, size, price, weight, count, items}) => {
 	return (
 		<Consumer>
 			{
@@ -48,11 +63,14 @@ const PizzaVariant = ({id, size, price, weight, count}) => {
 								<p className='weight'>{weight}</p>
 							</div>
 							<div className='countPizzas'>
-								{<ContentCounter count={count}
-																 onAddItem={onAddItem}
-																 onRemoveItem={onRemoveItem}
-																 id={id}
-																 size={size}/>}
+								{
+									<ContentCounter count={count}
+																	onAddItem={onAddItem}
+																	onRemoveItem={onRemoveItem}
+																	id={id}
+																	size={size}
+																	items={items}/>
+								}
 							</div>
 						</div>
 					)

@@ -1,7 +1,9 @@
 import EnumSizes from "./enum-sizes";
+import EnumTypes from "./enum-types";
 
 const transformPizza = (pizza) => {
   return {
+    type: EnumTypes.pizza,
     id: pizza.id.toString(),
     photo: pizza.photo_small,
     title: pizza.title,
@@ -34,4 +36,4 @@ const _variantsData = (pizza, size) => {
   }
 };
 
-export default transformPizza
+export default transformPizza;

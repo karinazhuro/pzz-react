@@ -4,10 +4,10 @@ import EnumTypes from "../../utils/enum-types";
 import AddToBasket from "../add-to-basket";
 import Counter from "../counter";
 
-const ContentCounter = ({count, onAddItem, onRemoveItem, id, size}) => {
+const ContentCounter = ({items, count, onAddItem, onRemoveItem, id, size}) => {
 	return (
 		count === 0 ?
-			<AddToBasket onAddItem={() => onAddItem(EnumTypes.pizza, id, size)}/> :
+			<AddToBasket onAddItem={() => onAddItem(EnumTypes.pizza, id, size, items)}/> :
 			<Counter count={count}
 							 onPlusClick={() => onAddItem(EnumTypes.pizza, id, size)}
 							 onMinusClick={() => onRemoveItem(EnumTypes.pizza, id, size)}/>
