@@ -4,10 +4,12 @@ import EnumTypes from "../../utils/enum-types";
 import AddToBasket from "../add-to-basket";
 import Counter from "../counter";
 
-const ContentCounter = ({items, count, onAddItem, onRemoveItem, id, size}) => {
+const ContentCounter = ({productData, count, onAddItem, onRemoveItem, id, size}) => {
+	// console.log(dataVar)
+
 	return (
 		count === 0 ?
-			<AddToBasket onAddItem={() => onAddItem(EnumTypes.pizza, id, size, items)}/> :
+			<AddToBasket onAddItem={() => onAddItem(productData)}/> :
 			<Counter count={count}
 							 onPlusClick={() => onAddItem(EnumTypes.pizza, id, size)}
 							 onMinusClick={() => onRemoveItem(EnumTypes.pizza, id, size)}/>

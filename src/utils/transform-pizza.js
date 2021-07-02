@@ -31,7 +31,7 @@ const _variantsPizzas = (pizza) => {
 const _variantsData = (pizza, size) => {
   return {
     size: size,
-    price: (pizza[`${size}_price`] / 10000).toFixed(2),
+    price: pizza[`${size}_price`],
     weight: pizza[`${size}_weight`],
   }
 };

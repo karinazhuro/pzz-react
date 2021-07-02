@@ -20,12 +20,12 @@ export default class PizzaServiceMock {
 	};
 
 	addItem = (item) => {
-		const {id, description, title, type} = item;
-		console.log(item)
+		const {id, type, title, size, price} = item;
+
 		addItem.data.items.push({
-			"type": type,
+			type,
 			id,
-			// "size": size,
+			size,
 			"dough": "thin",
 			"is_failure": 0,
 			"is_3in2": false,
@@ -34,7 +34,7 @@ export default class PizzaServiceMock {
 			"item_id": 0,
 			"is_new": true,
 			"auto_removed": false,
-			"title": title,
+			title,
 			"free_sauces_count": 1,
 			"is_new_recipe": 0,
 			"to_remove": 0,
@@ -42,13 +42,14 @@ export default class PizzaServiceMock {
 			"packed": 0,
 			"prepared": 0,
 			"is_free": 0,
-			"original_product_price": 239000,
-			"price": 239000,
+			"original_product_price": price,
+			price,
 			"target_discount_type": "none",
 			"target_discount_amount": 0,
 			"target_discount_percent": 0
 		});
 
+		console.log(addItem);
 		return addItem.data;
 	};
 }

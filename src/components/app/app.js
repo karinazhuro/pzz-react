@@ -98,7 +98,8 @@ export default class App extends Component {
 		return pizza.concat(sauce);
 	};
 
-	onAddItem = async (type, id, size, item) => {
+	onAddItem = async (item) => {
+		// console.log(item)
 		const {pizzasList} = this.state;
 
 		this.pizzaServiceMock.addItem(item);
