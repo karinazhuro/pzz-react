@@ -19,21 +19,6 @@ class PizzasList extends Component {
 				);
 			}
 		});
-		// return productList.map(({type, id, photo, title, variants, description}) => {
-		// 	if (type === EnumTypes.pizza) {
-		// 		return (
-		// 			<li className='pizza' key={id}>
-		// 				<PizzaListItem
-		// 					id={id}
-		// 					photo={photo}
-		// 					title={title}
-		// 					variants={variants}
-		// 					description={description}
-		// 				type={type}/>
-		// 			</li>
-		// 		);
-		// 	}
-		// });
 	};
 
 	render() {
@@ -43,7 +28,7 @@ class PizzasList extends Component {
 				<ul className='pizzasList'>
 					{<Consumer>
 						{
-							({countableProductList}) => this.renderItem(countableProductList)
+							({countablePizzaList}) => this.renderItem(countablePizzaList)
 						}
 					</Consumer>}
 				</ul>

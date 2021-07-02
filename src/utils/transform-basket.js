@@ -7,7 +7,7 @@ const transformBasket = (basket) => {
 			title: item.title,
 			price: (item.price / 10000).toFixed(2),
 		}))
-	}
+	};
 };
 
 export default transformBasket;

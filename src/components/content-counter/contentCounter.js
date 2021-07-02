@@ -5,8 +5,6 @@ import AddToBasket from "../add-to-basket";
 import Counter from "../counter";
 
 const ContentCounter = ({productData, count, onAddItem, onRemoveItem, id, size}) => {
-	// console.log(dataVar)
-
 	return (
 		count === 0 ?
 			<AddToBasket onAddItem={() => onAddItem(productData)}/> :

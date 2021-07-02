@@ -42,15 +42,14 @@ export default class PizzaListItem extends Component {
 };
 
 const PizzaVariant = ({size, price, weight, count, id, product}) => {
-	const {type} = product;
-
-	// console.log(product)
+	const {type, title} = product;
 	const productData = {
 		size,
 		price,
 		count,
 		id,
 		type,
+		title,
 	}
 
 	return (

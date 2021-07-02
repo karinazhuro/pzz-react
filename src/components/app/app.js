@@ -4,7 +4,6 @@ import {BrowserRouter, Route} from "react-router-dom";
 // import PizzaService from "../../services/pizza-service";
 import PizzaServiceMock from "../../services/pizza-service-mock";
 import {Provider} from "../pizzas-service-context";
-import EnumTypes from "../../utils/enum-types";
 import Spinner from "../spinner";
 import Header from "../header";
 import Menu from "../menu";
@@ -18,8 +17,7 @@ export default class App extends Component {
 		pizzasList: [],
 		saucesList: [],
 		basket: [],
-		// countablePizzaList: [],
-		countableProductList: [],
+		countablePizzaList: [],
 	};
 
 	componentDidMount() {
@@ -38,16 +36,14 @@ export default class App extends Component {
 		const saucesList = this.pizzaServiceMock.getSauces();
 		const basket = this.pizzaServiceMock.getBasket();
 
-		// console.log(pizzasList);
-
 		this.setState({
 			pizzasList,
 			saucesList,
 			basket,
-			// countablePizzaList: this.createCountablePizzas(
-			// 	pizzasList, basket),
-			countableProductList: this.createCountableProduct(
-				pizzasList, saucesList, basket),
+			countablePizzaList: this.createCountablePizzas(
+				pizzasList, basket),
+			// countableProductList: this.createCountableProduct(
+			// 	pizzasList, saucesList, basket),
 		});
 	};
 
@@ -64,6 +60,8 @@ export default class App extends Component {
 	};
 
 	createCountablePizzas(pizzas, basket) {
+		// console.log(basket)
+
 		return pizzas.map(pizza => {
 			return {
 				...pizza,
@@ -75,42 +73,37 @@ export default class App extends Component {
 		});
 	};
 
-	createCountableProduct(pizzas, sauces, basket) {
-		const pizza = pizzas.map(pizza => {
-			return {
-				type: EnumTypes.pizza,
-				...pizza,
-				variants: pizza.variants.map(variant => ({
-					...variant,
-					count: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
-				})),
-			};
-		});
-
-		const sauce = sauces.map(sauce => {
-			return {
-				type: EnumTypes.sauce,
-				...sauce,
-				count: 0,
-			}
-		});
-
-		return pizza.concat(sauce);
-	};
+	// createCountableProduct(pizzas, sauces, basket) {
+	// 	const pizza = pizzas.map(pizza => {
+	// 		return {
+	// 			type: EnumTypes.pizza,
+	// 			...pizza,
+	// 			variants: pizza.variants.map(variant => ({
+	// 				...variant,
+	// 				count: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
+	// 			})),
+	// 		};
+	// 	});
+	//
+	// 	const sauce = sauces.map(sauce => {
+	// 		return {
+	// 			type: EnumTypes.sauce,
+	// 			...sauce,
+	// 			count: 0,
+	// 		}
+	// 	});
+	//
+	// 	return pizza.concat(sauce);
+	// };
 
 	onAddItem = async (item) => {
-		// console.log(item)
 		const {pizzasList} = this.state;
+		const basket = this.pizzaServiceMock.addItem(item)
 
-		this.pizzaServiceMock.addItem(item);
-		// await this.pizzaService.addItem(type, id, size)
-		// 	.then(res => {
-		// 		console.log(res)
-		// 		this.setState({
-		// 			basket: res,
-		// 			countablePizzaList: this.createCountablePizzas(pizzasList, res),
-		// 		});
-		// 	});
+		this.setState({
+			basket,
+			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
+		});
 	};
 
 	onRemoveItem = async (type, id, size) => {
@@ -126,9 +119,9 @@ export default class App extends Component {
 	};
 
 	render() {
-		const {pizzasList, saucesList, basket, countableProductList} = this.state;
+		const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
 
-		// console.log(countableProductList);
+		console.log(countablePizzaList);
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
@@ -136,10 +129,9 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
-				// pizzasList,
 				saucesList,
 				basket,
-				countableProductList,
+				countablePizzaList,
 				onAddItem: this.onAddItem,
 				onRemoveItem: this.onRemoveItem,
 			}}>
