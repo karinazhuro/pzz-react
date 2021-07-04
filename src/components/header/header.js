@@ -32,7 +32,10 @@ const Header = () => {
 			<div>
 				<Link to="/basket" className='cart'> Корзина </Link>
 				<Consumer>
-					{({basket}) => <p className='price'>{basket.price}</p>}
+					{
+						({basket}) => <p className='price'>{basket.price}</p>
+						// ({basket}) => <p className='price'>{(basket.price / 10000).toFixed(2)}</p>
+					}
 				</Consumer>
 			</div>
 		</header>

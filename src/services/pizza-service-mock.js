@@ -6,6 +6,7 @@ import transformSauces from "../utils/transform-sauces";
 import transformBasket from "../utils/transform-basket";
 
 export default class PizzaServiceMock {
+
 	getPizzas = () => {
 		return pizzas.data.map(transformPizza);
 	};
@@ -19,16 +20,19 @@ export default class PizzaServiceMock {
 	};
 
 	addItem = (item) => {
-		const {id, type, title, size, price} = item;
+		const {price} = item;
 
 		basket.data.price += price;
-		basket.data.items.push({
-			type,
-			id,
-			size,
-			title,
-			price,
-		});
+		basket.data.items.push(item);
+
+		return transformBasket(basket.data);
+	};
+
+	removeItem = (item) => {
+		const {price} = item;
+
+		basket.data.price -= price;
+		basket.data.items.pop(item);
 
 		return transformBasket(basket.data);
 	};

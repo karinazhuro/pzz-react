@@ -50,7 +50,7 @@ const PizzaVariant = ({size, price, weight, count, id, product}) => {
 		id,
 		type,
 		title,
-	}
+	};
 
 	return (
 		<Consumer>
@@ -68,11 +68,12 @@ const PizzaVariant = ({size, price, weight, count, id, product}) => {
 									<ContentCounter count={count}
 																	onAddItem={onAddItem}
 																	onRemoveItem={onRemoveItem}
+																	productData={productData}
+										// product={product}
 										// id={id}
 										// size={size}
 										// price={price}
-																	productData={productData}
-																	product={product}/>
+									/>
 								}
 							</div>
 						</div>
