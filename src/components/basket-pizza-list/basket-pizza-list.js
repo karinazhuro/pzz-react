@@ -1,8 +1,5 @@
 import React from "react";
-
-import translationSizes from "../../utils/translation-sizes";
 import {Consumer} from "../pizzas-service-context";
-import Counter from "../counter";
 
 import './basket-pizza-list.scss';
 
@@ -10,37 +7,51 @@ const BasketPizzaList = () => {
 	return (
 		<Consumer>
 			{
-				({countablePizzaList, onAddItem, onRemoveItem}) => {
+				({countablePizzaList, onAddItem, onRemoveItem, basket}) => {
 					return countablePizzaList.map(item => {
-						const {id, title, variants} = item;
+						const items = basket.items;
+						const collection = [];
 
+						// console.log(items)
 
-						return variants.map(variant => {
-							if (variant.count > 0) {
-								const {size, count, price} = variant;
-								const productData = {
-									size,
-									id,
-									price,
-									title,
-								};
+						for (let i = 0; i < items.length; i++) {
+							const item = items[i];
+							const {id, title, size, price} = item;
 
-								// console.log(translationSizes.size);
-
-								return (
-									<div className='basketPizza' key={`${id}${size}`}>
-										<p className='title'>{title}</p>
-										<div className='variants'>
-											<p className='size'>{translationSizes[size]}</p>
-											<Counter count={count}
-															 onPlusClick={() => onAddItem(productData)}
-															 onMinusClick={() => onRemoveItem(productData)}/>
-											<p className='price'>{(price / 10000).toFixed(2)}</p>
-										</div>
-									</div>
-								);
+							for (let j = 0; j <= collection.length; j++) {
+								if (collection.length === 0) {
+										collection.push({
+											id,
+											title,
+											variants: []
+										})
+								}
 							}
-						})
+						}
+
+						console.log(collection)
+
+						// const {id, size, title, price} = item;
+
+						// 				const productData = {
+						// 					id,
+						// 					size,
+						// 					title,
+						// 					price,
+						// 				};
+
+						// return (
+						// <div className='basketPizza' key={`${id}${size}`}>
+						// {/*// 						<p className='title'>{title}</p>*/}
+						// {/*// 						<div className='variants'>*/}
+						// {/*// 							<p className='size'>{translationSizes[size]}</p>*/}
+						// {/*// 							<Counter count={count}*/}
+						// {/*// 											 onPlusClick={() => onAddItem(productData)}*/}
+						// {/*// 											 onMinusClick={() => onRemoveItem(productData)}/>*/}
+						// {/*// 							<p className='price'>{(price / 10000).toFixed(2)}</p>*/}
+						// /*// 					</div>*/
+						// </div>
+						// );
 					});
 				}
 			}

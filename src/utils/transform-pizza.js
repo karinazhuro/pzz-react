@@ -15,13 +15,13 @@ const transformPizza = (pizza) => {
 const _variantsPizzas = (pizza) => {
   let variants = [];
 
-  if (pizza.is_big === 1) {
+  if (pizza.is_big) {
     variants.push(_variantsData(pizza, EnumSizes.big))
   }
-  if (pizza.is_medium === 1) {
+  if (pizza.is_medium) {
     variants.push(_variantsData(pizza, EnumSizes.medium))
   }
-  if (pizza.is_thin === 1) {
+  if (pizza.is_thin) {
     variants.push(_variantsData(pizza, EnumSizes.thin))
   }
 
