@@ -17,21 +17,31 @@ const BasketPizzaList = () => {
 						for (let i = 0; i < items.length; i++) {
 							const item = items[i];
 							const {id, title, size, price} = item;
+							const pattern = {
+								id,
+								title,
+								variants: [],
+							};
 
-							for (let j = 0; j <= collection.length; j++) {
-								if (collection.length === 0) {
-										collection.push({
-											id,
-											title,
-											variants: []
-										})
+							if (collection.length === 0) {
+								collection.push(pattern);
+							}
+
+							for (let j = 0; j < collection.length; j++) {
+								if (id === collection[j].id) {
+									pattern.variants.push({
+										size,
+										price,
+									})
+								} else {
+									collection.push(pattern);
 								}
+
+								// console.log(id)
 							}
 						}
 
 						console.log(collection)
-
-						// const {id, size, title, price} = item;
 
 						// 				const productData = {
 						// 					id,
