@@ -44,12 +44,12 @@ export default class PizzaListItem extends Component {
 const PizzaVariant = ({size, price, weight, count, id, product}) => {
 	const {type, title} = product;
 	const productData = {
+		id,
 		size,
+		title,
 		price,
 		count,
-		id,
-		type,
-		title,
+		// type,
 	};
 
 	return (
@@ -68,12 +68,7 @@ const PizzaVariant = ({size, price, weight, count, id, product}) => {
 									<ContentCounter count={count}
 																	onAddItem={onAddItem}
 																	onRemoveItem={onRemoveItem}
-																	productData={productData}
-										// product={product}
-										// id={id}
-										// size={size}
-										// price={price}
-									/>
+																	productData={productData}/>
 								}
 							</div>
 						</div>

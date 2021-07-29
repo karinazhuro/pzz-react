@@ -19,20 +19,23 @@ export default class PizzaServiceMock {
 		return transformBasket(basket.data)
 	};
 
-	addItem = (item) => {
-		const {price} = item;
+	addItem = (product) => {
+		const {price} = product;
 
 		basket.data.price += price;
-		basket.data.items.push(item);
+		basket.data.items.push(product);
 
 		return transformBasket(basket.data);
 	};
 
-	removeItem = (item) => {
-		const {price} = item;
+	removeItem = (product) => {
+		const {price} = product;
+		let findIndexProduct = basket.data.items.findIndex(item => {
+			return item.id === product.id && item.size === product.size
+		});
 
 		basket.data.price -= price;
-		basket.data.items.pop(item);
+		basket.data.items.splice(findIndexProduct, 1);
 
 		return transformBasket(basket.data);
 	};

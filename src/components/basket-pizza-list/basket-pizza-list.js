@@ -8,40 +8,34 @@ const BasketPizzaList = () => {
 		<Consumer>
 			{
 				({countablePizzaList, onAddItem, onRemoveItem, basket}) => {
+					const items = basket.items;
 					const collection = [];
 
-					countablePizzaList.map(pizza => {
-						const {id, title, variants} = pizza;
+					// for (let i = 0; i < items.length; i++) {
+					// 	if (i === 0) {
+					// 		collection.push(
+					// 			items[0],
+					// 		);
+					//
+					// 		continue;
+					// 	}
+					//
+					// 	for (let j = 0; j < collection.length; j++) {
+					// 		if (items[i].id === collection[j].id &&
+					// 			items[i].size === collection[j].size) {
+					// 			// collection[j].count += +1;
+					//
+					// 			// console.log(collection[j].price)
+					// 		} else {
+					// 			collection.push(
+					// 				items[i]
+					// 			);
+					// 		}
+					//
+					// 	}
+					// }
 
-						variants.map(variant => {
-							const {size, price} = variant;
-
-							if (variant.count === 1) {
-
-							}
-						})
-
-						// 				const productData = {
-						// 					id,
-						// 					size,
-						// 					title,
-						// 					price,
-						// 				};
-						// return (
-						// <div className='basketPizza' key={`${id}${size}`}>
-						// {/*// 						<p className='title'>{title}</p>*/}
-						// {/*// 						<div className='variants'>*/}
-						// {/*// 							<p className='size'>{translationSizes[size]}</p>*/}
-						// {/*// 							<Counter count={count}*/}
-						// {/*// 											 onPlusClick={() => onAddItem(productData)}*/}
-						// {/*// 											 onMinusClick={() => onRemoveItem(productData)}/>*/}
-						// {/*// 							<p className='price'>{(price / 10000).toFixed(2)}</p>*/}
-						// /*// 					</div>*/
-						// </div>
-						// );
-					});
-
-					// console.log(collection)
+					console.log(collection);
 				}
 			}
 		</Consumer>
