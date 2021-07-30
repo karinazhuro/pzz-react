@@ -48,7 +48,7 @@ const PizzaVariant = ({size, price, weight, count, id, product}) => {
 		size,
 		title,
 		price,
-		count,
+		// count,
 		// type,
 	};
 

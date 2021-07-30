@@ -83,8 +83,6 @@ export default class App extends Component {
 	render() {
 		const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
 
-		// console.log(countablePizzaList)
-
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
 		}
