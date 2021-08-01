@@ -31,7 +31,7 @@ export default class PizzaServiceMock {
 	removeItem = (product) => {
 		const {price} = product;
 		let findIndexProduct = basket.data.items.findIndex(item => {
-			return item.id === product.id && item.size === product.size
+			return item.id === product.id && item.size === product.size;
 		});
 
 		basket.data.price -= price;

@@ -9,100 +9,106 @@ import Menu from "../menu";
 import Basket from "../basket";
 
 export default class App extends Component {
-	pizzaServiceMock = new PizzaServiceMock();
+  pizzaServiceMock = new PizzaServiceMock();
 
-	state = {
-		pizzasList: [],
-		saucesList: [],
-		basket: [],
-		countablePizzaList: [],
+  state = {
+    pizzasList: [],
+    saucesList: [],
+    basket: [],
+    countablePizzaList: [],
+  };
+
+  componentDidMount() {
+    this.init();
+  };
+
+  async init() {
+    const pizzasList = this.pizzaServiceMock.getPizzas();
+    const saucesList = this.pizzaServiceMock.getSauces();
+    const basket = this.pizzaServiceMock.getBasket();
+
+    this.setState({
+      pizzasList,
+      saucesList,
+      basket,
+      countablePizzaList: this.createCountablePizzas(
+        pizzasList, basket),
+    });
+  };
+
+  getVariantCountInBasket(id, size, basketItems) {
+    let count = 0;
+
+    for (let items of basketItems) {
+      if (items.id === id && items.size === size) {
+        count += 1;
+      }
+    }
+
+    return count;
+  };
+
+  createCountablePizzas(pizzas, basket) {
+    return pizzas.map(pizza => {
+      return {
+        ...pizza,
+        variants: pizza.variants.map(variant => ({
+          ...variant,
+          count: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
+        })),
+      };
+    });
+  };
+
+  onAddItem = async (item) => {
+    const {pizzasList} = this.state;
+    const basket = this.pizzaServiceMock.addItem(item);
+
+
+    this.setState({
+      basket,
+      countablePizzaList: this.createCountablePizzas(pizzasList, basket),
+    });
+
+		// console.log(basket);
+
 	};
 
-	componentDidMount() {
-		this.init();
-	};
+  onRemoveItem = async (item) => {
+    const {pizzasList} = this.state;
+    const basket = this.pizzaServiceMock.removeItem(item);
 
-	async init() {
-		const pizzasList = this.pizzaServiceMock.getPizzas();
-		const saucesList = this.pizzaServiceMock.getSauces();
-		const basket = this.pizzaServiceMock.getBasket();
+    this.setState({
+      basket,
+      countablePizzaList: this.createCountablePizzas(pizzasList, basket),
+    });
+  };
 
-		this.setState({
-			pizzasList,
-			saucesList,
-			basket,
-			countablePizzaList: this.createCountablePizzas(
-				pizzasList, basket),
-		});
-	};
+  render() {
+    const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
 
-	getVariantCountInBasket(id, size, basketItems) {
-		let count = 0;
+    // console.log(basket);
 
-		for (let items of basketItems) {
-			if (items.id === id && items.size === size) {
-				count += 1;
-			}
-		}
+    if (pizzasList.length === 0) {
+      return <Spinner/>;
+    }
 
-		return count;
-	};
-
-	createCountablePizzas(pizzas, basket) {
-		return pizzas.map(pizza => {
-			return {
-				...pizza,
-				variants: pizza.variants.map(variant => ({
-					...variant,
-					count: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
-				})),
-			};
-		});
-	};
-
-	onAddItem = async (item) => {
-		const {pizzasList} = this.state;
-		const basket = this.pizzaServiceMock.addItem(item)
-
-		this.setState({
-			basket,
-			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
-		});
-	};
-
-	onRemoveItem = async (item) => {
-		const {pizzasList} = this.state;
-		const basket = this.pizzaServiceMock.removeItem(item)
-
-		this.setState({
-			basket,
-			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
-		});
-	};
-
-	render() {
-		const {pizzasList, saucesList, basket, countablePizzaList} = this.state;
-
-		if (pizzasList.length === 0) {
-			return <Spinner/>;
-		}
-
-		return (
-			<Provider value={{
-				saucesList,
-				basket,
-				countablePizzaList,
-				onAddItem: this.onAddItem,
-				onRemoveItem: this.onRemoveItem,
-			}}>
-				<BrowserRouter>
-					<div>
-						<Header/>
-						<Route path='/' component={Menu} exact/>
-						<Route path='/basket' component={Basket}/>
-					</div>
-				</BrowserRouter>
-			</Provider>
-		);
-	};
+    return (
+      <Provider value={{
+        saucesList,
+        basket,
+        countablePizzaList,
+        onAddItem: this.onAddItem,
+        onRemoveItem: this.onRemoveItem,
+      }}>
+        <BrowserRouter>
+          <div>
+            <Header/>
+            <Route path='/' component={Menu} exact/>
+            <Route path='/basket' component={Basket}/>
+          </div>
+        </BrowserRouter>
+      </Provider>
+    );
+  };
 };

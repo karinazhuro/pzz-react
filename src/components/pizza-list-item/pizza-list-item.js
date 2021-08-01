@@ -25,7 +25,7 @@ export default class PizzaListItem extends Component {
 	};
 
 	render() {
-		const product = this.props.product
+		const product = this.props.product;
 		const {photo, title, description} = product;
 
 		return (
