@@ -1,51 +1,37 @@
 import React from "react";
 import {Consumer} from "../pizzas-service-context";
 
+import translationSizes from "../../utils/translation-sizes";
+
 import './basket-pizza-list.scss';
 
 const BasketPizzaList = () => {
-  const isEqualProducts = (product1, product2) => {
-    return product1.id === product2.id &&
-      product1.size === product2.size
-  };
+	const renderBasketPizzasList = (basketPizzaList) => {
+		console.log(basketPizzaList)
+		return basketPizzaList.map(pizza => {
+			const {id, title, size, count} = pizza;
 
-  const combinePizzas = (basket) => {
-		const items = basket.items;
-		const collection = [];
+			return (
+				<div className='basketPizza' key={`${id}-${size}`}>
+					<h3 className='title'>{title}</h3>
+					<p className='size'>{translationSizes[size]}</p>
+					<p className='quantity'>{count}</p>
+				</div>
+			)
+		})
+	};
 
-		for (let i = 0; i < items.length; i++) {
-			let isExist = false;
+	return (
+		<Consumer>
+			{
+				({onAddItem, onRemoveItem, basketPizzaList}) => {
+					console.log(basketPizzaList)
 
-			for (let j = 0; j < collection.length; j++) {
-				if (isEqualProducts(items[i], collection[j])) {
-					collection[j].count += 1;
-					isExist = true;
-					break;
+					return renderBasketPizzasList(basketPizzaList);
 				}
 			}
-
-			if (!isExist) {
-				collection.push({
-					...items[i],
-					count: 1,
-				});
-			}
-		}
-	};
-
-  const renderBasketPizzaList = () => {
-
-	};
-
-  return (
-    <Consumer>
-      {
-        ({onAddItem, onRemoveItem, basket}) => {
-        	combinePizzas(basket);
-        }
-      }
-    </Consumer>
-  )
+		</Consumer>
+	)
 };
 
 export default BasketPizzaList;
