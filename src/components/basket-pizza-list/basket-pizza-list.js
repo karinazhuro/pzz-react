@@ -4,18 +4,25 @@ import {Consumer} from "../pizzas-service-context";
 import translationSizes from "../../utils/translation-sizes";
 
 import './basket-pizza-list.scss';
+import Counter from "../counter";
 
 const BasketPizzaList = () => {
-	const renderBasketPizzasList = (basketPizzaList) => {
+	const renderBasketPizzasList = (basketPizzaList, onAddItem, onRemoveItem) => {
 		console.log(basketPizzaList)
+
 		return basketPizzaList.map(pizza => {
-			const {id, title, size, count} = pizza;
+			const {id, title, size, quantity, price} = pizza;
 
 			return (
 				<div className='basketPizza' key={`${id}-${size}`}>
 					<h3 className='title'>{title}</h3>
-					<p className='size'>{translationSizes[size]}</p>
-					<p className='quantity'>{count}</p>
+					<div className='details'>
+						<p className='size'>{translationSizes[size]}</p>
+						<Counter quantity={quantity}
+										 onPlusClick={onAddItem}
+										 onMinusClick={onRemoveItem}/>
+						<p className='price'>{price}</p>
+					</div>
 				</div>
 			)
 		})
@@ -25,9 +32,7 @@ const BasketPizzaList = () => {
 		<Consumer>
 			{
 				({onAddItem, onRemoveItem, basketPizzaList}) => {
-					console.log(basketPizzaList)
-
-					return renderBasketPizzasList(basketPizzaList);
+					return renderBasketPizzasList(basketPizzaList, onAddItem, onRemoveItem);
 				}
 			}
 		</Consumer>

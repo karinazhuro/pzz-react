@@ -11,7 +11,7 @@ const Basket = () => {
     return (
       <Consumer>
         {
-          ({basket, countablePizzaList, onAddItem, onRemoveItem}) => {
+          ({basket}) => {
             return basket.items.length === 0 ?
               <Notification/> : <MakingAnOrder/>;
           }

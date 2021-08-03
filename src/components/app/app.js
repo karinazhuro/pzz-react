@@ -23,16 +23,6 @@ export default class App extends Component {
 		this.init();
 	};
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		const {basket, basketPizzaList} = this.state;
-
-		if (prevProps.basketPizzaList !== basketPizzaList) {
-			this.setState({
-				basketPizzaList: this.combinePizzas(basket),
-			})
-		}
-	}
-
 	async init() {
 		const pizzasList = this.pizzaServiceMock.getPizzas();
 		const saucesList = this.pizzaServiceMock.getSauces();
@@ -49,15 +39,15 @@ export default class App extends Component {
 	};
 
 	getVariantCountInBasket(id, size, basketItems) {
-		let count = 0;
+		let quantity = 0;
 
 		for (let items of basketItems) {
 			if (items.id === id && items.size === size) {
-				count += 1;
+				quantity += 1;
 			}
 		}
 
-		return count;
+		return quantity;
 	};
 
 	createCountablePizzas(pizzas, basket) {
@@ -66,7 +56,7 @@ export default class App extends Component {
 				...pizza,
 				variants: pizza.variants.map(variant => ({
 					...variant,
-					count: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
+					quantity: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
 				})),
 			};
 		});
@@ -76,11 +66,11 @@ export default class App extends Component {
 		const {pizzasList} = this.state;
 		const basket = this.pizzaServiceMock.addItem(item);
 
-
 		this.setState({
 			basket,
 			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
-		});
+      basketPizzaList: this.combinePizzas(basket),
+    });
 	};
 
 	onRemoveItem = async (item) => {
@@ -90,6 +80,7 @@ export default class App extends Component {
 		this.setState({
 			basket,
 			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
+			basketPizzaList: this.combinePizzas(basket),
 		});
 	};
 
@@ -106,9 +97,14 @@ export default class App extends Component {
 			let isExist = false;
 
 			for (let j = 0; j < basketPizzaList.length; j++) {
-				if (this.isEqualProducts(items[i], basketPizzaList[j])) {
-					this.setState({
-						basketPizzaList: basketPizzaList[j].count += 1,
+        if (this.isEqualProducts(items[i], basketPizzaList[j])) {
+          const price = +basketPizzaList[j].price + +basketPizzaList[j].price;
+
+          this.setState({
+            basketPizzaList: {
+              quantity: basketPizzaList[j].quantity += 1,
+              price: basketPizzaList[j].price = price.toFixed(2).toString(),
+            },
 					});
 
 					isExist = true;
@@ -120,7 +116,7 @@ export default class App extends Component {
 				this.setState({
 					basketPizzaList: basketPizzaList.push({
 						...items[i],
-						count: 1,
+            quantity: 1,
 					}),
 				});
 			}
@@ -138,7 +134,7 @@ export default class App extends Component {
 			basketPizzaList,
 		} = this.state;
 
-		console.log(basketPizzaList)
+		// console.log(basketPizzaList)
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;

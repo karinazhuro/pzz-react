@@ -3,11 +3,11 @@ import React from "react";
 import AddToBasket from "../add-to-basket";
 import Counter from "../counter";
 
-const ContentCounter = ({productData, count, onAddItem, onRemoveItem}) => {
+const ContentCounter = ({productData, quantity, onAddItem, onRemoveItem}) => {
 	return (
-		count === 0 ?
+		quantity === 0 ?
 			<AddToBasket onAddItem={() => onAddItem(productData)}/> :
-			<Counter count={count}
+			<Counter quantity={quantity}
 							 onPlusClick={() => onAddItem(productData)}
 							 onMinusClick={() => onRemoveItem(productData)}/>
 	)

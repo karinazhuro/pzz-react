@@ -2,13 +2,13 @@ import React from 'react';
 
 import './counter.scss';
 
-const Counter = ({count, onPlusClick, onMinusClick}) => {
+const Counter = ({quantity, onPlusClick, onMinusClick}) => {
   return (
     <div className='counter'>
       <button className='minus'
               onClick={onMinusClick}>-
       </button>
-      <p className='quantity'>{count}</p>
+      <p className='quantity'>{quantity}</p>
       <button className='plus'
               onClick={onPlusClick}>+
       </button>

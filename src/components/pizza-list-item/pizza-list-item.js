@@ -11,14 +11,14 @@ export default class PizzaListItem extends Component {
 		const {id, variants} = product;
 
 		return variants.map(variant => {
-			const {size, price, weight, count} = variant;
+			const {size, price, weight, quantity} = variant;
 
 			return <PizzaVariant key={size}
 													 id={id}
 													 size={size}
 													 price={price}
 													 weight={weight}
-													 count={count}
+													 quantity={quantity}
 													 product={product}
 			/>
 		});
@@ -41,7 +41,7 @@ export default class PizzaListItem extends Component {
 	};
 };
 
-const PizzaVariant = ({size, price, weight, count, id, product}) => {
+const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
 	const {title} = product;
 	const productData = {
 		id,
@@ -50,6 +50,7 @@ const PizzaVariant = ({size, price, weight, count, id, product}) => {
 		price,
 	};
 
+	// console.log(price)
 	return (
 		<Consumer>
 			{
@@ -63,7 +64,7 @@ const PizzaVariant = ({size, price, weight, count, id, product}) => {
 							</div>
 							<div className='countPizzas'>
 								{
-									<ContentCounter count={count}
+									<ContentCounter quantity={quantity}
 																	onAddItem={onAddItem}
 																	onRemoveItem={onRemoveItem}
 																	productData={productData}/>
