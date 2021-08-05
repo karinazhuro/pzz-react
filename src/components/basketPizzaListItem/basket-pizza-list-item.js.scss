@@ -1,0 +1,36 @@
+@import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
+
+.basketPizza {
+  padding: 10px 0;
+
+  .title {
+    @include title;
+    margin: 10px 0 15px;
+  }
+
+  .details {
+    display: flex;
+
+    .size {
+      @include size;
+      width: 150px;
+    }
+
+    .quantity {
+
+    }
+
+    .price {
+      color: $textPrimary;
+      font: 32px Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      margin: 0 40px;
+    }
+
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $secondaryVariant;
+  }
+}

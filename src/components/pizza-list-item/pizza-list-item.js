@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 import translationSizes from "../../utils/translation-sizes";
 import {Consumer} from "../pizzas-service-context";
@@ -6,8 +6,8 @@ import ContentCounter from "../content-counter";
 
 import './pizza-list-item.scss';
 
-export default class PizzaListItem extends Component {
-	renderVariants(product) {
+const PizzaListItem = ({product}) => {
+	const renderVariants = (product) => {
 		const {id, variants} = product;
 
 		return variants.map(variant => {
@@ -24,21 +24,18 @@ export default class PizzaListItem extends Component {
 		});
 	};
 
-	render() {
-		const product = this.props.product;
-		const {photo, title, description} = product;
+	const {photo, title, description} = product;
 
-		return (
-			<React.Fragment>
-				<img src={photo} alt={title}/>
-				<div className='pizzaInfo'>
-					<h3 className='title'>{title}</h3>
-					{this.renderVariants(product)}
-				</div>
-				<p className='desc'>{description}</p>
-			</React.Fragment>
-		);
-	};
+	return (
+		<React.Fragment>
+			<img src={photo} alt={title}/>
+			<div className='pizzaInfo'>
+				<h3 className='title'>{title}</h3>
+				{renderVariants(product)}
+			</div>
+			<p className='desc'>{description}</p>
+		</React.Fragment>
+	);
 };
 
 const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
@@ -50,7 +47,6 @@ const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
 		price,
 	};
 
-	// console.log(price)
 	return (
 		<Consumer>
 			{
@@ -77,3 +73,5 @@ const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
 		</Consumer>
 	);
 };
+
+export default PizzaListItem;

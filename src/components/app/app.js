@@ -111,6 +111,7 @@ export default class App extends Component {
 					break;
 				}
 			}
+			console.log(basketPizzaList)
 
 			if (!isExist) {
 				this.setState({
@@ -121,6 +122,8 @@ export default class App extends Component {
 				});
 			}
 		}
+		console.log(basketPizzaList)
+
 
 		return basketPizzaList;
 	};
@@ -133,8 +136,6 @@ export default class App extends Component {
 			countablePizzaList,
 			basketPizzaList,
 		} = this.state;
-
-		// console.log(basketPizzaList)
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
