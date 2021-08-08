@@ -22,6 +22,8 @@ export default class PizzaServiceMock {
 	addItem = (product) => {
 		const {price} = product;
 
+		console.log(price);
+
 		basket.data.price += price;
 		basket.data.items.push(product);
 

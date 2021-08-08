@@ -8,11 +8,13 @@ import './basket-pizza-list-item.js.scss';
 
 const BasketPizzaListItem = ({product}) => {
 	const {id, size, title, price, quantity} = product;
+
 	const productData = {
 		id,
 		size,
 		title,
 		price,
+		// quantity,
 	};
 
 	return (

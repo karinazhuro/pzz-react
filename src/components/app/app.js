@@ -69,8 +69,8 @@ export default class App extends Component {
 		this.setState({
 			basket,
 			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
-      basketPizzaList: this.combinePizzas(basket),
-    });
+			basketPizzaList: this.combinePizzas(basket),
+		});
 	};
 
 	onRemoveItem = async (item) => {
@@ -91,39 +91,30 @@ export default class App extends Component {
 
 	combinePizzas = (basket) => {
 		const items = basket.items;
-		const {basketPizzaList} = this.state;
+		const basketPizzaList = [];
 
 		for (let i = 0; i < items.length; i++) {
 			let isExist = false;
 
 			for (let j = 0; j < basketPizzaList.length; j++) {
-        if (this.isEqualProducts(items[i], basketPizzaList[j])) {
-          const price = +basketPizzaList[j].price + +basketPizzaList[j].price;
+				if (this.isEqualProducts(items[i], basketPizzaList[j])) {
+					const price = +basketPizzaList[j].price + +items[i].price;
 
-          this.setState({
-            basketPizzaList: {
-              quantity: basketPizzaList[j].quantity += 1,
-              price: basketPizzaList[j].price = price.toFixed(2).toString(),
-            },
-					});
+					basketPizzaList[j].quantity += 1;
+					basketPizzaList[j].price = price.toFixed(2).toString();
 
 					isExist = true;
 					break;
 				}
 			}
-			console.log(basketPizzaList)
 
 			if (!isExist) {
-				this.setState({
-					basketPizzaList: basketPizzaList.push({
-						...items[i],
-            quantity: 1,
-					}),
+				basketPizzaList.push({
+					...items[i],
+					quantity: 1,
 				});
 			}
 		}
-		console.log(basketPizzaList)
-
 
 		return basketPizzaList;
 	};
@@ -136,6 +127,8 @@ export default class App extends Component {
 			countablePizzaList,
 			basketPizzaList,
 		} = this.state;
+
+		console.log(basket);
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;
@@ -151,11 +144,9 @@ export default class App extends Component {
 				onRemoveItem: this.onRemoveItem,
 			}}>
 				<BrowserRouter>
-					<div>
-						<Header/>
-						<Route path='/' component={Menu} exact/>
-						<Route path='/basket' component={Basket}/>
-					</div>
+					<Header/>
+					<Route path='/' component={Menu} exact/>
+					<Route path='/basket' component={Basket}/>
 				</BrowserRouter>
 			</Provider>
 		);

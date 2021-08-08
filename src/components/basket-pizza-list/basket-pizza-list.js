@@ -7,7 +7,7 @@ import './basket-pizza-list.scss';
 
 const BasketPizzaList = () => {
 	const renderItem = (basketPizzaList) => {
-		console.log(basketPizzaList);
+		// console.log(basketPizzaList);
 
 		return basketPizzaList.map(pizza => {
 			const {id, size} = pizza;

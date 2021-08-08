@@ -6,7 +6,6 @@ const transformBasket = (basket) => {
 			size: item.size,
 			title: item.title,
 			price: (item.price / 10000).toFixed(2),
-			// count: 0,
 		}))
 	};
 };
