@@ -66,6 +66,8 @@ export default class App extends Component {
 		const {pizzasList} = this.state;
 		const basket = this.pizzaServiceMock.addItem(item);
 
+		// console.log('add', item);
+
 		this.setState({
 			basket,
 			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
@@ -76,6 +78,9 @@ export default class App extends Component {
 	onRemoveItem = async (item) => {
 		const {pizzasList} = this.state;
 		const basket = this.pizzaServiceMock.removeItem(item);
+
+		console.log('remove', item);
+		console.log('basket', basket);
 
 		this.setState({
 			basket,
@@ -98,10 +103,10 @@ export default class App extends Component {
 
 			for (let j = 0; j < basketPizzaList.length; j++) {
 				if (this.isEqualProducts(items[i], basketPizzaList[j])) {
-					const price = +basketPizzaList[j].price + +items[i].price;
+					console.log('items[i]', items[i])
 
 					basketPizzaList[j].quantity += 1;
-					basketPizzaList[j].price = price.toFixed(2).toString();
+					// basketPizzaList[j].price += items[i].price;
 
 					isExist = true;
 					break;
@@ -116,6 +121,7 @@ export default class App extends Component {
 			}
 		}
 
+		console.log('basketPizzaList', basketPizzaList);
 		return basketPizzaList;
 	};
 
@@ -127,8 +133,6 @@ export default class App extends Component {
 			countablePizzaList,
 			basketPizzaList,
 		} = this.state;
-
-		console.log(basket);
 
 		if (pizzasList.length === 0) {
 			return <Spinner/>;

@@ -3,6 +3,7 @@ import React from 'react';
 import translationSizes from "../../utils/translation-sizes";
 import {Consumer} from "../pizzas-service-context";
 import ContentCounter from "../content-counter";
+import denominationPrice from "../../utils/denominationPrice";
 
 import './pizza-list-item.scss';
 
@@ -19,8 +20,7 @@ const PizzaListItem = ({product}) => {
 													 price={price}
 													 weight={weight}
 													 quantity={quantity}
-													 product={product}
-			/>
+													 product={product}/>
 		});
 	};
 
@@ -55,7 +55,7 @@ const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
 						<div className='variant'>
 							<div className='infoAboutVariant'>
 								<p className='size'>{translationSizes[size]}</p>
-								<p className='price'>{(price / 10000).toFixed(2)}</p>
+								<p className='price'>{denominationPrice(price)}</p>
 								<p className='weight'>{weight}</p>
 							</div>
 							<div className='countPizzas'>

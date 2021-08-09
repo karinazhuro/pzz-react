@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import {Consumer} from "../pizzas-service-context";
+import denominationPrice from "../../utils/denominationPrice";
+
 import './header.scss'
 
 const Header = () => {
@@ -33,8 +35,11 @@ const Header = () => {
 				<Link to="/basket" className='cart'> Корзина </Link>
 				<Consumer>
 					{
-						({basket}) => <p className='price'>{basket.price}</p>
-						// ({basket}) => <p className='price'>{(basket.price / 10000).toFixed(2)}</p>
+						({basket}) => {
+							const {price} = basket;
+
+							return <p className='price'>{denominationPrice(price)}</p>
+						}
 					}
 				</Consumer>
 			</div>

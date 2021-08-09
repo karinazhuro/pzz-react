@@ -5,6 +5,7 @@ import translationSizes from "../../utils/translation-sizes";
 import ContentCounter from "../content-counter";
 
 import './basket-pizza-list-item.js.scss';
+import denominationPrice from "../../utils/denominationPrice";
 
 const BasketPizzaListItem = ({product}) => {
 	const {id, size, title, price, quantity} = product;
@@ -14,7 +15,6 @@ const BasketPizzaListItem = ({product}) => {
 		size,
 		title,
 		price,
-		// quantity,
 	};
 
 	return (
@@ -32,7 +32,7 @@ const BasketPizzaListItem = ({product}) => {
 						}
 					}
 				</Consumer>
-			<p className='price'>{price}</p>
+			<p className='price'>{denominationPrice(price)}</p>
 		</div>
 	</div>
 	)

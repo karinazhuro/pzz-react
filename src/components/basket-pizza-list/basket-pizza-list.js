@@ -7,7 +7,6 @@ import './basket-pizza-list.scss';
 
 const BasketPizzaList = () => {
 	const renderItem = (basketPizzaList) => {
-		// console.log(basketPizzaList);
 
 		return basketPizzaList.map(pizza => {
 			const {id, size} = pizza;
@@ -18,7 +17,6 @@ const BasketPizzaList = () => {
 			)
 		})
 	};
-
 
 	return (
 		<div className='pizzas'>
