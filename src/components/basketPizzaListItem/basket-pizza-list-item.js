@@ -32,7 +32,7 @@ const BasketPizzaListItem = ({product}) => {
 						}
 					}
 				</Consumer>
-			<p className='price'>{denominationPrice(price)}</p>
+			<p className='price'>{denominationPrice(price * quantity)}</p>
 		</div>
 	</div>
 	)

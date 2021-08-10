@@ -103,8 +103,6 @@ export default class App extends Component {
 
 			for (let j = 0; j < basketPizzaList.length; j++) {
 				if (this.isEqualProducts(items[i], basketPizzaList[j])) {
-					console.log('items[i]', items[i])
-
 					basketPizzaList[j].quantity += 1;
 					// basketPizzaList[j].price += items[i].price;
 
