@@ -26,7 +26,7 @@ export default class PizzasList extends Component {
 					{
 						<Consumer>
 							{
-								({countablePizzaList}) => this.renderItem(countablePizzaList)
+								({countablePizzasList}) => this.renderItem(countablePizzasList)
 							}
 						</Consumer>
 					}

@@ -9,7 +9,6 @@ import denominationPrice from "../../utils/denominationPrice";
 
 const BasketPizzaListItem = ({product}) => {
 	const {id, size, title, price, quantity} = product;
-
 	const productData = {
 		id,
 		size,

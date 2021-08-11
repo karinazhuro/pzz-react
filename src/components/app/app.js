@@ -5,8 +5,8 @@ import PizzaServiceMock from "../../services/pizza-service-mock";
 import {Provider} from "../pizzas-service-context";
 import Spinner from "../spinner";
 import Header from "../header";
-import Menu from "../menu";
 import Basket from "../basket";
+import Menu from "../menu";
 
 export default class App extends Component {
 	pizzaServiceMock = new PizzaServiceMock();
@@ -14,8 +14,10 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
+		// productList: [],
 		basket: [],
-		countablePizzaList: [],
+		countablePizzasList: [],
+		countableSaucesList: [],
 		basketPizzaList: [],
 	};
 
@@ -27,13 +29,15 @@ export default class App extends Component {
 		const pizzasList = this.pizzaServiceMock.getPizzas();
 		const saucesList = this.pizzaServiceMock.getSauces();
 		const basket = this.pizzaServiceMock.getBasket();
+		// const productList = [].concat(pizzasList, saucesList)
 
 		this.setState({
 			pizzasList,
 			saucesList,
+			// productList,
 			basket,
-			countablePizzaList: this.createCountablePizzas(
-				pizzasList, basket),
+			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
+			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
 			basketPizzaList: this.combinePizzas(basket),
 		});
 	};
@@ -50,7 +54,7 @@ export default class App extends Component {
 		return quantity;
 	};
 
-	createCountablePizzas(pizzas, basket) {
+	createCountablePizzasList(pizzas, basket) {
 		return pizzas.map(pizza => {
 			return {
 				...pizza,
@@ -62,24 +66,35 @@ export default class App extends Component {
 		});
 	};
 
+	createCountableSaucesList(sauces, basket) {
+		return sauces.map(sauce => {
+			return {
+				...sauce,
+				quantity: this.getVariantCountInBasket(sauce.id, sauce.size, basket.items),
+			}
+		});
+	};
+
 	onAddItem = async (item) => {
-		const {pizzasList} = this.state;
+		const {pizzasList, saucesList} = this.state;
 		const basket = this.pizzaServiceMock.addItem(item);
 
 		this.setState({
 			basket,
-			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
+			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
+			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
 			basketPizzaList: this.combinePizzas(basket),
 		});
 	};
 
 	onRemoveItem = async (item) => {
-		const {pizzasList} = this.state;
+		const {pizzasList, saucesList} = this.state;
 		const basket = this.pizzaServiceMock.removeItem(item);
 
 		this.setState({
 			basket,
-			countablePizzaList: this.createCountablePizzas(pizzasList, basket),
+			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
+			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
 			basketPizzaList: this.combinePizzas(basket),
 		});
 	};
@@ -87,14 +102,6 @@ export default class App extends Component {
 	isEqualProducts = (product1, product2) => {
 		return product1.id === product2.id &&
 			product1.size === product2.size
-	};
-
-	priceCombinePizzas = (combinePizzas) => {
-		console.log(combinePizzas);
-
-		for (let j = 0; j < combinePizzas.length; j++) {
-			combinePizzas[j].price *= combinePizzas[j].quantity;
-		}
 	};
 
 	combinePizzas = (basket) => {
@@ -126,11 +133,16 @@ export default class App extends Component {
 	render() {
 		const {
 			pizzasList,
-			saucesList,
+			// saucesList,
+			// productList,
 			basket,
-			countablePizzaList,
+			countablePizzasList,
+			countableSaucesList,
 			basketPizzaList,
 		} = this.state;
+
+		// console.log(basket);
+		// console.log(countableSaucesList);
 
 		if (!pizzasList.length) {
 			return <Spinner/>;
@@ -138,9 +150,10 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
-				saucesList,
+				// saucesList,
 				basket,
-				countablePizzaList,
+				countablePizzasList,
+				countableSaucesList,
 				basketPizzaList,
 				onAddItem: this.onAddItem,
 				onRemoveItem: this.onRemoveItem,

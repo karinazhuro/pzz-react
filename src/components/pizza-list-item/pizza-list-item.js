@@ -8,6 +8,7 @@ import denominationPrice from "../../utils/denominationPrice";
 import './pizza-list-item.scss';
 
 const PizzaListItem = ({product}) => {
+	const {photo, title, description} = product;
 	const renderVariants = (product) => {
 		const {id, variants} = product;
 
@@ -24,8 +25,6 @@ const PizzaListItem = ({product}) => {
 		});
 	};
 
-	const {photo, title, description} = product;
-
 	return (
 		<React.Fragment>
 			<img src={photo} alt={title}/>
@@ -39,8 +38,9 @@ const PizzaListItem = ({product}) => {
 };
 
 const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
-	const {title} = product;
+	const {type, title} = product;
 	const productData = {
+		type,
 		id,
 		size,
 		title,

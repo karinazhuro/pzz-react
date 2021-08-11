@@ -1,3 +1,3 @@
-import SaucesList from "./saucesList";
+import SaucesList from "./sauces-list";
 
 export default SaucesList;

@@ -3,11 +3,11 @@ import React, {Component} from 'react';
 import {Consumer} from "../pizzas-service-context";
 import SaucesListItems from "../sauces-list-items";
 
-import './saucesList.scss';
+import './sauces-list.scss';
 
 export default class SaucesList extends Component {
-	renderSaucesList = (saucesList) => {
-		return saucesList.map(product => {
+	renderItems = (productList) => {
+		return productList.map(product => {
 			const {id} = product;
 
 			return (
@@ -22,12 +22,12 @@ export default class SaucesList extends Component {
 		return (
 			<Consumer>
 				{
-					({saucesList}) => {
+					({countableSaucesList}) => {
 						return (
 							<div className='sauces'>
 								<h2 className='titleBlock'>Соусы</h2>
 								<ul className='saucesList'>
-									{this.renderSaucesList(saucesList)}
+									{this.renderItems(countableSaucesList)}
 								</ul>
 							</div>
 						);

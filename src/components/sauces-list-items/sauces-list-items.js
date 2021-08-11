@@ -1,19 +1,19 @@
 import React from "react";
 
-import ContentCounter from "../content-counter";
 import {Consumer} from "../pizzas-service-context";
-import EnumSizes from "../../utils/enum-sizes";
+import ContentCounter from "../content-counter";
 import denominationPrice from "../../utils/denominationPrice";
 
 import './sauces-list-items.scss';
 
 const SaucesListItems = ({product}) => {
-	const {id, photo, title, price} = product;
+	const {id, size, photo, title, price, quantity} = product;
 	const productData = {
 		id,
-		size: EnumSizes["big"],
+		size,
 		title,
 		price,
+		quantity,
 	};
 
 	return (
@@ -24,7 +24,7 @@ const SaucesListItems = ({product}) => {
 			<Consumer>
 				{
 					({onAddItem, onRemoveItem}) => {
-						return <ContentCounter quantity={0}
+						return <ContentCounter quantity={quantity}
 																	 onAddItem={onAddItem}
 																	 onRemoveItem={onRemoveItem}
 																	 productData={productData}/>

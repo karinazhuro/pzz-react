@@ -1,7 +1,7 @@
 import React from "react";
 import {Consumer} from "../pizzas-service-context";
 
-import BasketPizzaListItem from "../basketPizzaListItem";
+import BasketPizzaListItem from "../basket-pizza-list-item";
 
 import './basket-pizza-list.scss';
 
