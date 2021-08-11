@@ -2,22 +2,19 @@ import React, {Component} from 'react';
 
 import PizzaListItem from "../pizza-list-item";
 import {Consumer} from '../pizzas-service-context';
-import EnumTypes from "../../utils/enum-types";
 
 import './pizzas-list.scss';
 
 export default class PizzasList extends Component {
 	renderItem = (productList) => {
 		return productList.map(product => {
-			const {type, id} = product;
+			const {id} = product;
 
-			if (type === EnumTypes.pizza) {
-				return (
-					<li className='menuPizza' key={id}>
-						<PizzaListItem product={product}/>
-					</li>
-				);
-			}
+			return (
+				<li className='menuPizza' key={id}>
+					<PizzaListItem product={product}/>
+				</li>
+			)
 		});
 	};
 
