@@ -1,4 +1,5 @@
 const transformBasket = (basket) => {
+	console.log(basket)
 	return {
 		price: basket.price,
 		items: basket.items.map(item => ({

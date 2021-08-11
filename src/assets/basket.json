@@ -1,6 +1,7 @@
 {
   "data": {
     "price": 0,
+    "quantityPizzas": 0,
     "items": []
   }
 }

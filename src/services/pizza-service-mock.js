@@ -4,6 +4,7 @@ import basket from '../assets/basket.json';
 import transformPizza from "../utils/transform-pizza";
 import transformSauces from "../utils/transform-sauces";
 import transformBasket from "../utils/transform-basket";
+import EnumTypes from "../utils/enum-types";
 
 export default class PizzaServiceMock {
 	getPizzas = () => {
@@ -21,7 +22,9 @@ export default class PizzaServiceMock {
 	addItem = (product) => {
 		const {price} = product;
 
-		// console.log(product);
+		if (product.type === EnumTypes.pizza) {
+			basket.data.quantityPizzas += 1;
+		}
 
 		basket.data.price += price;
 		basket.data.items.push(product);
@@ -34,6 +37,10 @@ export default class PizzaServiceMock {
 		let findIndexProduct = basket.data.items.findIndex(item => {
 			return item.id === product.id && item.size === product.size;
 		});
+
+		if (product.type === EnumTypes.pizza) {
+			basket.data.quantityPizzas -= 1;
+		}
 
 		basket.data.price -= price;
 		basket.data.items.splice(findIndexProduct, 1);

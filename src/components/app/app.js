@@ -14,7 +14,6 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
-		// productList: [],
 		basket: [],
 		countablePizzasList: [],
 		countableSaucesList: [],
@@ -29,12 +28,10 @@ export default class App extends Component {
 		const pizzasList = this.pizzaServiceMock.getPizzas();
 		const saucesList = this.pizzaServiceMock.getSauces();
 		const basket = this.pizzaServiceMock.getBasket();
-		// const productList = [].concat(pizzasList, saucesList)
 
 		this.setState({
 			pizzasList,
 			saucesList,
-			// productList,
 			basket,
 			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
 			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
@@ -133,16 +130,13 @@ export default class App extends Component {
 	render() {
 		const {
 			pizzasList,
-			// saucesList,
-			// productList,
 			basket,
 			countablePizzasList,
 			countableSaucesList,
 			basketPizzaList,
 		} = this.state;
 
-		// console.log(basket);
-		// console.log(countableSaucesList);
+		console.log(basket);
 
 		if (!pizzasList.length) {
 			return <Spinner/>;
