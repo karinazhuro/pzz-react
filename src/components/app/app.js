@@ -7,6 +7,7 @@ import Spinner from "../spinner";
 import Header from "../header";
 import Basket from "../basket";
 import Menu from "../menu";
+import EnumTypes from "../../utils/enum-types";
 
 export default class App extends Component {
 	pizzaServiceMock = new PizzaServiceMock();
@@ -25,9 +26,14 @@ export default class App extends Component {
 	};
 
 	async init() {
-		const pizzasList = this.pizzaServiceMock.getPizzas();
-		const saucesList = this.pizzaServiceMock.getSauces();
-		const basket = this.pizzaServiceMock.getBasket();
+		console.log(this.pizzaServiceMock)
+		const pizzasListAsync = this.pizzaServiceMock.getPizzas();
+		const saucesListAsync = this.pizzaServiceMock.getSauces();
+		const basketAsync = this.pizzaServiceMock.getBasket();
+
+		const pizzasList = await pizzasListAsync;
+		const saucesList = await saucesListAsync;
+		const basket = await basketAsync;
 
 		this.setState({
 			pizzasList,
@@ -35,15 +41,15 @@ export default class App extends Component {
 			basket,
 			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
 			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
-			basketPizzaList: this.combinePizzas(basket),
+			basketPizzaList: this.combineBasket(basket),
 		});
 	};
 
-	getVariantCountInBasket(id, size, basketItems) {
+	getVariantCountInBasket(product, basketItems) {
 		let quantity = 0;
-
-		for (let items of basketItems) {
-			if (items.id === id && items.size === size) {
+		// console.log(basketItems)
+		for (let item of basketItems) {
+			if (this.isEqualProducts(product, item)) {
 				quantity += 1;
 			}
 		}
@@ -57,7 +63,8 @@ export default class App extends Component {
 				...pizza,
 				variants: pizza.variants.map(variant => ({
 					...variant,
-					quantity: this.getVariantCountInBasket(pizza.id, variant.size, basket.items),
+					quantity: this.getVariantCountInBasket({id: pizza.id, size: variant.size, type: EnumTypes.pizza},
+						basket.items),
 				})),
 			};
 		});
@@ -67,42 +74,42 @@ export default class App extends Component {
 		return sauces.map(sauce => {
 			return {
 				...sauce,
-				quantity: this.getVariantCountInBasket(sauce.id, sauce.size, basket.items),
+				quantity: this.getVariantCountInBasket({id: sauce.id, size: sauce.size, type: EnumTypes.sauce},
+					basket.items),
 			}
 		});
 	};
 
-	onAddItem = async (item) => {
+	onBasketChanged(basket) {
 		const {pizzasList, saucesList} = this.state;
-		console.log(item)
-		const basket = this.pizzaServiceMock.addItem(item);
 
 		this.setState({
 			basket,
 			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
 			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
-			basketPizzaList: this.combinePizzas(basket),
+			basketPizzaList: this.combineBasket(basket),
 		});
+	}
+
+	async onAddItem(item) {
+		const basket = await this.pizzaServiceMock.addItem(item);
+
+		this.onBasketChanged(basket);
 	};
 
-	onRemoveItem = async (item) => {
-		const {pizzasList, saucesList} = this.state;
-		const basket = this.pizzaServiceMock.removeItem(item);
+	async onRemoveItem(item) {
+		const basket = await this.pizzaServiceMock.removeItem(item);
 
-		this.setState({
-			basket,
-			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
-			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
-			basketPizzaList: this.combinePizzas(basket),
-		});
+		this.onBasketChanged(basket);
 	};
 
 	isEqualProducts = (product1, product2) => {
-		return product1.id === product2.id &&
+		return product1.type === product2.type &&
+			product1.id === product2.id &&
 			product1.size === product2.size
 	};
 
-	combinePizzas = (basket) => {
+	combineBasket = (basket) => {
 		const items = basket.items;
 		const combinePizzas = [];
 
@@ -149,8 +156,8 @@ export default class App extends Component {
 				countablePizzasList,
 				countableSaucesList,
 				basketPizzaList,
-				onAddItem: this.onAddItem,
-				onRemoveItem: this.onRemoveItem,
+				onAddItem: (item) => this.onAddItem(item),
+				onRemoveItem: (item) => this.onRemoveItem(item),
 			}}>
 				<BrowserRouter>
 					<Header/>

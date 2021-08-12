@@ -8,15 +8,15 @@ import EnumTypes from "../utils/enum-types";
 
 export default class PizzaServiceMock {
 	getPizzas = () => {
-		return pizzas.data.map(transformPizza);
+		return Promise.resolve(pizzas.data.map(transformPizza));
 	};
 
 	getSauces = () => {
-		return sauces.data.map(transformSauces)
+		return Promise.resolve(sauces.data.map(transformSauces))
 	};
 
 	getBasket = () => {
-		return transformBasket(basket.data)
+		return Promise.resolve(transformBasket(basket.data));
 	};
 
 	countFreeSauces = (items) => {
@@ -31,15 +31,16 @@ export default class PizzaServiceMock {
 		return quantitySauces;
 	};
 
-	addItem = (product) => {
+	addItem = async (product) => {
+		console.log(product)
 		let {price} = product;
-		const {quantityPizzas, items} = basket;
-		const quantitySauces = this.countFreeSauces(items);
+		// const {quantityPizzas, items} = basket;
+		// const quantitySauces = this.countFreeSauces(items);
 
 		// console.log(product);
-		if (quantityPizzas >= quantitySauces) {
-			price = 0;
-		}
+		// if (quantityPizzas >= quantitySauces) {
+		// 	price = 0;
+		// }
 
 		if (product.type === EnumTypes.pizza) {
 			basket.data.quantityPizzas += 1;
@@ -48,7 +49,7 @@ export default class PizzaServiceMock {
 		basket.data.price += price;
 		basket.data.items.push(product);
 
-		return transformBasket(basket.data);
+		return (transformBasket(basket.data));
 	};
 
 	removeItem = (product) => {
@@ -64,6 +65,6 @@ export default class PizzaServiceMock {
 		basket.data.price -= price;
 		basket.data.items.splice(findIndexProduct, 1);
 
-		return transformBasket(basket.data);
+		return Promise.resolve(transformBasket(basket.data));
 	};
 }
