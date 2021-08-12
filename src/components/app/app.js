@@ -74,6 +74,7 @@ export default class App extends Component {
 
 	onAddItem = async (item) => {
 		const {pizzasList, saucesList} = this.state;
+		console.log(item)
 		const basket = this.pizzaServiceMock.addItem(item);
 
 		this.setState({
@@ -136,7 +137,7 @@ export default class App extends Component {
 			basketPizzaList,
 		} = this.state;
 
-		console.log(basket);
+		// console.log(basket);
 
 		if (!pizzasList.length) {
 			return <Spinner/>;
@@ -144,7 +145,6 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
-				// saucesList,
 				basket,
 				countablePizzasList,
 				countableSaucesList,

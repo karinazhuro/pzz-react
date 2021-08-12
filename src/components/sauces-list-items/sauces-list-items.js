@@ -5,16 +5,20 @@ import ContentCounter from "../content-counter";
 import denominationPrice from "../../utils/denominationPrice";
 
 import './sauces-list-items.scss';
+import EnumTypes from "../../utils/enum-types";
 
 const SaucesListItems = ({product}) => {
-	const {id, size, photo, title, price, quantity} = product;
+	const {type, id, size, photo, title, price, quantity} = product;
+
 	const productData = {
+		type,
 		id,
 		size,
 		title,
 		price,
 		quantity,
 	};
+
 
 	return (
 		<React.Fragment>
@@ -23,7 +27,12 @@ const SaucesListItems = ({product}) => {
 			<p className='saucePrice'>{denominationPrice(price)}</p>
 			<Consumer>
 				{
-					({onAddItem, onRemoveItem}) => {
+					({basket, onAddItem, onRemoveItem}) => {
+
+
+
+						// console.log(quantityPizzas, quantitySauces, productData);
+
 						return <ContentCounter quantity={quantity}
 																	 onAddItem={onAddItem}
 																	 onRemoveItem={onRemoveItem}

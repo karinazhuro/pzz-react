@@ -2,9 +2,7 @@
 @import "../../../public/scss/patterns";
 
 .pizzas {
-  .titleBlock {
-    @include titleBlock;
-  }
+  padding: 20px 0;
 
   .pizzasList {
     display: flex;

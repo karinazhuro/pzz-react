@@ -1,7 +1,9 @@
+@import "../../../public/scss/patterns";
+
 main {
   margin: 2rem;
 
-  > div {
-    padding: 20px 0;
+  .titleBlock {
+    @include titleBlock;
   }
 }

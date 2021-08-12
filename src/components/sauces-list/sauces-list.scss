@@ -2,9 +2,7 @@
 @import "../../../public/scss/patterns";
 
 .sauces {
-  .titleBlock {
-    @include titleBlock;
-  }
+  padding: 20px 0;
 
   .saucesList {
     display: flex;

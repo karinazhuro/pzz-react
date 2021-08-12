@@ -8,8 +8,10 @@ import './basket-pizza-list-item.js.scss';
 import denominationPrice from "../../utils/denominationPrice";
 
 const BasketPizzaListItem = ({product}) => {
-	const {id, size, title, price, quantity} = product;
+	// console.log(product)
+	const {type, id, size, title, price, quantity} = product;
 	const productData = {
+		type,
 		id,
 		size,
 		title,
@@ -23,7 +25,8 @@ const BasketPizzaListItem = ({product}) => {
 			<p className='size'>{translationSizes[size]}</p>
 				<Consumer>
 					{
-						({onAddItem, onRemoveItem}) => {
+						({basket, onAddItem, onRemoveItem}) => {
+							// console.log(basket)
 							return <ContentCounter quantity={quantity}
 															onAddItem={onAddItem}
 															onRemoveItem={onRemoveItem}

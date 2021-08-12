@@ -19,8 +19,27 @@ export default class PizzaServiceMock {
 		return transformBasket(basket.data)
 	};
 
+	countFreeSauces = (items) => {
+		let quantitySauces = 0;
+		console.log(items)
+		for (let i = 0; i < items.length; i++) {
+			if (items[i].type === EnumTypes.sauce) {
+				quantitySauces += 1;
+			}
+		}
+
+		return quantitySauces;
+	};
+
 	addItem = (product) => {
-		const {price} = product;
+		let {price} = product;
+		const {quantityPizzas, items} = basket;
+		const quantitySauces = this.countFreeSauces(items);
+
+		// console.log(product);
+		if (quantityPizzas >= quantitySauces) {
+			price = 0;
+		}
 
 		if (product.type === EnumTypes.pizza) {
 			basket.data.quantityPizzas += 1;

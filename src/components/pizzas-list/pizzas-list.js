@@ -21,7 +21,6 @@ export default class PizzasList extends Component {
 	render() {
 		return (
 			<div className='pizzas'>
-				<h2 className='titleBlock'>Пиццы</h2>
 				<ul className='pizzasList'>
 					{
 						<Consumer>

@@ -12,9 +12,12 @@ const Menu = () => {
 		<main>
 			<Navigation/>
 
+			<h2 className='titleBlock'>Пиццы</h2>
 			<ScrollableAnchor id='pizzas'>
-				<PizzasList/>
+					<PizzasList/>
 			</ScrollableAnchor>
+
+			<h2 className='titleBlock'>Соусы</h2>
 			<ScrollableAnchor id='sauces'>
 				<SaucesList/>
 			</ScrollableAnchor>

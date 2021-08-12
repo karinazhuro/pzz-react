@@ -1,13 +1,20 @@
 const transformBasket = (basket) => {
-	console.log(basket)
+	const {price, quantityPizzas, items} = basket;
+
 	return {
-		price: basket.price,
-		items: basket.items.map(item => ({
-			id: item.id,
-			size: item.size,
-			title: item.title,
-			price: item.price,
-		}))
+		price,
+		quantityPizzas,
+		items: items.map(item => {
+			const {type, id, size, title, price} = item;
+
+			return {
+				type,
+				id,
+				size,
+				title,
+				price,
+			}
+		}),
 	};
 };
 
