@@ -47,8 +47,6 @@ const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
 		price,
 	};
 
-	// console.log(quantity);
-
 	return (
 		<Consumer>
 			{

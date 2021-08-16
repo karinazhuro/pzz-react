@@ -15,6 +15,7 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
+		// str: [],
 		basket: [],
 		countablePizzasList: [],
 		countableSaucesList: [],
@@ -26,10 +27,10 @@ export default class App extends Component {
 	};
 
 	async init() {
-		console.log(this.pizzaServiceMock)
 		const pizzasListAsync = this.pizzaServiceMock.getPizzas();
 		const saucesListAsync = this.pizzaServiceMock.getSauces();
 		const basketAsync = this.pizzaServiceMock.getBasket();
+		// const str = this.pizzaServiceMock.getStreets();
 
 		const pizzasList = await pizzasListAsync;
 		const saucesList = await saucesListAsync;
@@ -38,6 +39,7 @@ export default class App extends Component {
 		this.setState({
 			pizzasList,
 			saucesList,
+			// str,
 			basket,
 			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
 			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
@@ -47,7 +49,7 @@ export default class App extends Component {
 
 	getVariantCountInBasket(product, basketItems) {
 		let quantity = 0;
-		// console.log(basketItems)
+
 		for (let item of basketItems) {
 			if (this.isEqualProducts(product, item)) {
 				quantity += 1;
@@ -138,13 +140,14 @@ export default class App extends Component {
 	render() {
 		const {
 			pizzasList,
+			// str,
 			basket,
 			countablePizzasList,
 			countableSaucesList,
 			basketPizzaList,
 		} = this.state;
 
-		// console.log(basket);
+		// console.log(str);
 
 		if (!pizzasList.length) {
 			return <Spinner/>;
