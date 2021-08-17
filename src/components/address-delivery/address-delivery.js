@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {DebounceInput} from 'react-debounce-input';
 
 import PizzaServiceMock from "../../services/pizza-service-mock";
 
@@ -17,21 +18,10 @@ export default class AddressDelivery extends Component {
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
-		// this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleSelectStreet = this.handleSelectStreet.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	componentDidMount() {
-		this.init();
-	};
-
-	async init() {
-		const streetsList = await this.pizzaServiceMock.getStreets();
-
-		this.setState({
-			streetsList,
-		})
-	};
 
 	handleInputChange(event) {
 		const target = event.target;
@@ -42,11 +32,10 @@ export default class AddressDelivery extends Component {
 		});
 	};
 
-	handleSelectStreet(event, streetsList) {
-		// const {streetsList} = this.state;
+	async handleSelectStreet() {
+		const streetsList = await this.pizzaServiceMock.getStreets();
 
 		console.log(streetsList)
-
 	};
 
 	// handleSubmit(event) {
@@ -55,7 +44,7 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {name, phone, streetsList} = this.state;
+		const {name, phone} = this.state;
 
 		return (
 			<div className='addressDelivery'>
@@ -80,11 +69,11 @@ export default class AddressDelivery extends Component {
 									 onChange={this.handleInputChange}/>
 					</label>
 					<label>Улица
-						<input name="street"
-									 type="text"
-									 list="datalistStreet"
-									 onChange={() => this.handleSelectStreet(streetsList)}/>
-						{/*<datalist id="datalistStreet"></datalist>*/}
+						<DebounceInput list=''
+							minLength={2}
+													 debounceTimeout={300}
+													 onChange={this.handleSelectStreet}/>
+						<datalist></datalist>
 					</label>
 					{/*<input type="submit" value="Отправить"/>*/}
 				</form>
