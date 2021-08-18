@@ -19,23 +19,43 @@ export default class AddressDelivery extends Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSelectStreet = this.handleSelectStreet.bind(this);
+		// this.renderDatalist = this.renderDatalist.bind(this);
 		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 
-	handleInputChange(event) {
-		const target = event.target;
+	handleInputChange(e) {
+		const target = e.target;
 		const name = target.name;
 
 		this.setState({
-			[name]: event.target.value,
+			[name]: target.value,
 		});
 	};
 
-	async handleSelectStreet() {
+	async handleSelectStreet(e) {
 		const streetsList = await this.pizzaServiceMock.getStreets();
+		const street = e.target.value;
 
-		console.log(streetsList)
+		this.setState({
+			streetsList,
+			street,
+		})
+	};
+
+	renderDatalist = (streetsList, subStreet) => {
+		return streetsList.map(street => {
+			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
+
+			if (findStreet) {
+				const {id, title} = street;
+
+				return <option key={id}
+											 value={title}>
+					{title}
+				</option>
+			}
+		})
 	};
 
 	// handleSubmit(event) {
@@ -44,13 +64,12 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {name, phone} = this.state;
+		const {name, phone, street, streetsList} = this.state;
 
 		return (
 			<div className='addressDelivery'>
 				<h2 className='titleDelivery'>Адрес доставки</h2>
-				<form className='addressForm'
-							onSubmit={this.handleSubmit}>
+				<form className='addressForm'>
 					<label>Ваше имя
 						<input name='name'
 									 type="text"
@@ -69,13 +88,17 @@ export default class AddressDelivery extends Component {
 									 onChange={this.handleInputChange}/>
 					</label>
 					<label>Улица
-						<DebounceInput list=''
-							minLength={2}
+						<DebounceInput name='street'
+													 type='text'
+													 list='street'
+													 value={street}
+													 minLength={2}
 													 debounceTimeout={300}
 													 onChange={this.handleSelectStreet}/>
-						<datalist></datalist>
+						<datalist id='street'>
+							{this.renderDatalist(streetsList, street)}
+						</datalist>
 					</label>
-					{/*<input type="submit" value="Отправить"/>*/}
 				</form>
 			</div>
 		);
