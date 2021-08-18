@@ -15,6 +15,7 @@ export default class AddressDelivery extends Component {
 			name: '',
 			phone: '',
 			street: '',
+			house: '',
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -43,7 +44,7 @@ export default class AddressDelivery extends Component {
 		})
 	};
 
-	renderDatalist = (streetsList, subStreet) => {
+	renderDatalistStreets = (streetsList, subStreet) => {
 		return streetsList.map(street => {
 			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
 
@@ -64,7 +65,7 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {name, phone, street, streetsList} = this.state;
+		const {name, phone, street, house, streetsList} = this.state;
 
 		return (
 			<div className='addressDelivery'>
@@ -96,7 +97,19 @@ export default class AddressDelivery extends Component {
 													 debounceTimeout={300}
 													 onChange={this.handleSelectStreet}/>
 						<datalist id='street'>
-							{this.renderDatalist(streetsList, street)}
+							{this.renderDatalistStreets(streetsList, street)}
+						</datalist>
+					</label>
+					<label>Дом
+						<DebounceInput name='house'
+													 type='text'
+													 list='house'
+													 value={house}
+													 minLength={2}
+													 debounceTimeout={300}
+													 onChange={this.handleSelectStreet}/>
+						<datalist id='house'>
+							{this.renderDatalistStreets(streetsList, street)}
 						</datalist>
 					</label>
 				</form>

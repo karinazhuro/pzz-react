@@ -2,13 +2,15 @@ import EnumTypes from "./enum-types";
 import EnumSizes from "./enum-sizes";
 
 const transformSauces = (sauce) => {
+	const {id, photo_small, price, title} = sauce;
+
 	return {
 		type: EnumTypes.sauce,
-		id: sauce.id.toString(),
+		id: id.toString(),
 		size: EnumSizes["big"],
-		photo: sauce.photo_small,
-		price: sauce.price,
-		title: sauce.title,
+		photo: photo_small,
+		price: price,
+		title: title,
 	};
 };
 

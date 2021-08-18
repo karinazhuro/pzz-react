@@ -2,12 +2,14 @@ import EnumSizes from "./enum-sizes";
 import EnumTypes from "./enum-types";
 
 const transformPizza = (pizza) => {
+  const {id, photo_small, title, anonce} = pizza;
+
   return {
     type: EnumTypes.pizza,
-    id: pizza.id.toString(),
-    photo: pizza.photo_small,
-    title: pizza.title,
-    description: pizza.anonce,
+    id: id.toString(),
+    photo: photo_small,
+    title,
+    description: anonce,
     variants: _variantsPizzas(pizza),
   };
 };
