@@ -137,14 +137,11 @@ export default class App extends Component {
 	render() {
 		const {
 			pizzasList,
-			// str,
 			basket,
 			countablePizzasList,
 			countableSaucesList,
 			basketPizzaList,
 		} = this.state;
-
-		// console.log(str);
 
 		if (!pizzasList.length) {
 			return <Spinner/>;
@@ -152,6 +149,7 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
+				service: this.pizzaServiceMock,
 				basket,
 				countablePizzasList,
 				countableSaucesList,

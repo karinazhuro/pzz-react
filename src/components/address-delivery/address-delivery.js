@@ -1,13 +1,10 @@
 import React, {Component} from "react";
+import {Consumer} from "../pizzas-service-context";
 import {DebounceInput} from 'react-debounce-input';
-
-import PizzaServiceMock from "../../services/pizza-service-mock";
 
 import './address-delivery.scss';
 
 export default class AddressDelivery extends Component {
-	pizzaServiceMock = new PizzaServiceMock();
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -34,8 +31,9 @@ export default class AddressDelivery extends Component {
 		});
 	};
 
-	async handleSelectStreet(e) {
-		const streetsList = await this.pizzaServiceMock.getStreets();
+	async handleSelectStreet(e, service) {
+		console.log(service)
+		const streetsList = await service.getStreets();
 
 		this.handleInputChange(e);
 		this.setState({
@@ -53,7 +51,6 @@ export default class AddressDelivery extends Component {
 	};
 
 	renderDatalistStreets = (streetsList, subStreet) => {
-		console.log(subStreet)
 		return streetsList.map(street => {
 			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
 
@@ -85,53 +82,61 @@ export default class AddressDelivery extends Component {
 
 	render() {
 		const {streetsList, houseList, name, phone, street, house} = this.state;
-		console.log(house)
+		// console.log(house)
+
 		return (
 			<div className='addressDelivery'>
 				<h2 className='titleDelivery'>Адрес доставки</h2>
 				<form className='addressForm'>
-					<label>Ваше имя
-						<input name='name'
-									 type="text"
-									 value={name}
-									 onChange={this.handleInputChange}/>
-					</label>
-
-					<label>Ваш мобильный телефон
-						<input name='phoneCode'
-									 type="text"
-									 value='+375'
-									 readOnly={+375}/>
-						<input name='phone'
-									 type="tel"
-									 pattern={/[0-9]/}
-									 value={phone}
-									 onChange={this.handleInputChange}/>
-					</label>
-
-					<label>Улица
-						<DebounceInput name='street'
-													 type='text'
-													 list='street'
-													 value={street}
-													 minLength={2}
-													 debounceTimeout={300}
-													 onChange={this.handleSelectStreet}/>
-						<datalist id='street'>
-							{this.renderDatalistStreets(streetsList, street)}
-						</datalist>
-					</label>
-
-					<label>Дом
-						<input name='house'
-									 type='text'
-									 list='house'
-									 value={house}
-									 onChange={this.handleSelectHouse}/>
-						<datalist id='house'>
-							{this.renderDatalistHouses(houseList, house)}
-						</datalist>
-					</label>
+					<Consumer>
+						{
+							({service}) => {
+								return (
+									<React.Fragment>
+										<label>Ваше имя
+											<input name='name'
+														 type="text"
+														 value={name}
+														 onChange={this.handleInputChange}/>
+										</label>
+										<label>Ваш мобильный телефон
+											<input name='phoneCode'
+														 type="text"
+														 value='+375'
+														 readOnly={+375}/>
+											<input name='phone'
+														 type="tel"
+														 pattern={/[0-9]/}
+														 value={phone}
+														 onChange={this.handleInputChange}/>
+										</label>
+										<label>Улица
+											<DebounceInput name='street'
+																		 type='text'
+																		 list='street'
+																		 value={street}
+																		 minLength={2}
+																		 debounceTimeout={300}
+																		 onChange={() => this.handleSelectStreet(service)}/>
+											<datalist id='street'>
+												{this.renderDatalistStreets(streetsList, street)}
+											</datalist>
+										</label>
+										<label>Дом
+											<input name='house'
+														 type='text'
+														 list='house'
+														 value={house}
+														 onChange={this.handleSelectHouse}/>
+											<datalist id='house'>
+												{this.renderDatalistHouses(houseList, house)}
+											</datalist>
+										</label>
+									</React.Fragment>
+								)
+							}
+						}
+					</Consumer>
 				</form>
 			</div>
 		);
