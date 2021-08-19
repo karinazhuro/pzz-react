@@ -3,10 +3,13 @@ import sauces from '../assets/sauces.json';
 import basket from '../assets/basket.json';
 import streets from '../assets/streets.json';
 import houses from '../assets/houses.json';
+
 import transformPizza from "../utils/transform-pizza";
 import transformSauces from "../utils/transform-sauces";
 import transformBasket from "../utils/transform-basket";
 import transformStreets from '../utils/transform-streets';
+import transformHouses from "../utils/transform-houses";
+
 import EnumTypes from "../utils/enum-types";
 
 export default class PizzaServiceMock {
@@ -19,7 +22,7 @@ export default class PizzaServiceMock {
 	};
 
 	getBasket = () => {
-		return Promise.resolve(transformBasket(basket.data));
+		return Promise.resolve(transformBasket(basket.data))
 	};
 
 	getStreets = () => {
@@ -27,7 +30,7 @@ export default class PizzaServiceMock {
 	};
 
 	getHouses = () => {
-		return Promise.resolve(houses.data.map())
+		return Promise.resolve(houses.data.map(transformHouses))
 	};
 
 	// countFreeSauces = (items) => {

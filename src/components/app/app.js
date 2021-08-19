@@ -15,7 +15,6 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
-		// str: [],
 		basket: [],
 		countablePizzasList: [],
 		countableSaucesList: [],
@@ -30,7 +29,6 @@ export default class App extends Component {
 		const pizzasListAsync = this.pizzaServiceMock.getPizzas();
 		const saucesListAsync = this.pizzaServiceMock.getSauces();
 		const basketAsync = this.pizzaServiceMock.getBasket();
-		// const str = this.pizzaServiceMock.getStreets();
 
 		const pizzasList = await pizzasListAsync;
 		const saucesList = await saucesListAsync;
@@ -39,7 +37,6 @@ export default class App extends Component {
 		this.setState({
 			pizzasList,
 			saucesList,
-			// str,
 			basket,
 			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
 			countableSaucesList: this.createCountableSaucesList(saucesList, basket),

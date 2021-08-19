@@ -12,6 +12,7 @@ export default class AddressDelivery extends Component {
 		super(props);
 		this.state = {
 			streetsList: [],
+			houseList: [],
 			name: '',
 			phone: '',
 			street: '',
@@ -20,10 +21,9 @@ export default class AddressDelivery extends Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSelectStreet = this.handleSelectStreet.bind(this);
-		// this.renderDatalist = this.renderDatalist.bind(this);
+		this.handleSelectHouse = this.handleSelectHouse.bind(this);
 		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
-
 
 	handleInputChange(e) {
 		const target = e.target;
@@ -36,15 +36,24 @@ export default class AddressDelivery extends Component {
 
 	async handleSelectStreet(e) {
 		const streetsList = await this.pizzaServiceMock.getStreets();
-		const street = e.target.value;
 
+		this.handleInputChange(e);
 		this.setState({
 			streetsList,
-			street,
+		})
+	};
+
+	async handleSelectHouse(e) {
+		const housesList = await this.pizzaServiceMock.getHouses();
+
+		this.handleInputChange(e);
+		this.setState({
+			housesList,
 		})
 	};
 
 	renderDatalistStreets = (streetsList, subStreet) => {
+		console.log(subStreet)
 		return streetsList.map(street => {
 			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
 
@@ -52,10 +61,20 @@ export default class AddressDelivery extends Component {
 				const {id, title} = street;
 
 				return <option key={id}
-											 value={title}>
-					{title}
+											 value={title}>{title}
 				</option>
 			}
+		})
+	};
+
+	renderDatalistHouses = (housesList, house) => {
+		console.log(house)
+		return housesList.map(house => {
+			const {id, title} = house;
+
+			return <option key={id}
+										 value={title}>{title}
+			</option>
 		})
 	};
 
@@ -65,8 +84,8 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {name, phone, street, house, streetsList} = this.state;
-
+		const {streetsList, houseList, name, phone, street, house} = this.state;
+		console.log(house)
 		return (
 			<div className='addressDelivery'>
 				<h2 className='titleDelivery'>Адрес доставки</h2>
@@ -77,6 +96,7 @@ export default class AddressDelivery extends Component {
 									 value={name}
 									 onChange={this.handleInputChange}/>
 					</label>
+
 					<label>Ваш мобильный телефон
 						<input name='phoneCode'
 									 type="text"
@@ -88,6 +108,7 @@ export default class AddressDelivery extends Component {
 									 value={phone}
 									 onChange={this.handleInputChange}/>
 					</label>
+
 					<label>Улица
 						<DebounceInput name='street'
 													 type='text'
@@ -100,16 +121,15 @@ export default class AddressDelivery extends Component {
 							{this.renderDatalistStreets(streetsList, street)}
 						</datalist>
 					</label>
+
 					<label>Дом
-						<DebounceInput name='house'
-													 type='text'
-													 list='house'
-													 value={house}
-													 minLength={2}
-													 debounceTimeout={300}
-													 onChange={this.handleSelectStreet}/>
+						<input name='house'
+									 type='text'
+									 list='house'
+									 value={house}
+									 onChange={this.handleSelectHouse}/>
 						<datalist id='house'>
-							{this.renderDatalistStreets(streetsList, street)}
+							{this.renderDatalistHouses(houseList, house)}
 						</datalist>
 					</label>
 				</form>
