@@ -7,7 +7,7 @@ import houses from '../assets/houses.json';
 import transformPizza from "../utils/transform-pizza";
 import transformSauces from "../utils/transform-sauces";
 import transformBasket from "../utils/transform-basket";
-import transformStreets from '../utils/transform-streets';
+import transformStreet from '../utils/transform-street';
 import transformHouses from "../utils/transform-houses";
 
 import EnumTypes from "../utils/enum-types";
@@ -25,8 +25,18 @@ export default class PizzaServiceMock {
 		return Promise.resolve(transformBasket(basket.data))
 	};
 
-	getStreets = () => {
-		return Promise.resolve(streets.data.map(transformStreets));
+	getStreets = (subStreet) => {
+		const streetsList = [];
+
+		streets.data.map(street => {
+			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
+
+			if (findStreet) {
+				streetsList.push(street)
+			}
+		});
+
+		return Promise.resolve(streetsList);
 	};
 
 	getHouses = () => {

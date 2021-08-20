@@ -17,7 +17,6 @@ export default class AddressDelivery extends Component {
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSelectStreet = this.handleSelectStreet.bind(this);
 		this.handleSelectHouse = this.handleSelectHouse.bind(this);
 		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -31,9 +30,11 @@ export default class AddressDelivery extends Component {
 		});
 	};
 
-	async handleSelectStreet(e, service) {
-		console.log(service)
-		const streetsList = await service.getStreets();
+	async handleSelectStreet(service, e) {
+		const value = e.target.value;
+		const streetsList = await service.getStreets(value);
+
+		if (value.length < 2) return;
 
 		this.handleInputChange(e);
 		this.setState({
@@ -41,8 +42,8 @@ export default class AddressDelivery extends Component {
 		})
 	};
 
-	async handleSelectHouse(e) {
-		const housesList = await this.pizzaServiceMock.getHouses();
+	async handleSelectHouse(service, e) {
+		const housesList = await service.getHouses();
 
 		this.handleInputChange(e);
 		this.setState({
@@ -50,22 +51,19 @@ export default class AddressDelivery extends Component {
 		})
 	};
 
-	renderDatalistStreets = (streetsList, subStreet) => {
+	renderDatalistStreets = (streetsList) => {
 		return streetsList.map(street => {
-			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
+			const {id, title} = street;
 
-			if (findStreet) {
-				const {id, title} = street;
-
-				return <option key={id}
-											 value={title}>{title}
-				</option>
-			}
+			return <option key={id}
+										 value={title}
+										 onClick={}>{title}
+			</option>
 		})
 	};
 
 	renderDatalistHouses = (housesList, house) => {
-		console.log(house)
+		// console.log(house)
 		return housesList.map(house => {
 			const {id, title} = house;
 
@@ -117,9 +115,9 @@ export default class AddressDelivery extends Component {
 																		 value={street}
 																		 minLength={2}
 																		 debounceTimeout={300}
-																		 onChange={() => this.handleSelectStreet(service)}/>
+																		 onChange={this.handleSelectStreet.bind(this, service)}/>
 											<datalist id='street'>
-												{this.renderDatalistStreets(streetsList, street)}
+												{this.renderDatalistStreets(streetsList)}
 											</datalist>
 										</label>
 										<label>Дом
@@ -127,7 +125,7 @@ export default class AddressDelivery extends Component {
 														 type='text'
 														 list='house'
 														 value={house}
-														 onChange={this.handleSelectHouse}/>
+														 onClick={this.handleSelectHouse.bind(this, service)}/>
 											<datalist id='house'>
 												{this.renderDatalistHouses(houseList, house)}
 											</datalist>

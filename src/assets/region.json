@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": 46135,
+      "title": "1",
+      "region_id": 294,
+      "geo": "27.403323 53.943710",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    }
+  ]
+}
