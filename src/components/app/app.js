@@ -102,6 +102,19 @@ export default class App extends Component {
 		this.onBasketChanged(basket);
 	};
 
+	async onGetStreets(value) {
+		// console.log(val)
+		const streetsList = await this.pizzaServiceMock.getStreets(value);
+
+		if (value.length < 2) return;
+
+		// this.handleInputChange(e);
+
+		this.setState({
+			streetsList,
+		});
+	};
+
 	isEqualProducts = (product1, product2) => {
 		return product1.type === product2.type &&
 			product1.id === product2.id &&
@@ -149,13 +162,13 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
-				service: this.pizzaServiceMock,
 				basket,
 				countablePizzasList,
 				countableSaucesList,
 				basketPizzaList,
 				onAddItem: (item) => this.onAddItem(item),
 				onRemoveItem: (item) => this.onRemoveItem(item),
+				onGetStreets: (val) => this.onGetStreets(val),
 			}}>
 				<BrowserRouter>
 					<Header/>

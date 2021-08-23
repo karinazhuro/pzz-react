@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useCallback} from "react";
 import {Consumer} from "../pizzas-service-context";
 import {DebounceInput} from 'react-debounce-input';
 
@@ -17,30 +17,35 @@ export default class AddressDelivery extends Component {
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
-		this.handleSelectHouse = this.handleSelectHouse.bind(this);
+		// this.handleSelectHouse = this.handleSelectHouse.bind(this);
 		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleInputChange(e) {
+	handleInputChange(e, func) {
 		const target = e.target;
 		const name = target.name;
+
+		console.log(func)
 
 		this.setState({
 			[name]: target.value,
 		});
+
+		// if (func) console.log(1);
+		// 	func(target.value);
 	};
 
-	async handleSelectStreet(service, e) {
-		const value = e.target.value;
-		const streetsList = await service.getStreets(value);
-
-		if (value.length < 2) return;
-
-		this.handleInputChange(e);
-		this.setState({
-			streetsList,
-		})
-	};
+	// async handleSelectStreet(service, e) {
+	// 	const value = e.target.value;
+	// 	const streetsList = await service.getStreets(value);
+	//
+	// 	if (value.length < 2) return;
+	//
+	// 	this.handleInputChange(e);
+	// 	this.setState({
+	// 		streetsList,
+	// 	})
+	// };
 
 	async handleSelectHouse(service, e) {
 		const housesList = await service.getHouses();
@@ -56,14 +61,12 @@ export default class AddressDelivery extends Component {
 			const {id, title} = street;
 
 			return <option key={id}
-										 value={title}
-										 onClick={}>{title}
+										 value={title}>{title}
 			</option>
 		})
 	};
 
 	renderDatalistHouses = (housesList, house) => {
-		// console.log(house)
 		return housesList.map(house => {
 			const {id, title} = house;
 
@@ -80,7 +83,10 @@ export default class AddressDelivery extends Component {
 
 	render() {
 		const {streetsList, houseList, name, phone, street, house} = this.state;
-		// console.log(house)
+
+		if (street.length > 0) {
+			console.log(street)
+		}
 
 		return (
 			<div className='addressDelivery'>
@@ -88,7 +94,7 @@ export default class AddressDelivery extends Component {
 				<form className='addressForm'>
 					<Consumer>
 						{
-							({service}) => {
+							({onGetStreets}) => {
 								return (
 									<React.Fragment>
 										<label>Ваше имя
@@ -115,7 +121,8 @@ export default class AddressDelivery extends Component {
 																		 value={street}
 																		 minLength={2}
 																		 debounceTimeout={300}
-																		 onChange={this.handleSelectStreet.bind(this, service)}/>
+																		 onChange={(e) =>
+																			 this.handleInputChange(e, (val) => onGetStreets(val))}/>
 											<datalist id='street'>
 												{this.renderDatalistStreets(streetsList)}
 											</datalist>
@@ -125,7 +132,8 @@ export default class AddressDelivery extends Component {
 														 type='text'
 														 list='house'
 														 value={house}
-														 onClick={this.handleSelectHouse.bind(this, service)}/>
+														 onChange={this.handleInputChange}
+											/>
 											<datalist id='house'>
 												{this.renderDatalistHouses(houseList, house)}
 											</datalist>
