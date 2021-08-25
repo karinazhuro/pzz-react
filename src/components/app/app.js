@@ -15,6 +15,8 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
+		streetsList: [],
+		housesList: [],
 		basket: [],
 		countablePizzasList: [],
 		countableSaucesList: [],
@@ -102,17 +104,27 @@ export default class App extends Component {
 		this.onBasketChanged(basket);
 	};
 
-	async onGetStreets(value) {
-		// console.log(val)
-		const streetsList = await this.pizzaServiceMock.getStreets(value);
+	async onGetStreets(subStr) {
+		const streetsList = await this.pizzaServiceMock.getStreets(subStr);
 
-		if (value.length < 2) return;
-
-		// this.handleInputChange(e);
+		if (subStr.length < 2) return;
 
 		this.setState({
 			streetsList,
 		});
+	};
+
+	async onGetNumberHouses(id) {
+		const housesList = await this.pizzaServiceMock.getNumberHouses(id);
+
+		console.log(0)
+		this.setState({
+			housesList,
+		})
+	};
+
+	async onGetHouse() {
+
 	};
 
 	isEqualProducts = (product1, product2) => {
@@ -150,6 +162,8 @@ export default class App extends Component {
 	render() {
 		const {
 			pizzasList,
+			streetsList,
+			housesList,
 			basket,
 			countablePizzasList,
 			countableSaucesList,
@@ -162,13 +176,16 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
+				streetsList,
+				housesList,
 				basket,
 				countablePizzasList,
 				countableSaucesList,
 				basketPizzaList,
 				onAddItem: (item) => this.onAddItem(item),
 				onRemoveItem: (item) => this.onRemoveItem(item),
-				onGetStreets: (val) => this.onGetStreets(val),
+				onGetStreets: (subStr) => this.onGetStreets(subStr),
+				onGetNumberHouses: (id) => this.onGetNumberHouses(id),
 			}}>
 				<BrowserRouter>
 					<Header/>

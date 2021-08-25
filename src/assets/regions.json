@@ -1,0 +1,155 @@
+{
+  "data": [
+    {
+      "id": 25991,
+      "title": "1",
+      "region_id": 306,
+      "geo": "27.694710 53.872359",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 32518,
+      "title": "1/2",
+      "region_id": 306,
+      "geo": "27.694710 53.872359",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 34989,
+      "title": "1/А",
+      "region_id": 306,
+      "geo": "27.694692 53.872629",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 36885,
+      "title": "15/А",
+      "region_id": 306,
+      "geo": "27.696937 53.870936",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 35318,
+      "title": "19/А",
+      "region_id": 306,
+      "geo": "27.697369 53.870643",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 35653,
+      "title": "2",
+      "region_id": 306,
+      "geo": "27.695680 53.871260",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 34118,
+      "title": "2/Б",
+      "region_id": 306,
+      "geo": "27.694961 53.871775",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 36413,
+      "title": "2/а",
+      "region_id": 306,
+      "geo": "27.695321 53.871541",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 35484,
+      "title": "3",
+      "region_id": 306,
+      "geo": "27.695025 53.872173",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 46455,
+      "title": "5",
+      "region_id": 306,
+      "geo": "27.695347 53.871997",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 34380,
+      "title": "20",
+      "region_id": 306,
+      "geo": "27.697980 53.869725",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 35344,
+      "title": "33",
+      "region_id": 306,
+      "geo": "27.699705 53.869682",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 31799,
+      "title": "39",
+      "region_id": 306,
+      "geo": "27.700684 53.869417",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 41006,
+      "title": "43",
+      "region_id": 306,
+      "geo": "27.701340 53.869183",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    },
+    {
+      "id": 37997,
+      "title": "51/Б",
+      "region_id": 306,
+      "geo": "27.703307 53.869236",
+      "to_entrance": 0,
+      "public_comment": "",
+      "scenario": 0,
+      "pizzeria_active": 1
+    }
+  ]
+}
+

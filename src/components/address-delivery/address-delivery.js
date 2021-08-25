@@ -1,4 +1,4 @@
-import React, {Component, useCallback} from "react";
+import React, {Component} from "react";
 import {Consumer} from "../pizzas-service-context";
 import {DebounceInput} from 'react-debounce-input';
 
@@ -7,9 +7,8 @@ import './address-delivery.scss';
 export default class AddressDelivery extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
-			streetsList: [],
-			houseList: [],
 			name: '',
 			phone: '',
 			street: '',
@@ -25,55 +24,38 @@ export default class AddressDelivery extends Component {
 		const target = e.target;
 		const name = target.name;
 
-		console.log(func)
-
 		this.setState({
 			[name]: target.value,
 		});
 
-		// if (func) console.log(1);
-		// 	func(target.value);
+		if (!func) return;
+		else func(target.value);
 	};
 
-	// async handleSelectStreet(service, e) {
-	// 	const value = e.target.value;
-	// 	const streetsList = await service.getStreets(value);
-	//
-	// 	if (value.length < 2) return;
-	//
-	// 	this.handleInputChange(e);
-	// 	this.setState({
-	// 		streetsList,
-	// 	})
-	// };
-
-	async handleSelectHouse(service, e) {
-		const housesList = await service.getHouses();
-
-		this.handleInputChange(e);
-		this.setState({
-			housesList,
-		})
-	};
-
-	renderDatalistStreets = (streetsList) => {
+	renderDatalistStreets = (streetsList, onGetNumberHouses) => {
 		return streetsList.map(street => {
 			const {id, title} = street;
+			const getIdHouse = onGetNumberHouses(id);
 
-			return <option key={id}
-										 value={title}>{title}
-			</option>
+			return (
+				<option key={id}
+								value={title}
+								onClick={() => getIdHouse()}>
+					{title}
+				</option>)
 		})
 	};
 
-	renderDatalistHouses = (housesList, house) => {
-		return housesList.map(house => {
-			const {id, title} = house;
+	renderDatalistHouses = (housesList) => {
+		// console.log(housesList)
 
-			return <option key={id}
-										 value={title}>{title}
-			</option>
-		})
+		// return housesList.map(house => {
+		// 	const {id, title} = house;
+		//
+		// 	return <option key={id}
+		// 								 value={title}>{title}
+		// 	</option>
+		// })
 	};
 
 	// handleSubmit(event) {
@@ -82,11 +64,7 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {streetsList, houseList, name, phone, street, house} = this.state;
-
-		if (street.length > 0) {
-			console.log(street)
-		}
+		const {name, phone, street, house} = this.state;
 
 		return (
 			<div className='addressDelivery'>
@@ -94,7 +72,7 @@ export default class AddressDelivery extends Component {
 				<form className='addressForm'>
 					<Consumer>
 						{
-							({onGetStreets}) => {
+							({streetsList, housesList, onGetStreets, onGetNumberHouses}) => {
 								return (
 									<React.Fragment>
 										<label>Ваше имя
@@ -122,9 +100,10 @@ export default class AddressDelivery extends Component {
 																		 minLength={2}
 																		 debounceTimeout={300}
 																		 onChange={(e) =>
-																			 this.handleInputChange(e, (val) => onGetStreets(val))}/>
+																			 this.handleInputChange(e,
+																				 (subStr) => onGetStreets(subStr))}/>
 											<datalist id='street'>
-												{this.renderDatalistStreets(streetsList)}
+												{this.renderDatalistStreets(streetsList, onGetNumberHouses)}
 											</datalist>
 										</label>
 										<label>Дом
@@ -132,10 +111,11 @@ export default class AddressDelivery extends Component {
 														 type='text'
 														 list='house'
 														 value={house}
-														 onChange={this.handleInputChange}
+														 onChange={(e) =>
+															 this.handleInputChange(e)}
 											/>
 											<datalist id='house'>
-												{this.renderDatalistHouses(houseList, house)}
+												{this.renderDatalistHouses(housesList, house)}
 											</datalist>
 										</label>
 									</React.Fragment>
