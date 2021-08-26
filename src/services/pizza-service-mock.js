@@ -39,7 +39,7 @@ export default class PizzaServiceMock {
 	};
 
 	// get houses
-	getNumberHouses = async (id) => {
+	getNumberHouses = async (houseId) => {
 		return Promise.resolve(regions.data.map(transformRegion));
 	};
 

@@ -104,27 +104,22 @@ export default class App extends Component {
 		this.onBasketChanged(basket);
 	};
 
-	async onGetStreets(subStr) {
-		const streetsList = await this.pizzaServiceMock.getStreets(subStr);
+	async onGetStreets(subString) {
+		const streetsList = await this.pizzaServiceMock.getStreets(subString);
 
-		if (subStr.length < 2) return;
+		if (subString.length < 2) return;
 
 		this.setState({
 			streetsList,
 		});
 	};
 
-	async onGetNumberHouses(id) {
-		const housesList = await this.pizzaServiceMock.getNumberHouses(id);
+	async onGetNumberHouses(houseId) {
+		const housesList = await this.pizzaServiceMock.getNumberHouses(houseId);
 
-		console.log(0)
-		this.setState({
+		return this.setState({
 			housesList,
 		})
-	};
-
-	async onGetHouse() {
-
 	};
 
 	isEqualProducts = (product1, product2) => {
@@ -184,8 +179,8 @@ export default class App extends Component {
 				basketPizzaList,
 				onAddItem: (item) => this.onAddItem(item),
 				onRemoveItem: (item) => this.onRemoveItem(item),
-				onGetStreets: (subStr) => this.onGetStreets(subStr),
-				onGetNumberHouses: (id) => this.onGetNumberHouses(id),
+				onGetStreets: (subString) => this.onGetStreets(subString),
+				onGetNumberHouses: (houseId) => this.onGetNumberHouses(houseId),
 			}}>
 				<BrowserRouter>
 					<Header/>

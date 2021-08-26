@@ -10,9 +10,15 @@ export default class AddressDelivery extends Component {
 
 		this.state = {
 			name: '',
-			phone: '',
+			code: '',
+			phone: '+375',
 			street: '',
 			house: '',
+			flat: '',
+			entrance: '',
+			floor: '',
+			doorphone: '',
+			comment: '',
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -33,29 +39,28 @@ export default class AddressDelivery extends Component {
 	};
 
 	renderDatalistStreets = (streetsList, onGetNumberHouses) => {
-		return streetsList.map(street => {
+		streetsList.map(street => {
 			const {id, title} = street;
-			const getIdHouse = onGetNumberHouses(id);
+			// const getIdHouse = onGetNumberHouses(id);
 
 			return (
 				<option key={id}
 								value={title}
-								onClick={() => getIdHouse()}>
-					{title}
+								onClick={() => onGetNumberHouses(id)}
+				>{title}
 				</option>)
 		})
 	};
 
 	renderDatalistHouses = (housesList) => {
-		// console.log(housesList)
+		console.log(housesList)
+		return housesList.map(house => {
+			const {id, title} = house;
 
-		// return housesList.map(house => {
-		// 	const {id, title} = house;
-		//
-		// 	return <option key={id}
-		// 								 value={title}>{title}
-		// 	</option>
-		// })
+			return <option key={id}
+										 value={title}>{title}
+			</option>
+		})
 	};
 
 	// handleSubmit(event) {
@@ -64,7 +69,7 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {name, phone, street, house} = this.state;
+		const {name, code, phone, street, house, flat, entrance, floor, doorphone, comment} = this.state;
 
 		return (
 			<div className='addressDelivery'>
@@ -75,25 +80,26 @@ export default class AddressDelivery extends Component {
 							({streetsList, housesList, onGetStreets, onGetNumberHouses}) => {
 								return (
 									<React.Fragment>
-										<label>Ваше имя
-											<input name='name'
+										<label className='labelName'>Ваше имя
+											<input className='inputName'
+														 name='name'
 														 type="text"
 														 value={name}
 														 onChange={this.handleInputChange}/>
 										</label>
-										<label>Ваш мобильный телефон
-											<input name='phoneCode'
-														 type="text"
-														 value='+375'
-														 readOnly={+375}/>
-											<input name='phone'
+										<label className='labelName'>Ваш мобильный телефон
+											<input className='inputName'
+														 name='phone'
 														 type="tel"
-														 pattern={/[0-9]/}
+														 pattern="[0-9]{2} [0-9]{7}"
+												// readOnly={code}
 														 value={phone}
+														 maxLength={13}
 														 onChange={this.handleInputChange}/>
 										</label>
-										<label>Улица
-											<DebounceInput name='street'
+										<label className='labelName'>Улица
+											<DebounceInput className='inputName'
+																		 name='street'
 																		 type='text'
 																		 list='street'
 																		 value={street}
@@ -101,22 +107,59 @@ export default class AddressDelivery extends Component {
 																		 debounceTimeout={300}
 																		 onChange={(e) =>
 																			 this.handleInputChange(e,
-																				 (subStr) => onGetStreets(subStr))}/>
+																				 (subString) => onGetStreets(subString))}/>
 											<datalist id='street'>
 												{this.renderDatalistStreets(streetsList, onGetNumberHouses)}
 											</datalist>
 										</label>
-										<label>Дом
-											<input name='house'
+										<label className='labelName'>Дом
+											<input className='inputName'
+														 name='house'
 														 type='text'
 														 list='house'
 														 value={house}
 														 onChange={(e) =>
 															 this.handleInputChange(e)}
+														 onClick={() => this.renderDatalistHouses(housesList)}
 											/>
 											<datalist id='house'>
-												{this.renderDatalistHouses(housesList, house)}
+												{/*{this.renderDatalistHouses(housesList, house)}*/}
 											</datalist>
+										</label>
+										<label className='labelName'>Квартира
+											<input className='inputName'
+														 name='flat'
+														 type="text"
+														 value={flat}
+														 onChange={this.handleInputChange}/>
+										</label>
+										<label className='labelName'>Подъезд
+											<input className='inputName'
+														 name='entrance'
+														 type="text"
+														 value={entrance}
+														 onChange={this.handleInputChange}/>
+										</label>
+										<label className='labelName'>Этаж
+											<input className='inputName'
+														 name='floor'
+														 type="text"
+														 value={floor}
+														 onChange={this.handleInputChange}/>
+										</label>
+										<label className='labelName'>Домофон
+											<input className='inputName'
+														 name='doorphone'
+														 type="text"
+														 value={doorphone}
+														 onChange={this.handleInputChange}/>
+										</label>
+										<label className='labelName'>Комментарий к заказу
+											<input className='inputName'
+														 name='comment'
+														 type="text"
+														 value={comment}
+														 onChange={this.handleInputChange}/>
 										</label>
 									</React.Fragment>
 								)
