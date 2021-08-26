@@ -2,58 +2,58 @@ import pizzas from '../assets/pizzas.json';
 import sauces from '../assets/sauces.json';
 import basket from '../assets/basket.json';
 import streets from '../assets/streets.json';
-import houses from '../assets/houses.json';
+import regions from '../assets/regions.json';
+
 import transformPizza from "../utils/transform-pizza";
 import transformSauces from "../utils/transform-sauces";
 import transformBasket from "../utils/transform-basket";
-import transformStreets from '../utils/transform-streets';
+import transformRegion from "../utils/transform-region";
+
 import EnumTypes from "../utils/enum-types";
 
 export default class PizzaServiceMock {
-	getPizzas = () => {
+	getPizzas = async () => {
 		return Promise.resolve(pizzas.data.map(transformPizza));
 	};
 
-	getSauces = () => {
+	getSauces = async () => {
 		return Promise.resolve(sauces.data.map(transformSauces))
 	};
 
-	getBasket = () => {
-		return Promise.resolve(transformBasket(basket.data));
+	getBasket = async () => {
+		return Promise.resolve(transformBasket(basket.data))
 	};
 
-	getStreets = () => {
-		return Promise.resolve(streets.data.map(transformStreets));
+	getStreets = async (subStreet) => {
+		const streetsList = [];
+
+		streets.data.map(street => {
+			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
+
+			if (findStreet) {
+				streetsList.push(street)
+			}
+		});
+
+		return Promise.resolve(streetsList);
 	};
 
-	getHouses = () => {
-		return Promise.resolve(houses.data.map())
+	// get houses
+	getNumberHouses = async (id) => {
+		return Promise.resolve(regions.data.map(transformRegion));
 	};
 
-	// countFreeSauces = (items) => {
-	// 	let quantitySauces = 0;
-	//
-	// 	for (let i = 0; i < items.length; i++) {
-	// 		if (items[i].type === EnumTypes.sauce) {
-	// 			quantitySauces += 1;
-	// 		}
-	// 	}
-	//
-	// 	return quantitySauces;
-	// };
+	getHouse = async () => {
+
+	};
 
 	addItem = async (product) => {
 		let {price} = product;
-		let {quantityPizzas, items} = basket.data;
-		// const quantitySauces = this.countFreeSauces(items);
+		let {items} = basket.data;
 
 		if (product.type === EnumTypes.pizza) {
 			basket.data.quantityPizzas += 1;
 		}
-
-		// if (quantityPizzas >= quantitySauces) {
-		// 	price = 0;
-		// }
 
 		basket.data.price += price;
 		items.push(product);
@@ -61,7 +61,7 @@ export default class PizzaServiceMock {
 		return (transformBasket(basket.data));
 	};
 
-	removeItem = (product) => {
+	removeItem = async (product) => {
 		const {price} = product;
 		let findIndexProduct = basket.data.items.findIndex(item => {
 			return item.id === product.id && item.size === product.size;

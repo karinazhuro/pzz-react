@@ -15,7 +15,8 @@ export default class App extends Component {
 	state = {
 		pizzasList: [],
 		saucesList: [],
-		// str: [],
+		streetsList: [],
+		housesList: [],
 		basket: [],
 		countablePizzasList: [],
 		countableSaucesList: [],
@@ -30,7 +31,6 @@ export default class App extends Component {
 		const pizzasListAsync = this.pizzaServiceMock.getPizzas();
 		const saucesListAsync = this.pizzaServiceMock.getSauces();
 		const basketAsync = this.pizzaServiceMock.getBasket();
-		// const str = this.pizzaServiceMock.getStreets();
 
 		const pizzasList = await pizzasListAsync;
 		const saucesList = await saucesListAsync;
@@ -39,7 +39,6 @@ export default class App extends Component {
 		this.setState({
 			pizzasList,
 			saucesList,
-			// str,
 			basket,
 			countablePizzasList: this.createCountablePizzasList(pizzasList, basket),
 			countableSaucesList: this.createCountableSaucesList(saucesList, basket),
@@ -105,6 +104,29 @@ export default class App extends Component {
 		this.onBasketChanged(basket);
 	};
 
+	async onGetStreets(subStr) {
+		const streetsList = await this.pizzaServiceMock.getStreets(subStr);
+
+		if (subStr.length < 2) return;
+
+		this.setState({
+			streetsList,
+		});
+	};
+
+	async onGetNumberHouses(id) {
+		const housesList = await this.pizzaServiceMock.getNumberHouses(id);
+
+		console.log(0)
+		this.setState({
+			housesList,
+		})
+	};
+
+	async onGetHouse() {
+
+	};
+
 	isEqualProducts = (product1, product2) => {
 		return product1.type === product2.type &&
 			product1.id === product2.id &&
@@ -140,14 +162,13 @@ export default class App extends Component {
 	render() {
 		const {
 			pizzasList,
-			// str,
+			streetsList,
+			housesList,
 			basket,
 			countablePizzasList,
 			countableSaucesList,
 			basketPizzaList,
 		} = this.state;
-
-		// console.log(str);
 
 		if (!pizzasList.length) {
 			return <Spinner/>;
@@ -155,12 +176,16 @@ export default class App extends Component {
 
 		return (
 			<Provider value={{
+				streetsList,
+				housesList,
 				basket,
 				countablePizzasList,
 				countableSaucesList,
 				basketPizzaList,
 				onAddItem: (item) => this.onAddItem(item),
 				onRemoveItem: (item) => this.onRemoveItem(item),
+				onGetStreets: (subStr) => this.onGetStreets(subStr),
+				onGetNumberHouses: (id) => this.onGetNumberHouses(id),
 			}}>
 				<BrowserRouter>
 					<Header/>

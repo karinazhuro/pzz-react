@@ -3,12 +3,11 @@ import {Consumer} from "../pizzas-service-context";
 
 import translationSizes from "../../utils/translation-sizes";
 import ContentCounter from "../content-counter";
-
-import './basket-pizza-list-item.js.scss';
 import denominationPrice from "../../utils/denominationPrice";
 
+import './basket-pizza-list-item.js.scss';
+
 const BasketPizzaListItem = ({product}) => {
-	// console.log(product)
 	const {type, id, size, title, price, quantity} = product;
 	const productData = {
 		type,
@@ -25,8 +24,7 @@ const BasketPizzaListItem = ({product}) => {
 			<p className='size'>{translationSizes[size]}</p>
 				<Consumer>
 					{
-						({basket, onAddItem, onRemoveItem}) => {
-							// console.log(basket)
+						({onAddItem, onRemoveItem}) => {
 							return <ContentCounter quantity={quantity}
 															onAddItem={onAddItem}
 															onRemoveItem={onRemoveItem}

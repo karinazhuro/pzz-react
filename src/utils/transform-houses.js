@@ -7,4 +7,6 @@ const transformHouses = (house) => {
 		regionId: region_id,
 		geo,
 	}
-}
+};
+
+export default transformHouses;
