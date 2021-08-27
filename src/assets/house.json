@@ -1,0 +1,10 @@
+{
+  "id": 10,
+  "title": "Кольцова",
+  "active": 1,
+  "is_slowed": 0,
+  "is_closed": 0,
+  "enable_take_away": 1,
+  "on_stop_at": "",
+  "warning": null
+}

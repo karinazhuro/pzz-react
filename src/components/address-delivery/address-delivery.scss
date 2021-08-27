@@ -14,13 +14,13 @@
       display: flex;
       flex-direction: column;
       padding-bottom: 10px;
+      width: 280px;
 
       .inputName {
         border: 1px solid $secondaryVariant;
         border-radius: 4px;
         font-size: 21px;
         padding: 4px 4px 4px 10px;
-        width: 280px;
         height: 30px;
       }
     }

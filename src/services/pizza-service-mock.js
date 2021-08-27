@@ -2,12 +2,14 @@ import pizzas from '../assets/pizzas.json';
 import sauces from '../assets/sauces.json';
 import basket from '../assets/basket.json';
 import streets from '../assets/streets.json';
-import regions from '../assets/regions.json';
+import region from '../assets/regions.json';
+import house from '../assets/house.json';
 
 import transformPizza from "../utils/transform-pizza";
 import transformSauces from "../utils/transform-sauces";
 import transformBasket from "../utils/transform-basket";
 import transformRegion from "../utils/transform-region";
+import transformHouse from "../utils/transform-house";
 
 import EnumTypes from "../utils/enum-types";
 
@@ -28,7 +30,8 @@ export default class PizzaServiceMock {
 		const streetsList = [];
 
 		streets.data.map(street => {
-			const findStreet = street.title.toLowerCase().startsWith(subStreet.toLowerCase());
+			const findStreet =
+				street.title.toLowerCase().startsWith(subStreet.toLowerCase());
 
 			if (findStreet) {
 				streetsList.push(street)
@@ -40,11 +43,11 @@ export default class PizzaServiceMock {
 
 	// get houses
 	getNumberHouses = async (houseId) => {
-		return Promise.resolve(regions.data.map(transformRegion));
+		return Promise.resolve(region.data.map(transformRegion));
 	};
 
 	getHouse = async () => {
-
+		return Promise.resolve(transformHouse(house));
 	};
 
 	addItem = async (product) => {

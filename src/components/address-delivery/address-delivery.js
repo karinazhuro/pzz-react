@@ -22,8 +22,6 @@ export default class AddressDelivery extends Component {
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
-		// this.handleSelectHouse = this.handleSelectHouse.bind(this);
-		// this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleInputChange(e, func) {
@@ -38,30 +36,34 @@ export default class AddressDelivery extends Component {
 		else func(target.value);
 	};
 
-	renderDatalistStreets = (streetsList, onGetNumberHouses) => {
-		streetsList.map(street => {
+	renderDatalistStreets = (streetsList) => {
+		return streetsList.map(street => {
 			const {id, title} = street;
-			// const getIdHouse = onGetNumberHouses(id);
 
-			return (
-				<option key={id}
-								value={title}
-								onClick={() => onGetNumberHouses(id)}
-				>{title}
-				</option>)
+			return <option key={id}>{title}</option>
 		})
 	};
 
 	renderDatalistHouses = (housesList) => {
-		console.log(housesList)
 		return housesList.map(house => {
 			const {id, title} = house;
 
-			return <option key={id}
-										 value={title}>{title}
-			</option>
+			return <option key={id}>{title}</option>
 		})
 	};
+
+	onSelectStreet = (streetsList, onGetNumberHouses, streetValue) => {
+		return streetsList.map(street => {
+			const {id, title} = street;
+
+			if (title === streetValue) onGetNumberHouses(id);
+		})
+	};
+
+	onSelectHouse = (housesList, onGetHouse, house) => {
+
+	};
+
 
 	// handleSubmit(event) {
 	// 	alert('Отправленное имя: ' + this.state.name);
@@ -69,7 +71,7 @@ export default class AddressDelivery extends Component {
 	// }
 
 	render() {
-		const {name, code, phone, street, house, flat, entrance, floor, doorphone, comment} = this.state;
+		const {name, phone, street, house, flat, entrance, floor, doorphone, comment} = this.state;
 
 		return (
 			<div className='addressDelivery'>
@@ -77,7 +79,7 @@ export default class AddressDelivery extends Component {
 				<form className='addressForm'>
 					<Consumer>
 						{
-							({streetsList, housesList, onGetStreets, onGetNumberHouses}) => {
+							({streetsList, housesList, onGetStreets, onGetNumberHouses, onGetHouse}) => {
 								return (
 									<React.Fragment>
 										<label className='labelName'>Ваше имя
@@ -92,7 +94,6 @@ export default class AddressDelivery extends Component {
 														 name='phone'
 														 type="tel"
 														 pattern="[0-9]{2} [0-9]{7}"
-												// readOnly={code}
 														 value={phone}
 														 maxLength={13}
 														 onChange={this.handleInputChange}/>
@@ -107,9 +108,10 @@ export default class AddressDelivery extends Component {
 																		 debounceTimeout={300}
 																		 onChange={(e) =>
 																			 this.handleInputChange(e,
-																				 (subString) => onGetStreets(subString))}/>
+																				 (subString) => onGetStreets(subString))}
+																		 onBlur={() => this.onSelectStreet(streetsList, onGetNumberHouses, street)}/>
 											<datalist id='street'>
-												{this.renderDatalistStreets(streetsList, onGetNumberHouses)}
+												{this.renderDatalistStreets(streetsList)}
 											</datalist>
 										</label>
 										<label className='labelName'>Дом
@@ -120,10 +122,9 @@ export default class AddressDelivery extends Component {
 														 value={house}
 														 onChange={(e) =>
 															 this.handleInputChange(e)}
-														 onClick={() => this.renderDatalistHouses(housesList)}
-											/>
+														 onBlur={() => this.onSelectHouse(housesList, onGetHouse, house)}/>
 											<datalist id='house'>
-												{/*{this.renderDatalistHouses(housesList, house)}*/}
+												{this.renderDatalistHouses(housesList)}
 											</datalist>
 										</label>
 										<label className='labelName'>Квартира

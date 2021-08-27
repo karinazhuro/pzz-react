@@ -114,12 +114,16 @@ export default class App extends Component {
 		});
 	};
 
-	async onGetNumberHouses(houseId) {
-		const housesList = await this.pizzaServiceMock.getNumberHouses(houseId);
+	async onGetNumberHouses(streetId) {
+		const housesList = await this.pizzaServiceMock.getNumberHouses(streetId);
 
-		return this.setState({
+		this.setState({
 			housesList,
 		})
+	};
+
+	async onGetHouse() {
+
 	};
 
 	isEqualProducts = (product1, product2) => {
@@ -181,6 +185,7 @@ export default class App extends Component {
 				onRemoveItem: (item) => this.onRemoveItem(item),
 				onGetStreets: (subString) => this.onGetStreets(subString),
 				onGetNumberHouses: (houseId) => this.onGetNumberHouses(houseId),
+				onGetHouse: () => this.onGetHouse(),
 			}}>
 				<BrowserRouter>
 					<Header/>
