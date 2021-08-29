@@ -2,7 +2,7 @@ import React from "react";
 
 import {Consumer} from "../pizzas-service-context";
 import ContentCounter from "../content-counter";
-import denominationPrice from "../../utils/denominationPrice";
+import denominationPrice from "../../utils/denomination-price";
 
 import './sauces-list-items.scss';
 

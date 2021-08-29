@@ -7,7 +7,7 @@ const transformSauces = (sauce) => {
 	return {
 		type: EnumTypes.sauce,
 		id: id.toString(),
-		size: EnumSizes["big"],
+		size: EnumSizes.big,
 		photo: photo_small,
 		price: price,
 		title: title,

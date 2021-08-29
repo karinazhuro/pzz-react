@@ -1,20 +1,17 @@
 @import "../../../public/scss/palette";
+@import "../../../public/scss/patterns";
 
 .addressDelivery {
   .titleDelivery {
     font: 34px/1.1 Malina, sans-serif;
     letter-spacing: -1px;
     padding: 0 0 30px;
-    -webkit-text-stroke: 1px transparent;
+    text-align: center;
   }
 
   .addressForm {
     .labelName {
-      font: 17px/1.2 Helvetica, Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 10px;
-      width: 280px;
+      @include basketFormLabel;
 
       .inputName {
         border: 1px solid $secondaryVariant;
@@ -22,6 +19,23 @@
         font-size: 21px;
         padding: 4px 4px 4px 10px;
         height: 30px;
+      }
+    }
+
+    .address {
+      display: flex;
+      flex-wrap: wrap;
+
+      .addressDetail {
+        width: 85px;
+      }
+    }
+
+    .labelComment {
+      width: 375px;
+
+      .inputComment {
+        height: auto;
       }
     }
   }

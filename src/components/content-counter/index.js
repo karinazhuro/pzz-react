@@ -1,3 +1,3 @@
-import ContentCounter from "./contentCounter";
+import ContentCounter from "./content-counter";
 
 export default ContentCounter;

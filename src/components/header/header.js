@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import {Consumer} from "../pizzas-service-context";
-import denominationPrice from "../../utils/denominationPrice";
+import denominationPrice from "../../utils/denomination-price";
 
 import './header.scss'
 

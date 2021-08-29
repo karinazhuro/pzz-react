@@ -1,0 +1,17 @@
+@import "../../../public/scss/patterns";
+
+.wrapperSelector {
+  display: flex;
+  flex-direction: column;
+
+  .titleSelector {
+    @include basketFormLabel;
+  }
+
+  .labelSelector {
+    .inputSelector {
+      float: left;
+      margin: 0 5px 0 0;
+    }
+  }
+}

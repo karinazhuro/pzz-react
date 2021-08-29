@@ -3,7 +3,7 @@ import React from 'react';
 import translationSizes from "../../utils/translation-sizes";
 import {Consumer} from "../pizzas-service-context";
 import ContentCounter from "../content-counter";
-import denominationPrice from "../../utils/denominationPrice";
+import denominationPrice from "../../utils/denomination-price";
 
 import './pizza-list-item.scss';
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import './addToBasket.scss';
+import './add-to-basket.scss';
 
 const AddToBasket = ({id, size, onAddItem}) => {
 	return (

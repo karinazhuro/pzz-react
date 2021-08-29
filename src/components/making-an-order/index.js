@@ -1,3 +1,3 @@
-import MakingAnOrder from "./makingAnOrder";
+import MakingAnOrder from "./making-an-order";
 
 export default MakingAnOrder;
