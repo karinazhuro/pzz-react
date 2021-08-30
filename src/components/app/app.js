@@ -7,7 +7,7 @@ import Spinner from "../spinner";
 import Header from "../header";
 import Basket from "../basket";
 import Menu from "../menu";
-import EnumTypes from "../../utils/enum-types";
+import EnumTypes from "../../utils/enums/enum-types";
 
 export default class App extends Component {
 	pizzaServiceMock = new PizzaServiceMock();
@@ -17,6 +17,7 @@ export default class App extends Component {
 		saucesList: [],
 		streetsList: [],
 		housesList: [],
+		house: [],
 		basket: [],
 		countablePizzasList: [],
 		countableSaucesList: [],
@@ -119,11 +120,15 @@ export default class App extends Component {
 
 		this.setState({
 			housesList,
-		})
+		});
 	};
 
-	async onGetHouse() {
+	async onGetHouse(houseId) {
+		const house = await this.pizzaServiceMock.getHouse(houseId);
 
+		this.setState({
+			house,
+		});
 	};
 
 	isEqualProducts = (product1, product2) => {

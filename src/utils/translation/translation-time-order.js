@@ -1,4 +1,4 @@
-import EnumTimeOrder from "./enum-time-order";
+import EnumTimeOrder from "../enums/enum-time-order";
 
 const TranslationTimeOrder = {
 	title: 'Время заказа',

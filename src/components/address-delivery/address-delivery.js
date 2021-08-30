@@ -3,9 +3,14 @@ import {Consumer} from "../pizzas-service-context";
 import {DebounceInput} from 'react-debounce-input';
 
 import OptionSelector from "../option-selector";
-import EnumTimeOrder from "../../utils/enum-time-order";
+import EnumTimeOrder from "../../utils/enums/enum-time-order";
+import TranslationTimeOrder from "../../utils/translation/translation-time-order";
 
 import './address-delivery.scss';
+import EnumDelivery from "../../utils/enums/enum-delivery";
+import TranslationDelivery from "../../utils/translation/translation-delivery";
+import EnumPayment from "../../utils/enums/enum-payment";
+import TranslationPayment from "../../utils/translation/translation-payment";
 
 export default class AddressDelivery extends Component {
 	constructor(props) {
@@ -64,15 +69,19 @@ export default class AddressDelivery extends Component {
 		})
 	};
 
-	onSelectHouse = (housesList, onGetHouse, house) => {
+	onSelectHouse = (housesList, onGetHouse, houseValue) => {
+		return housesList.map(house => {
+			const {title, id} = house;
 
+			if (houseValue === title) onGetHouse(id);
+		})
 	};
 
 	render() {
 		const {
 			name, phone,
 			street, house, flat, entrance, floor, doorphone,
-			comment, timeOrder
+			comment
 		} = this.state;
 
 		return (
@@ -167,6 +176,13 @@ export default class AddressDelivery extends Component {
 																onChange={this.handleInputChange}/>
 										</label>
 										<OptionSelector option={EnumTimeOrder}
+																		translation={TranslationTimeOrder}
+																		handleInputChange={this.handleInputChange}/>
+										<OptionSelector option={EnumDelivery}
+																		translation={TranslationDelivery}
+																		handleInputChange={this.handleInputChange}/>
+										<OptionSelector option={EnumPayment}
+																		translation={TranslationPayment}
 																		handleInputChange={this.handleInputChange}/>
 									</React.Fragment>
 								)
@@ -174,6 +190,8 @@ export default class AddressDelivery extends Component {
 						}
 					</Consumer>
 				</form>
+				<p>Итого: </p>
+				<p>Оплата в белорусских рублях</p>
 			</div>
 		);
 	}

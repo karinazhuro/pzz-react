@@ -1,5 +1,5 @@
-import EnumSizes from "./enum-sizes";
-import EnumTypes from "./enum-types";
+import EnumSizes from "../enums/enum-sizes";
+import EnumTypes from "../enums/enum-types";
 
 const transformPizza = (pizza) => {
   const {id, photo_small, title, anonce} = pizza;

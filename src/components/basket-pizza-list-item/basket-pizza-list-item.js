@@ -1,7 +1,7 @@
 import React from "react";
 import {Consumer} from "../pizzas-service-context";
 
-import translationSizes from "../../utils/translation-sizes";
+import translationSizes from "../../utils/translation/translation-sizes";
 import ContentCounter from "../content-counter";
 import denominationPrice from "../../utils/denomination-price";
 

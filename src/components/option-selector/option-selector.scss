@@ -3,12 +3,16 @@
 .wrapperSelector {
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 
   .titleSelector {
     @include basketFormLabel;
+    padding: 0;
   }
 
   .labelSelector {
+    padding: 2px 0;
+
     .inputSelector {
       float: left;
       margin: 0 5px 0 0;

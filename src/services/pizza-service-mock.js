@@ -5,13 +5,13 @@ import streets from '../assets/streets.json';
 import region from '../assets/regions.json';
 import house from '../assets/house.json';
 
-import transformPizza from "../utils/transform-pizza";
-import transformSauces from "../utils/transform-sauces";
-import transformBasket from "../utils/transform-basket";
-import transformRegion from "../utils/transform-region";
-import transformHouse from "../utils/transform-house";
+import transformPizza from "../utils/transforms/transform-pizza";
+import transformSauces from "../utils/transforms/transform-sauces";
+import transformBasket from "../utils/transforms/transform-basket";
+import transformRegion from "../utils/transforms/transform-region";
+import transformHouse from "../utils/transforms/transform-house";
 
-import EnumTypes from "../utils/enum-types";
+import EnumTypes from "../utils/enums/enum-types";
 
 export default class PizzaServiceMock {
 	getPizzas = async () => {
@@ -46,7 +46,7 @@ export default class PizzaServiceMock {
 		return Promise.resolve(region.data.map(transformRegion));
 	};
 
-	getHouse = async () => {
+	getHouse = async (houseId) => {
 		return Promise.resolve(transformHouse(house));
 	};
 

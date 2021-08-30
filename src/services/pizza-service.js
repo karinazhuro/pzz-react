@@ -1,4 +1,4 @@
-import EnumTypes from "../utils/enum-types";
+import EnumTypes from "../utils/enums/enum-types";
 
 export default class PizzaService {
   _apiUrl = `https://pzz.by/api/v1`;
