@@ -11,7 +11,12 @@
 
   .addressForm {
     .labelName {
-      @include basketFormLabel;
+      font: 17px/1.2 Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 10px;
+      width: 280px;
+      margin: 0 10px 0 0;
 
       .inputName {
         border: 1px solid $secondaryVariant;
@@ -36,6 +41,51 @@
 
       .inputComment {
         height: auto;
+      }
+    }
+
+    .optionSelect {
+      margin: 15px 0;
+    }
+
+    .totalPrice {
+      text-align: end;
+
+      .total {
+        color: $textSecondary;
+        font: 20px/22px Malina, sans-serif;
+        letter-spacing: -.5px;
+
+        .price {
+          font-family: Helvetica, Arial, sans-serif;
+          color: $textPrimary;
+          font-size: 32px;
+          line-height: 42px;
+          font-weight: 700;
+        }
+      }
+
+      .note {
+        color: $textSecondary;
+        font-size: 15px;
+        line-height: 1.2;
+      }
+    }
+
+    .submit {
+      cursor: pointer;
+      color: #fff;
+      font: 32px/1 Malina,sans-serif;
+      letter-spacing: -1px;
+      background-color: #ff5200;
+      border-radius: 10px;
+      padding: 14px 20px;
+      min-width: 357px;
+      text-align: center;
+      border: none;
+
+      &:hover {
+        background-color: $secondary;
       }
     }
   }

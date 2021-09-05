@@ -23,12 +23,6 @@
   text-align: center;
 }
 
-@mixin basketFormLabel {
-  font: 17px/1.2 Helvetica, Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 10px;
-  width: 280px;
-  margin: 0 10px 0 0;
-
+@mixin optionSelectTitle {
+  @include textDecoration($textSecondary, 20px, $primaryFont, -.5px);
 }

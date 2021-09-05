@@ -3,14 +3,15 @@ import {Consumer} from "../pizzas-service-context";
 import {DebounceInput} from 'react-debounce-input';
 
 import OptionSelector from "../option-selector";
+import denominationPrice from "../../utils/denomination-price";
 import EnumTimeOrder from "../../utils/enums/enum-time-order";
+import EnumDelivery from "../../utils/enums/enum-delivery";
+import EnumPayment from "../../utils/enums/enum-payment";
 import TranslationTimeOrder from "../../utils/translation/translation-time-order";
+import TranslationDelivery from "../../utils/translation/translation-delivery";
+import TranslationPayment from "../../utils/translation/translation-payment";
 
 import './address-delivery.scss';
-import EnumDelivery from "../../utils/enums/enum-delivery";
-import TranslationDelivery from "../../utils/translation/translation-delivery";
-import EnumPayment from "../../utils/enums/enum-payment";
-import TranslationPayment from "../../utils/translation/translation-payment";
 
 export default class AddressDelivery extends Component {
 	constructor(props) {
@@ -27,9 +28,12 @@ export default class AddressDelivery extends Component {
 			doorphone: '',
 			comment: '',
 			timeOrder: '',
+			delivery: '',
+			payment: '',
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
+		this.onSubmitForm = this.onSubmitForm.bind(this);
 	}
 
 	handleInputChange(e, func) {
@@ -77,22 +81,28 @@ export default class AddressDelivery extends Component {
 		})
 	};
 
+	onSubmitForm = (e) => {
+		e.preventDefault();
+		console.log(0)
+	};
+
 	render() {
 		const {
 			name, phone,
 			street, house, flat, entrance, floor, doorphone,
-			comment
+			comment,
 		} = this.state;
 
 		return (
 			<div className='addressDelivery'>
 				<h2 className='titleDelivery'>Адрес доставки</h2>
-				<form className='addressForm'>
-					<Consumer>
-						{
-							({streetsList, housesList, onGetStreets, onGetNumberHouses, onGetHouse}) => {
-								return (
-									<React.Fragment>
+				<Consumer>
+					{
+						({basket, streetsList, housesList, onGetStreets, onGetNumberHouses, onGetHouse}) => {
+							return (
+								<React.Fragment>
+									<form className='addressForm'
+												onSubmit={this.onSubmitForm}>
 										<label className='labelName'>Ваше имя
 											<input className='inputName'
 														 name='name'
@@ -104,7 +114,7 @@ export default class AddressDelivery extends Component {
 											<input className='inputName'
 														 name='phone'
 														 type="tel"
-														 pattern="[0-9]{2} [0-9]{7}"
+												// pattern="[0-9]{9}"
 														 value={phone}
 														 maxLength={13}
 														 onChange={this.handleInputChange}/>
@@ -175,23 +185,37 @@ export default class AddressDelivery extends Component {
 																rows={2}
 																onChange={this.handleInputChange}/>
 										</label>
-										<OptionSelector option={EnumTimeOrder}
-																		translation={TranslationTimeOrder}
-																		handleInputChange={this.handleInputChange}/>
-										<OptionSelector option={EnumDelivery}
-																		translation={TranslationDelivery}
-																		handleInputChange={this.handleInputChange}/>
-										<OptionSelector option={EnumPayment}
-																		translation={TranslationPayment}
-																		handleInputChange={this.handleInputChange}/>
-									</React.Fragment>
-								)
-							}
+										<div className='optionSelect'>
+											<OptionSelector name={'timeOrder'}
+																			option={EnumTimeOrder}
+																			translation={TranslationTimeOrder}
+																			handleInputChange={this.handleInputChange}/>
+											<OptionSelector name={'delivery'}
+																			option={EnumDelivery}
+																			translation={TranslationDelivery}
+																			handleInputChange={this.handleInputChange}/>
+											<OptionSelector name={'payment'}
+																			option={EnumPayment}
+																			translation={TranslationPayment}
+																			handleInputChange={this.handleInputChange}/>
+										</div>
+										<div className='totalPrice'>
+											<p className='total'>Итого: &nbsp;
+												<span className='price'>
+											{denominationPrice(basket.price)} р.
+										</span>
+											</p>
+											<p className='note'>Оплата в белорусских рублях</p>
+										</div>
+										<input className='submit'
+													 type="submit"
+													 value="Отправить"/>
+									</form>
+								</React.Fragment>
+							)
 						}
-					</Consumer>
-				</form>
-				<p>Итого: </p>
-				<p>Оплата в белорусских рублях</p>
+					}
+				</Consumer>
 			</div>
 		);
 	}
