@@ -25,11 +25,13 @@ export default class AddressDelivery extends Component {
 			flat: '',
 			entrance: '',
 			floor: '',
-			doorphone: '',
+			intercom: '',
 			comment: '',
 			timeOrder: '',
 			delivery: '',
 			payment: '',
+			streetId: '',
+			houseId: '',
 		};
 
 		this.handleInputChange = this.handleInputChange.bind(this);
@@ -69,6 +71,10 @@ export default class AddressDelivery extends Component {
 		return streetsList.map(street => {
 			const {id, title} = street;
 
+			this.setState({
+				streetId: id,
+			});
+
 			if (title === streetValue) onGetNumberHouses(id);
 		})
 	};
@@ -77,19 +83,78 @@ export default class AddressDelivery extends Component {
 		return housesList.map(house => {
 			const {title, id} = house;
 
+			this.setState({
+				houseId: id
+			});
+
 			if (houseValue === title) onGetHouse(id);
 		})
 	};
 
-	onSubmitForm = (e) => {
+	onSubmitForm = (e, state, onSubmit) => {
 		e.preventDefault();
-		console.log(0)
+
+		const {
+			name, phone,
+			street, house, flat, entrance, floor, intercom,
+			comment,
+			timeOrder, delivery, payment,
+			streetId, houseId,
+		} = state;
+
+		const localTimeOrder = timeOrder === 'runtime' ? '1' : '0';
+
+		// const formData = new FormData();
+		// formData.append('name', name);
+		// formData.append('phone', phone);
+		// formData.append('street', street);
+		// formData.append('house', house);
+		// formData.append('flat', flat);
+		// formData.append('entrance', entrance);
+		// formData.append('floor', floor);
+		// formData.append('intercom', intercom);
+		// formData.append('comment', comment);
+		// formData.append('runtime', localTimeOrder);
+		// formData.append('preorder', localTimeOrder);
+		// formData.append('preorder_datetime', '');
+		// formData.append('no-contact-delivery', '1');
+		// formData.append('renting', '');
+		// formData.append('preorder_date', '');
+		// formData.append('preorder_time', '');
+		// formData.append('no_contact_delivery', delivery);
+		// formData.append('payment', payment);
+
+		const formData = {
+			'name': name,
+			'phone': phone,
+			'street': street,
+			'house': house,
+			'flat': flat,
+			'entrance': entrance,
+			'floor': floor,
+			'intercom': intercom,
+			'comment': comment,
+			'streetId': streetId,
+			'houseId': houseId,
+
+			'runtime': localTimeOrder,
+			'preorder': localTimeOrder,
+			'preorder_datetime': '',
+			'no-contact-delivery': '1',
+			'renting': '',
+			'preorder_date': '',
+			'preorder_time': '',
+			'no_contact_delivery': delivery,
+			'payment': payment,
+		};
+
+		return onSubmit(formData);
 	};
 
 	render() {
 		const {
 			name, phone,
-			street, house, flat, entrance, floor, doorphone,
+			street, house, flat, entrance, floor, intercom,
 			comment,
 		} = this.state;
 
@@ -98,11 +163,16 @@ export default class AddressDelivery extends Component {
 				<h2 className='titleDelivery'>Адрес доставки</h2>
 				<Consumer>
 					{
-						({basket, streetsList, housesList, onGetStreets, onGetNumberHouses, onGetHouse}) => {
+						({
+							 basket,
+							 streetsList, housesList,
+							 onGetStreets, onGetNumberHouses, onGetHouse, onSubmit
+						 }) => {
 							return (
 								<React.Fragment>
 									<form className='addressForm'
-												onSubmit={this.onSubmitForm}>
+												onSubmit={(e) =>
+													this.onSubmitForm(e, this.state, onSubmit)}>
 										<label className='labelName'>Ваше имя
 											<input className='inputName'
 														 name='name'
@@ -131,7 +201,9 @@ export default class AddressDelivery extends Component {
 																			 onChange={(e) =>
 																				 this.handleInputChange(e,
 																					 (subString) => onGetStreets(subString))}
-																			 onBlur={() => this.onSelectStreet(streetsList, onGetNumberHouses, street)}/>
+																			 onBlur={() =>
+																				 this.onSelectStreet(
+																					 streetsList, onGetNumberHouses, street)}/>
 												<datalist id='street'>
 													{this.renderDatalistStreets(streetsList)}
 												</datalist>
@@ -172,9 +244,9 @@ export default class AddressDelivery extends Component {
 											</label>
 											<label className='labelName addressDetail'>Домофон
 												<input className='inputName'
-															 name='doorphone'
+															 name='intercom'
 															 type="text"
-															 value={doorphone}
+															 value={intercom}
 															 onChange={this.handleInputChange}/>
 											</label>
 										</div>
@@ -207,9 +279,11 @@ export default class AddressDelivery extends Component {
 											</p>
 											<p className='note'>Оплата в белорусских рублях</p>
 										</div>
-										<input className='submit'
-													 type="submit"
-													 value="Отправить"/>
+										<div className='submit'>
+											<input className='btnSubmit'
+														 type="submit"
+														 value="Отправить"/>
+										</div>
 									</form>
 								</React.Fragment>
 							)

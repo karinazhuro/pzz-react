@@ -69,23 +69,29 @@
         color: $textSecondary;
         font-size: 15px;
         line-height: 1.2;
+        font-family: Helvetica, Arial, sans-serif;
       }
     }
 
     .submit {
-      cursor: pointer;
-      color: #fff;
-      font: 32px/1 Malina,sans-serif;
-      letter-spacing: -1px;
-      background-color: #ff5200;
-      border-radius: 10px;
-      padding: 14px 20px;
-      min-width: 357px;
-      text-align: center;
-      border: none;
+      display: flex;
+      justify-content: flex-end;
+      margin: 30px 0;
 
-      &:hover {
-        background-color: $secondary;
+      .btnSubmit {
+        cursor: pointer;
+        color: #fff;
+        font: 32px/1 Malina, sans-serif;
+        letter-spacing: -1px;
+        background-color: #ff5200;
+        border-radius: 10px;
+        padding: 14px 20px;
+        min-width: 357px;
+        border: none;
+
+        &:hover {
+          background-color: $secondary;
+        }
       }
     }
   }

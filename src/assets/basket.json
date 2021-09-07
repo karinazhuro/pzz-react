@@ -1,5 +1,18 @@
 {
   "data": {
+    "address": {
+      "name": "",
+      "phone": "",
+      "street": "",
+      "house": "",
+      "flat": "",
+      "entrance": "",
+      "floor": "",
+      "intercom": "",
+      "street_id": "",
+      "house_id": ""
+    },
+    "comment": "",
     "price": 0,
     "quantityPizzas": 0,
     "items": []

@@ -36,9 +36,7 @@ const Header = () => {
 				<Consumer>
 					{
 						({basket}) => {
-							const {price} = basket;
-
-							return <p className='price'>{denominationPrice(price)}</p>
+							return <p className='price'>{denominationPrice(basket.price)}</p>
 						}
 					}
 				</Consumer>

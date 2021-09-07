@@ -79,4 +79,38 @@ export default class PizzaServiceMock {
 
 		return Promise.resolve(transformBasket(basket.data));
 	};
+
+	submit = async (formData) => {
+		const {
+			name, phone,
+			street, house, flat, entrance, floor, intercom,
+			comment,
+			streetId, houseId,
+		} = formData;
+
+		basket.data.address = {
+			name,
+			phone,
+			street,
+			house,
+			flat,
+			entrance,
+			floor,
+			intercom,
+			street_id: streetId,
+			house_id: houseId,
+		};
+
+		basket.data.comment = comment;
+
+		console.log('mock', formData);
+
+		// return {
+		// 	[basket.data.price]: 0,
+		// 	[basket.data.items]: basket.data.items.pop(),
+		// 	[basket.data.quantityPizzas]: 0,
+		// }
+
+		// console.log('mock', basket.data);
+	};
 }

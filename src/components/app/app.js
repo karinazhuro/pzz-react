@@ -65,7 +65,8 @@ export default class App extends Component {
 				...pizza,
 				variants: pizza.variants.map(variant => ({
 					...variant,
-					quantity: this.getVariantCountInBasket({id: pizza.id, size: variant.size, type: EnumTypes.pizza},
+					quantity: this.getVariantCountInBasket(
+						{id: pizza.id, size: variant.size, type: EnumTypes.pizza},
 						basket.items),
 				})),
 			};
@@ -76,7 +77,8 @@ export default class App extends Component {
 		return sauces.map(sauce => {
 			return {
 				...sauce,
-				quantity: this.getVariantCountInBasket({id: sauce.id, size: sauce.size, type: EnumTypes.sauce},
+				quantity: this.getVariantCountInBasket(
+					{id: sauce.id, size: sauce.size, type: EnumTypes.sauce},
 					basket.items),
 			}
 		});
@@ -129,6 +131,10 @@ export default class App extends Component {
 		this.setState({
 			house,
 		});
+	};
+
+	async onSubmit(formData) {
+		return await this.pizzaServiceMock.submit(formData);
 	};
 
 	isEqualProducts = (product1, product2) => {
@@ -191,6 +197,7 @@ export default class App extends Component {
 				onGetStreets: (subString) => this.onGetStreets(subString),
 				onGetNumberHouses: (houseId) => this.onGetNumberHouses(houseId),
 				onGetHouse: () => this.onGetHouse(),
+				onSubmit: (formData) => this.onSubmit(formData)
 			}}>
 				<BrowserRouter>
 					<Header/>

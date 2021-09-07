@@ -3,6 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 
   .empty {
     display: flex;
@@ -10,5 +11,19 @@
     text-align: center;
     font: 34px/1.1 Malina, sans-serif;
     letter-spacing: -1px;
+  }
+
+  .orderApply {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font: 34px/1.1 Malina, sans-serif;
+    letter-spacing: -1px;
+
+    margin: 0 0 50px 0;
+  }
+
+  .imgOrderApply {
+
   }
 }
