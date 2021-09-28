@@ -9,6 +9,7 @@ import './pizza-list-item.scss';
 
 const PizzaListItem = ({product}) => {
 	const {photo, title, description} = product;
+
 	const renderVariants = (product) => {
 		const {id, variants} = product;
 

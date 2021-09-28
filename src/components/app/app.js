@@ -3,10 +3,12 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 import PizzaServiceMock from "../../services/pizza-service-mock";
 import {Provider} from "../pizzas-service-context";
+
 import Spinner from "../spinner";
 import Header from "../header";
 import Basket from "../basket";
 import Menu from "../menu";
+
 import EnumTypes from "../../utils/enums/enum-types";
 
 export default class App extends Component {
