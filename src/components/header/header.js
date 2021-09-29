@@ -34,6 +34,7 @@ const Header = () => {
 			<div>
 				<Link to="/basket" className='cart'> Корзина </Link>
 				<Consumer>
+
 					{
 						({basket}) => {
 							return <p className='price'>{denominationPrice(basket.price)}</p>
