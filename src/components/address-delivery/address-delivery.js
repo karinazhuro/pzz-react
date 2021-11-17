@@ -68,7 +68,7 @@ export default class AddressDelivery extends Component {
 	};
 
 	onSelectStreet = (streetsList, onGetNumberHouses, streetValue) => {
-		return streetsList.map(street => {
+		return streetsList.forEach(street => {
 			const {id, title} = street;
 
 			this.setState({
@@ -80,7 +80,7 @@ export default class AddressDelivery extends Component {
 	};
 
 	onSelectHouse = (housesList, onGetHouse, houseValue) => {
-		return housesList.map(house => {
+		return housesList.forEach(house => {
 			const {title, id} = house;
 
 			this.setState({

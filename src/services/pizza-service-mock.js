@@ -29,7 +29,7 @@ export default class PizzaServiceMock {
 	getStreets = async (subStreet) => {
 		const streetsList = [];
 
-		streets.data.map(street => {
+		streets.data.forEach(street => {
 			const findStreet =
 				street.title.toLowerCase().startsWith(subStreet.toLowerCase());
 
