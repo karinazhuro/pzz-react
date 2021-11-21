@@ -1,4 +1,5 @@
 @font-face {
   font-family: Malina;
-  src: url(../fonts/malina_webfont.ttf) format('truetype');
+  //src: url(../fonts/malina_webfont.ttf) format('truetype');
+  src: url(../fonts/malina-webfont.woff) format('woff');
 }
