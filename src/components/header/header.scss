@@ -1,4 +1,5 @@
 @import "../../../public/scss/variables";
+@import "../../index";
 
 header {
   background-image: url("header-bg.gif");
@@ -18,12 +19,12 @@ header {
     display: table;
     color: $primaryVariant;
     text-decoration: none;
-    font: 27px/1 Malina,sans-serif;
+    font: 27px/1 $malinaFont;
   }
 
   .price {
     color: $primaryVariant;
     margin: 15px 0;
-    font: 24px/1.2 Helvetica,Arial,sans-serif;
+    font: 24px/1.2 $secondaryFont;
   }
 }

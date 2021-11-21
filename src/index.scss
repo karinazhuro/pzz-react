@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "Malina";
+  src: local("Malina"),
+  url("fonts/Malina/malina_webfont.ttf") format("truetype"),
+  url("fonts/Malina/malina-webfont.woff") format("woff");
+}
+
+$malinaFont: Malina, sans-serif;
