@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import './fonts/Malina/malina_webfont.ttf';
-
 import 'normalize.css';
+import './index.scss';
 
 import App from "./components/app";
 

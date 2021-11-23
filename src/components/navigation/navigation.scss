@@ -1,5 +1,6 @@
-@import "../../../public/scss/variables";
-@import "../../../public/scss/patterns";
+@import "../../scss/variables";
+@import "../../scss/patterns";
+//@import url("../../index.scss");
 
 .navigation {
   padding: 20px 0;
@@ -13,7 +14,7 @@
       list-style: none;
 
       .links {
-        @include textDecoration($primary, 24px, $primaryFont, -.5px);
+        //@include textDecoration($primary, 24px, $primaryFont, -.5px);
         text-decoration: none;
       }
     }
