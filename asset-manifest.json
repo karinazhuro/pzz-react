@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/pzz-react/static/css/main.a9a81add.chunk.css",
+    "main.js": "/pzz-react/static/js/main.16c6e901.chunk.js",
+    "main.js.map": "/pzz-react/static/js/main.16c6e901.chunk.js.map",
+    "runtime-main.js": "/pzz-react/static/js/runtime-main.8513d13f.js",
+    "runtime-main.js.map": "/pzz-react/static/js/runtime-main.8513d13f.js.map",
+    "static/css/2.679831fc.chunk.css": "/pzz-react/static/css/2.679831fc.chunk.css",
+    "static/js/2.5132f486.chunk.js": "/pzz-react/static/js/2.5132f486.chunk.js",
+    "static/js/2.5132f486.chunk.js.map": "/pzz-react/static/js/2.5132f486.chunk.js.map",
+    "index.html": "/pzz-react/index.html",
+    "static/css/2.679831fc.chunk.css.map": "/pzz-react/static/css/2.679831fc.chunk.css.map",
+    "static/css/main.a9a81add.chunk.css.map": "/pzz-react/static/css/main.a9a81add.chunk.css.map",
+    "static/js/2.5132f486.chunk.js.LICENSE.txt": "/pzz-react/static/js/2.5132f486.chunk.js.LICENSE.txt",
+    "static/media/header.scss": "/pzz-react/static/media/header-bg.10f8d8ff.gif",
+    "static/media/loading.ffc5f45b.gif": "/pzz-react/static/media/loading.ffc5f45b.gif",
+    "static/media/making-an-order.scss": "/pzz-react/static/media/malina_webfont.ccc0bad3.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8513d13f.js",
+    "static/css/2.679831fc.chunk.css",
+    "static/js/2.5132f486.chunk.js",
+    "static/css/main.a9a81add.chunk.css",
+    "static/js/main.16c6e901.chunk.js"
+  ]
+}
