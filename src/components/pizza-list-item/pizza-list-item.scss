@@ -1,6 +1,5 @@
 @import "../../scss/variables";
 @import "../../scss/patterns";
-@import "../counter/counter";
 
 .pizzaInfo {
   padding: 0 1rem;
@@ -8,36 +7,14 @@
   .title {
     @include title;
   }
-
-  .variant {
-    display: flex;
-    justify-content: space-between;
-    margin: .5em 0;
-
-    .infoAboutVariant {
-      .size {
-        @include size;
-      }
-
-      .price {
-        @include price;
-      }
-
-      .weight {
-        color: $textSecondary;
-        font: 12px/1 Arial, Helvetica, sans-serif;
-      }
-    }
-
-    .countPizzas {
-      display: flex;
-      align-items: center;
-    }
-  }
 }
 
 .desc {
   padding: 0 1rem;
-  color: $textSecondary;
-  font: 15px/1.2 Helvetica, Arial, sans-serif;
+
+  font-family: $secondary-font;
+  font-size: 15px;
+  line-height: 1.2;
+
+  color: $secondary-color;
 }

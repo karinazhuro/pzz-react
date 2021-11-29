@@ -1,8 +1,11 @@
 @import "../../scss/variables";
 
 .titleRegistration {
-  color: $textPrimary;
-  font: 42px/1.1 Malina, sans-serif;
+  font-family: $primary-font;
+  font-size: 42px;
+  line-height: 1.1;
   letter-spacing: -1px;
   text-align: center;
+
+  color: $on-surface-color;
 }

@@ -4,18 +4,25 @@
 .sauces {
   padding: 20px 0;
 
+  .titleBlock {
+    @include titleBlock;
+  }
+
   .saucesList {
+    margin: 20px 0;
+
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
     list-style: none;
-    margin: 20px 0;
 
     .sauce {
+      padding: 20px;
+
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
     }
   }
 }

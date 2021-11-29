@@ -4,9 +4,11 @@ import {Consumer} from "../pizzas-service-context";
 import declensionsOfWords from "../../utils/declensions-of-words";
 import SaucesList from "../sauces-list";
 
-const BasketSaucesList = () => {
+import "./cart-sauces-list.scss";
+
+const CartSaucesList = () => {
 	return (
-		<div className='sauces'>
+		<div className='saucesBasket'>
 			<Consumer>
 				{
 					({basket}) => {
@@ -22,10 +24,10 @@ const BasketSaucesList = () => {
 					}
 				}
 			</Consumer>
-			<SaucesList/>
 
+			<SaucesList/>
 		</div>
 	)
 };
 
-export default BasketSaucesList;
+export default CartSaucesList;

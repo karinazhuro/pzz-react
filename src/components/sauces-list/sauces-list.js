@@ -25,6 +25,7 @@ export default class SaucesList extends Component {
 					({countableSaucesList}) => {
 						return (
 							<div className='sauces'>
+								<h2 className='titleBlock'>Соусы</h2>
 								<ul className='saucesList'>
 									{this.renderItems(countableSaucesList)}
 								</ul>

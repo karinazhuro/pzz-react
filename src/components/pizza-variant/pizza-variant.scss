@@ -1,0 +1,26 @@
+@import "../../scss/patterns";
+
+.variant {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.5em 0;
+
+  .infoAboutVariant {
+    .size {
+      @include size;
+    }
+
+    .price {
+      @include price;
+    }
+
+    .weight {
+      @include weight;
+    }
+  }
+
+  .countPizza {
+    display: flex;
+    align-items: center;
+  }
+}

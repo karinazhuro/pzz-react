@@ -1,29 +1,65 @@
 @import "variables";
-//@import url(../../src/index.scss);
 
-@mixin textDecoration($color, $fontSize, $fontFamily, $letterSpacing) {
-  color: $color;
-  font: $fontSize $fontFamily;
+@mixin textDecoration($fontSize, $fontFamily, $letterSpacing, $color) {
+  font-size: $fontSize;
+  font-family: $fontFamily;
   letter-spacing: $letterSpacing;
-}
 
-@mixin title {
-  //@include textDecoration($primary, 28px, $primaryFont, -1px);
-}
-
-@mixin size {
-  //@include textDecoration($textSecondary, 15px, $secondaryFont, 0);
-}
-
-@mixin price {
-  //@include textDecoration($textPrimary, 32px, $primaryFont, -1px);
+  color: $color;
 }
 
 @mixin titleBlock {
-  //@include textDecoration($textSecondary, 32px, $primaryFont, -.5px);
+  @include textDecoration(32px, $primary-font, -.5px, $secondary-color);
+
   text-align: center;
 }
 
+@mixin title {
+  @include textDecoration(28px, $primary-font, -1px, $primary-color);
+
+  margin: 0;
+}
+
+@mixin size {
+  @include textDecoration(15px, $secondary-font, 0, $secondary-color);
+
+  margin: 0;
+}
+
+@mixin price {
+  @include textDecoration(32px, $primary-font, -1px, $on-surface-color);
+
+  margin: 0;
+}
+
+@mixin weight {
+  @include textDecoration(12px, $secondary-font, 1px, $secondary-color);
+
+  margin: 0;
+}
+
+@mixin btnCounter {
+  width: 30px;
+  height: 30px;
+
+  font-family: $primary-font;
+  font-size: 30px;
+  line-height: 1px;
+  letter-spacing: -1px;
+
+  background-color: $on-background-color;
+  color: $on-primary-color;
+  border-radius: 50%;
+  border-width: 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $on-secondary-color;
+  }
+}
+
 @mixin optionSelectTitle {
-  //@include textDecoration($textSecondary, 20px, $primaryFont, -.5px);
+  @include textDecoration(20px, $primary-font, -.5px, $secondary-color);
+
+  margin: 0;
 }

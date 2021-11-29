@@ -1,24 +1,23 @@
-import React from "react";
 import {Consumer} from "../pizzas-service-context";
 
-import BasketPizzaListItem from "../basket-pizza-list-item";
+import CartPizzaListItem from "../cart-pizza-list-item";
 
-import './basket-pizza-list.scss';
+import './cart-pizza-list.scss';
 
-const BasketPizzaList = () => {
+const CartPizzaList = () => {
 	const renderItem = (basketPizzaList) => {
 		return basketPizzaList.map(pizza => {
 			const {id, size} = pizza;
 
 			return (
-				<BasketPizzaListItem key={`${id}-${size}`}
-														 product={pizza}/>
+				<CartPizzaListItem key={`${id}-${size}`}
+													 product={pizza}/>
 			)
 		})
 	};
 
 	return (
-		<div className='pizzas'>
+		<div className='pizzasBasket'>
 			<Consumer>
 				{
 					({basketPizzaList}) => {
@@ -30,4 +29,4 @@ const BasketPizzaList = () => {
 	)
 };
 
-export default BasketPizzaList;
+export default CartPizzaList;

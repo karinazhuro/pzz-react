@@ -1,9 +1,0 @@
-@import "../../scss/patterns";
-
-main {
-  margin: 2rem;
-
-  .titleBlock {
-    @include titleBlock;
-  }
-}

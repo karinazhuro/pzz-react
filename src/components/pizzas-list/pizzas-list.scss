@@ -1,18 +1,23 @@
 @import "../../scss/variables";
 @import "../../scss/patterns";
 
-.pizzas {
+.pizzasMenu {
   padding: 20px 0;
+
+  .titleBlock {
+    @include titleBlock;
+  }
 
   .pizzasList {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 
-    .menuPizza {
+    .pizza {
       margin: 1rem;
-      list-style: none;
       max-width: 300px;
+
+      list-style: none;
     }
   }
 }

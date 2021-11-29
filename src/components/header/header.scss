@@ -1,31 +1,43 @@
 @import "../../scss/variables";
-@import "../../index.scss";
 
 header {
-  background-image: url("header-bg.gif");
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem 3rem;
   position: sticky;
   top: 0;
 
-  svg {
-    height: 7rem;
-    position: relative;
-    color: $primaryVariant;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+
+  background-image: url("header-bg.gif");
+
+  .logo {
+    svg {
+      position: relative;
+
+      height: 7rem;
+
+      color: $on-primary-color;
+    }
   }
 
-  .cart {
-    display: table;
-    color: $primaryVariant;
-    text-decoration: none;
-    font-size: 27px;
-    font-family: $primaryFont;
-  }
+  .cart-wrap {
+    .cart {
+      display: table;
 
-  .price {
-    color: $primaryVariant;
-    margin: 15px 0;
-    //font: 24px/1.2 $secondaryFont;
+      font-family: $primary-font;
+      font-size: 27px;
+      text-decoration: none;
+
+      color: $on-primary-color;
+    }
+
+    .price {
+      margin: 15px 0;
+
+      font-family: $secondary-font;
+      font-size: 24px;
+
+      color: $on-primary-color;
+    }
   }
 }

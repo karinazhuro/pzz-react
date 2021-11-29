@@ -1,19 +1,19 @@
 import React from 'react';
 
 import {Consumer} from "../pizzas-service-context";
-import Notification from "../notification";
+import CartEmpty from "../cart-empty";
 import MakingAnOrder from "../making-an-order";
 
-import './basket.scss';
+import './cart.scss';
 
-const Basket = () => {
+const Cart = () => {
   const content = () => {
     return (
       <Consumer>
         {
           ({basket}) => {
             return basket.items.length === 0 ?
-              <Notification/> : <MakingAnOrder/>;
+              <CartEmpty/> : <MakingAnOrder/>;
           }
         }
       </Consumer>
@@ -28,4 +28,4 @@ const Basket = () => {
 };
 
 
-export default Basket;
+export default Cart;

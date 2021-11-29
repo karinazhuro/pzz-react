@@ -1,13 +1,11 @@
-import React from "react";
 import {Consumer} from "../pizzas-service-context";
-
 import translationSizes from "../../utils/translation/translation-sizes";
 import ContentCounter from "../content-counter";
 import denominationPrice from "../../utils/denomination-price";
 
-import './basket-pizza-list-item.js.scss';
+import './cart-pizza-list-item.scss';
 
-const BasketPizzaListItem = ({product}) => {
+const CartPizzaListItem = ({product}) => {
 	const {type, id, size, title, price, quantity} = product;
 	const productData = {
 		type,
@@ -18,7 +16,7 @@ const BasketPizzaListItem = ({product}) => {
 	};
 
 	return (
-	<div className='basketPizza'>
+	<div className='pizzaBasket'>
 		<h3 className='title'>{title}</h3>
 		<div className='details'>
 			<p className='size'>{translationSizes[size]}</p>
@@ -38,4 +36,4 @@ const BasketPizzaListItem = ({product}) => {
 	)
 }
 
-export default BasketPizzaListItem;
+export default CartPizzaListItem;

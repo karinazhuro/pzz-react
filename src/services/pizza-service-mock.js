@@ -106,11 +106,11 @@ export default class PizzaServiceMock {
 		console.log('mock', formData);
 
 		// return {
-		// 	[basket.data.price]: 0,
-		// 	[basket.data.items]: basket.data.items.pop(),
-		// 	[basket.data.quantityPizzas]: 0,
+		// 	[cart.data.price]: 0,
+		// 	[cart.data.items]: cart.data.items.pop(),
+		// 	[cart.data.quantityPizzas]: 0,
 		// }
 
-		// console.log('mock', basket.data);
+		// console.log('mock', cart.data);
 	};
 }

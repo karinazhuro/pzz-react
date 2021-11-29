@@ -1,9 +1,6 @@
 import React from 'react';
 
-import translationSizes from "../../utils/translation/translation-sizes";
-import {Consumer} from "../pizzas-service-context";
-import ContentCounter from "../content-counter";
-import denominationPrice from "../../utils/denomination-price";
+import PizzaVariant from "../pizza-variant";
 
 import './pizza-list-item.scss';
 
@@ -35,43 +32,6 @@ const PizzaListItem = ({product}) => {
 			</div>
 			<p className='desc'>{description}</p>
 		</React.Fragment>
-	);
-};
-
-const PizzaVariant = ({size, price, weight, quantity, id, product}) => {
-	const {type, title} = product;
-	const productData = {
-		type,
-		id,
-		size,
-		title,
-		price,
-	};
-
-	return (
-		<Consumer>
-			{
-				({onAddItem, onRemoveItem}) => {
-					return (
-						<div className='variant'>
-							<div className='infoAboutVariant'>
-								<p className='size'>{translationSizes[size]}</p>
-								<p className='price'>{denominationPrice(price)}</p>
-								<p className='weight'>{weight}</p>
-							</div>
-							<div className='countPizzas'>
-								{
-									<ContentCounter quantity={quantity}
-																	onAddItem={onAddItem}
-																	onRemoveItem={onRemoveItem}
-																	productData={productData}/>
-								}
-							</div>
-						</div>
-					)
-				}
-			}
-		</Consumer>
 	);
 };
 

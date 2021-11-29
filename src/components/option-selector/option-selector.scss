@@ -7,40 +7,46 @@
 
   .titleSelector {
     @include optionSelectTitle;
+
     padding: 10px 0;
   }
 
   .selectors {
-    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
 
     .labelSelector {
-      background-color: #999;
-      color: #fff;
-      font: 17px/1 Malina, sans-serif;
+      margin: 0 10px 0 0;
+      padding: 22px 0;
+
+      font-family: $primary-font;
+      font-size: 17px;
+      line-height: 1px;
+
+      background-color: $secondary-color;
+      color: $surface-color;
       border-radius: 7px;
       cursor: pointer;
-      margin: 0 10px 0 0;
 
       .inputSelector {
-        float: left;
-        margin: 0 5px 0 0;
         position: absolute;
+        float: left;
+
+        margin: 0 5px 0 0;
+
         clip: rect(0, 0, 0, 0);
 
         &:checked + .selectorContent {
-          background-color: $secondary;
+          background-color: $on-secondary-color;
         }
       }
 
       .selectorContent {
-        background-color: #999;
         height: 60px;
         padding: 15px;
-        border-radius: 7px;
 
-        &:hover {
-          background-color: $secondary;
-        }
+        background-color: $secondary-color;
+        border-radius: 7px;
       }
     }
   }

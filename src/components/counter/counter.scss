@@ -1,8 +1,9 @@
 @import "../../scss/variables";
-@import "btn-counter";
+@import "../../scss/patterns";
 
 .counter {
   display: flex;
+  align-items: center;
   margin: 0 15px;
 
   .minus {
@@ -10,13 +11,16 @@
   }
 
   .quantity {
-    color: $textPrimary;
+    text-align: center;
+
+    min-width: 35px;
+
+    font-family: $secondary-font;
     font-size: 21px;
     font-weight: 700;
     line-height: 30px;
-    min-width: 35px;
-    text-align: center;
-    font-family: Helvetica, Arial, sans-serif;
+
+    color: $on-surface-color;
   }
 
   .plus {

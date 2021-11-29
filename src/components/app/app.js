@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 import PizzaServiceMock from "../../services/pizza-service-mock";
 import {Provider} from "../pizzas-service-context";
 
 import Spinner from "../spinner";
 import Header from "../header";
-import Basket from "../basket";
 import Menu from "../menu";
+import Cart from "../cart";
 
 import EnumTypes from "../../utils/enums/enum-types";
 
@@ -203,8 +203,10 @@ export default class App extends Component {
 			}}>
 				<BrowserRouter>
 					<Header/>
-					<Route path='/' component={Menu} exact/>
-					<Route path='/basket' component={Basket}/>
+					<Routes>
+						<Route path="pzz-react" element={<Menu/>}/>
+						<Route path='cart' element={<Cart/>}/>
+					</Routes>
 				</BrowserRouter>
 			</Provider>
 		);

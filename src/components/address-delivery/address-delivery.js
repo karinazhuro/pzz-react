@@ -104,26 +104,6 @@ export default class AddressDelivery extends Component {
 
 		const localTimeOrder = timeOrder === 'runtime' ? '1' : '0';
 
-		// const formData = new FormData();
-		// formData.append('name', name);
-		// formData.append('phone', phone);
-		// formData.append('street', street);
-		// formData.append('house', house);
-		// formData.append('flat', flat);
-		// formData.append('entrance', entrance);
-		// formData.append('floor', floor);
-		// formData.append('intercom', intercom);
-		// formData.append('comment', comment);
-		// formData.append('runtime', localTimeOrder);
-		// formData.append('preorder', localTimeOrder);
-		// formData.append('preorder_datetime', '');
-		// formData.append('no-contact-delivery', '1');
-		// formData.append('renting', '');
-		// formData.append('preorder_date', '');
-		// formData.append('preorder_time', '');
-		// formData.append('no_contact_delivery', delivery);
-		// formData.append('payment', payment);
-
 		const formData = {
 			'name': name,
 			'phone': phone,
@@ -184,7 +164,6 @@ export default class AddressDelivery extends Component {
 											<input className='inputName'
 														 name='phone'
 														 type="tel"
-												// pattern="[0-9]{9}"
 														 value={phone}
 														 maxLength={13}
 														 onChange={this.handleInputChange}/>

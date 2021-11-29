@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import PizzaListItem from "../pizza-list-item";
 import {Consumer} from '../pizzas-service-context';
+import PizzaListItem from "../pizza-list-item";
 
 import './pizzas-list.scss';
 
@@ -11,7 +11,7 @@ export default class PizzasList extends Component {
 			const {id} = product;
 
 			return (
-				<li className='menuPizza' key={id}>
+				<li className='pizza' key={id}>
 					<PizzaListItem product={product}/>
 				</li>
 			)
@@ -20,7 +20,8 @@ export default class PizzasList extends Component {
 
 	render() {
 		return (
-			<div className='pizzas'>
+			<div className='pizzasMenu'>
+				<h2 className='titleBlock'>Пиццы</h2>
 				<ul className='pizzasList'>
 					{
 						<Consumer>

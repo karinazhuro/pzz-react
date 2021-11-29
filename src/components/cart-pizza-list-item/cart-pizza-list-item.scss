@@ -1,36 +1,37 @@
 @import "../../scss/variables";
 @import "../../scss/patterns";
 
-.basketPizza {
+.pizzaBasket {
   padding: 10px 0;
 
   .title {
     @include title;
+
     margin: 10px 0 15px;
   }
 
   .details {
     display: flex;
+    align-items: center;
 
     .size {
       @include size;
+
       width: 150px;
     }
 
-    .quantity {
-
-    }
-
     .price {
-      color: $textPrimary;
-      font: 32px Helvetica, Arial, sans-serif;
-      font-weight: 700;
       margin: 0 40px;
-    }
 
+      font-family: $secondary-font;
+      font-size: 32px;
+      font-weight: 700;
+
+      color: $on-surface-color;
+    }
   }
 
   &:not(:last-child) {
-    border-bottom: 1px solid $secondaryVariant;
+    border-bottom: 1px solid $background-color;
   }
 }

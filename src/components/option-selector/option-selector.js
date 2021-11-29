@@ -1,5 +1,3 @@
-import React from "react";
-
 import './option-selector.scss';
 
 const OptionSelector = ({name, option, translation, handleInputChange}) => {

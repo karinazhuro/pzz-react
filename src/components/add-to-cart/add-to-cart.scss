@@ -1,0 +1,22 @@
+@import "../../scss/variables";
+
+.addToCart {
+  display: flex;
+  padding: 7px 12px 8px;
+
+  font-family: $primary-font;
+  font-size: 20px;
+  line-height: 22px;
+  letter-spacing: -.5px;
+
+  background: $surface-color;
+  color: $primary-color;
+  border-width: 0;
+  border-radius: 11px;
+
+  &:hover {
+    background-color: $on-secondary-color;
+    color: $on-primary-color;
+    cursor: pointer;
+  }
+}
